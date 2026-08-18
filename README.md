@@ -20,6 +20,11 @@ hosting: Netlify, Vercel, GitHub Pages, un FTP de toda la vida.
 | `resenas.html` | Reseñas | Nota media, distribución, reseñas reales de Google con la respuesta del propietario |
 | `visitanos.html` | Visítanos | Dirección, horario, horas punta, transporte y servicios |
 
+El botón **Pedir** de la cabecera abre un panel con las dos plataformas de reparto
+(Uber Eats y Glovo) y un selector de recogida o entrega, igual que hace la ficha de
+Google. Los enlaces viven en `ORDER`, dentro de `build/chrome.mjs`; se han guardado
+limpios, sin los parámetros de seguimiento que añade Google.
+
 ## Dirección de diseño
 
 **"Il Pozzetto"** — el frío del armario italiano. En una gelateria de verdad el helado
@@ -87,11 +92,9 @@ No hay dependencias que instalar: solo Node.
    está puesto como propuesta en `build/pages/visitanos.mjs`.
 4. **Precios** — la carta se ha maquetado sin columna de precio porque no hay ninguno
    público. Cuando la paséis, se añade sin tocar el diseño.
-5. **Enlace de pedido online** — en Google apunta a un enlace de iCloud. Con la URL
-   definitiva se conectan todos los botones de "Pedir".
-6. **Destino del formulario de encargos** — hoy prepara el resumen y lo copia al
+5. **Destino del formulario de encargos** — hoy prepara el resumen y lo copia al
    portapapeles. Con un correo o un servicio (Formspree, Netlify Forms) se envía solo.
-7. **Sabores** — están confirmados pistacho, chocolate belga, café Illy, tiramisú,
+6. **Sabores** — están confirmados pistacho, chocolate belga, café Illy, tiramisú,
    turrón, chocolate y yogur. El resto de la lista es una propuesta editable en
    `build/data.mjs`.
 

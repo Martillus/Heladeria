@@ -252,8 +252,8 @@ export default {
       <div class="visit__cell">
         <p class="mono" style="color:var(--fg-faint)">Servicios</p>
         <p class="display display--s">Para llevar</p>
-        <p style="color:var(--fg-mute)">Pedido online · recogida sin entrar · entrega sin contacto</p>
-        <p class="mono" style="color:var(--pistacchio)">Espacio amigable LGTBIQ+</p>
+        <p style="color:var(--fg-mute)">Uber Eats y Glovo · recogida sin entrar · entrega sin contacto</p>
+        <button class="mono ulink" type="button" data-order-open aria-haspopup="dialog" aria-controls="order-panel" style="color:var(--pistacchio)">Pedir online →</button>
       </div>
     </div>
   </div>
@@ -267,7 +267,7 @@ export default {
     <p class="eyebrow">Ríos Rosas 54, Chamberí</p>
     <h2 class="display display--l measure-tight" style="max-width:18ch">Hoy también se ha mantecado a las <em class="italic">siete</em>.</h2>
     <div class="actions actions--center">
-      <a class="btn btn--solid" href="tel:${SITE.phoneHref}" data-magnetic="0.25"><span>Llamar y encargar</span>${ARROW}</a>
+      <button class="btn btn--solid" type="button" data-order-open data-magnetic="0.25" aria-haspopup="dialog" aria-controls="order-panel"><span>Pedir online</span>${ARROW}</button>
       <a class="btn btn--ghost" href="carta.html" data-magnetic="0.18"><span>Ver la carta</span></a>
     </div>
   </div>

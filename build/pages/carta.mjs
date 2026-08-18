@@ -65,7 +65,10 @@ export default {
       </div>
       <div class="stack">
         <p class="lead">Cinco maneras de tomarlo: en la mano, en copa, en taza, en vaso alto o en una caja para el camino.</p>
-        <a class="btn btn--ghost" href="tel:${SITE.phoneHref}" data-magnetic="0.2"><span>Encargar por teléfono</span>${ARROW}</a>
+        <div class="actions">
+          <button class="btn btn--solid" type="button" data-order-open data-magnetic="0.22" aria-haspopup="dialog" aria-controls="order-panel"><span>Pedir online</span>${ARROW}</button>
+          <a class="btn btn--ghost" href="tel:${SITE.phoneHref}" data-magnetic="0.18"><span>Encargar por teléfono</span></a>
+        </div>
       </div>
     </div>
   </div>
@@ -154,6 +157,9 @@ export default {
         <p class="eyebrow" style="margin-bottom:1rem">Para llevar</p>
         <h2 class="display display--m"><span class="row"><span>Cuarenta</span></span><span class="row"><span><em class="italic">minutos</em> de</span></span><span class="row"><span>margen.</span></span></h2>
         <p class="lead measure" style="margin-top:1.6rem">Las tarrinas salen en envase isotérmico con placa de frío. Si el trayecto es más largo, dínoslo y añadimos hielo seco.</p>
+        <div class="actions" style="margin-top:1.6rem">
+          <button class="btn btn--ghost" type="button" data-order-open data-magnetic="0.2" aria-haspopup="dialog" aria-controls="order-panel"><span>Pedir en Uber Eats o Glovo</span>${ARROW}</button>
+        </div>
       </div>
       <div style="grid-column:7 / span 6">
         <div class="ph-frame" data-expand="12">

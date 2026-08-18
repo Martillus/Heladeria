@@ -12,6 +12,33 @@ export const SITE = {
   closes: "23:00"
 };
 
+/* Plataformas de pedido online enlazadas desde la ficha de Google.
+   URLs limpias: se han quitado los parámetros de seguimiento de Google. */
+export const ORDER = [
+  {
+    key: "ubereats",
+    name: "Uber Eats",
+    brand: "#06c167",
+    ink: "#0b1410",
+    initials: "UE",
+    pickup: "https://www.ubereats.com/es/store/la-gelateria-italiana/vyHZOydMWZ6Ki0tw5XqP-g?diningMode=PICKUP",
+    delivery: "https://www.ubereats.com/es/store/la-gelateria-italiana/vyHZOydMWZ6Ki0tw5XqP-g?diningMode=DELIVERY",
+    notePickup: "Pides, pagas y lo recoges sin entrar.",
+    noteDelivery: "Entrega a domicilio, sin contacto."
+  },
+  {
+    key: "glovo",
+    name: "Glovo",
+    brand: "#ffc244",
+    ink: "#0b1410",
+    initials: "G",
+    pickup: "https://glovoapp.com/es/es/madrid/stores/la-gelateria-italiana-madrid",
+    delivery: "https://glovoapp.com/es/es/madrid/stores/la-gelateria-italiana-madrid",
+    notePickup: "Elige “recoger” dentro de la app.",
+    noteDelivery: "Entrega a domicilio en Madrid."
+  }
+];
+
 export const NAV = [
   { href: "index.html",     label: "Inicio",    idx: "01", preview: "inicio",   desc: "El banco, la escarcha y el primer bocado." },
   { href: "sabores.html",   label: "Sabores",   idx: "02", preview: "sabores",  desc: "Más de treinta pozzetti, rotando cada semana." },
@@ -120,9 +147,9 @@ export function head({ title, desc, page }) {
     </span>
   </a>
   <div class="masthead__side">
-    <a class="btn btn--solid" href="tel:${SITE.phoneHref}" data-magnetic="0.22" aria-label="Llamar a La Gelateria Italiana para pedir: ${SITE.phone}">
+    <button class="btn btn--solid" type="button" data-order-open data-magnetic="0.22" aria-haspopup="dialog" aria-controls="order-panel" aria-label="Pedir online en Uber Eats o Glovo">
       <span>Pedir</span>${ARROW}
-    </a>
+    </button>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-overlay">
       <span class="menu-btn__label">Menú</span>
       <span class="menu-btn__bars" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -152,8 +179,59 @@ export function head({ title, desc, page }) {
 <main id="main">`;
 }
 
+export function orderPanel() {
+  const row = (o, mode) => `<li>
+          <a class="order-row" href="${mode === "pickup" ? o.pickup : o.delivery}" target="_blank" rel="noopener" data-order-link="${o.key}">
+            <span class="order-row__mark" style="--brand:${o.brand};--ink:${o.ink}" aria-hidden="true">${o.initials}</span>
+            <span class="order-row__body">
+              <span class="order-row__name">${o.name}</span>
+              <span class="order-row__note">${mode === "pickup" ? o.notePickup : o.noteDelivery}</span>
+            </span>
+            <svg class="order-row__go" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+          </a>
+        </li>`;
+
+  return `<div class="order-panel" id="order-panel" role="dialog" aria-modal="true" aria-labelledby="order-title" hidden>
+  <button class="order-panel__scrim" type="button" data-order-close tabindex="-1" aria-label="Cerrar"></button>
+  <div class="order-panel__card">
+    <button class="order-panel__x" type="button" data-order-close aria-label="Cerrar el panel de pedido">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+
+    <p class="eyebrow">${SITE.addressShort}</p>
+    <h2 class="display display--m" id="order-title">Pedir <em class="italic">online</em></h2>
+    <p class="order-panel__lead">Servimos por Uber Eats y Glovo. La tarrina sale en envase isotérmico: aguanta unos cuarenta minutos.</p>
+
+    <div class="order-modes" role="tablist" aria-label="Forma de recibir el pedido">
+      <button class="order-mode" type="button" role="tab" id="tab-pickup" aria-selected="true" aria-controls="panel-pickup" data-order-mode="pickup">Recogida</button>
+      <button class="order-mode" type="button" role="tab" id="tab-delivery" aria-selected="false" aria-controls="panel-delivery" tabindex="-1" data-order-mode="delivery">Entrega</button>
+      <span class="order-modes__ink" aria-hidden="true"></span>
+    </div>
+
+    <div class="order-tab" id="panel-pickup" role="tabpanel" aria-labelledby="tab-pickup">
+      <ul class="order-list">
+        ${ORDER.map(o => row(o, "pickup")).join("\n        ")}
+      </ul>
+    </div>
+    <div class="order-tab" id="panel-delivery" role="tabpanel" aria-labelledby="tab-delivery" hidden>
+      <ul class="order-list">
+        ${ORDER.map(o => row(o, "delivery")).join("\n        ")}
+      </ul>
+    </div>
+
+    <p class="order-panel__foot">
+      ¿Una tarta helada o un encargo grande? Eso va por teléfono, con 48&nbsp;h:
+      <a class="ulink" href="tel:${SITE.phoneHref}">${SITE.phone}</a>
+    </p>
+  </div>
+</div>`;
+}
+
 export function foot() {
   return `</main>
+
+${orderPanel()}
 
 <footer class="footer">
   <div class="shell">
@@ -185,7 +263,7 @@ export function foot() {
       <div class="footer__col">
         <h3>Servicios</h3>
         <ul>
-          <li><span style="color:var(--fg-mute)">Pedido online</span></li>
+          <li><button class="ulink" type="button" data-order-open aria-haspopup="dialog" aria-controls="order-panel" style="color:var(--fg-mute)">Pedido online</button></li>
           <li><span style="color:var(--fg-mute)">Recogida sin entrar</span></li>
           <li><span style="color:var(--fg-mute)">Entrega sin contacto</span></li>
           <li><span style="color:var(--fg-mute)">Espacio amigable LGTBIQ+</span></li>

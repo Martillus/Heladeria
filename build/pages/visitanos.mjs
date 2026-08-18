@@ -124,18 +124,18 @@ export default {
       </div>
       <div style="grid-column:6 / span 7">
         <ul class="menu-list">
-          ${[["Pedido online", "Encarga y pasa a recogerlo cuando esté listo."],
-             ["Recogida sin entrar", "Te lo acercamos a la puerta si vienes con prisa o con el carrito."],
-             ["Entrega sin contacto", "Disponible para pedidos a domicilio."],
-             ["Espacio amigable LGTBIQ+", "Aquí se atiende igual a todo el mundo. Sin excepciones."]].map(([t, d]) => `<li class="menu-row">
+          ${[["Pedido online", "Uber Eats y Glovo, con recogida o entrega a domicilio.", "Uber Eats · Glovo"],
+             ["Recogida sin entrar", "Pides desde la app y te lo acercamos a la puerta.", "Disponible"],
+             ["Entrega sin contacto", "El repartidor lo deja donde nos digas.", "Disponible"],
+             ["Espacio amigable LGTBIQ+", "Aquí se atiende igual a todo el mundo. Sin excepciones.", "Siempre"]].map(([t, d, side]) => `<li class="menu-row">
             <span><span class="menu-row__name">${t}</span><span class="menu-row__desc">${d}</span></span>
-            <span class="menu-row__side">Disponible</span>
+            <span class="menu-row__side">${side}</span>
           </li>`).join("\n          ")}
         </ul>
-        <p class="pending-note" style="margin-top:1.6rem">
-          <span aria-hidden="true">·</span>
-          <span><b>Falta el enlace de pedido online:</b> en Google aparece la opción pero apunta a un enlace de iCloud. Pasadnos la URL definitiva y se enlaza desde todos los botones de “Pedir”.</span>
-        </p>
+        <div class="actions" style="margin-top:1.8rem">
+          <button class="btn btn--solid" type="button" data-order-open data-magnetic="0.22" aria-haspopup="dialog" aria-controls="order-panel"><span>Pedir online</span>${ARROW}</button>
+          <a class="btn btn--ghost" href="tel:${SITE.phoneHref}" data-magnetic="0.18"><span>${SITE.phone}</span></a>
+        </div>
       </div>
     </div>
   </div>

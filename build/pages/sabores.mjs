@@ -110,6 +110,7 @@ export default {
     <h2 class="display display--l" style="max-width:16ch">Ya sabes el sabor. Elige el <em class="italic">formato</em>.</h2>
     <div class="actions actions--center">
       <a class="btn btn--solid" href="carta.html" data-magnetic="0.25"><span>Ver carta y formatos</span>${ARROW}</a>
+      <button class="btn btn--ghost" type="button" data-order-open data-magnetic="0.18" aria-haspopup="dialog" aria-controls="order-panel"><span>Pedir online</span></button>
     </div>
   </div>
 </section>

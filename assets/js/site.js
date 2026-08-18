@@ -617,6 +617,113 @@
   }
 
   /* --------------------------------------------------------
+     11b. Panel de pedido online (Uber Eats / Glovo)
+     -------------------------------------------------------- */
+  var orderLastFocus = null;
+
+  function openOrder(trigger) {
+    var panel = document.getElementById("order-panel");
+    if (!panel || !panel.hidden) return;
+    orderLastFocus = trigger || document.activeElement;
+    panel.hidden = false;
+    document.body.classList.add("order-open");
+    if (lenis) lenis.stop();
+
+    var card = panel.querySelector(".order-panel__card");
+    var scrim = panel.querySelector(".order-panel__scrim");
+    if (hasGSAP && !REDUCED) {
+      gsap.timeline()
+        .fromTo(scrim, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.32, ease: "power2.out" })
+        .fromTo(card, { autoAlpha: 0, y: 22, scale: 0.97 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.52, ease: EASE }, "-=0.2")
+        .fromTo(panel.querySelectorAll(".order-tab:not([hidden]) .order-row"),
+          { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.42, stagger: 0.07, ease: EASE }, "-=0.3");
+    } else {
+      gsap && gsap.set([card, scrim], { autoAlpha: 1 });
+      card.style.opacity = "1";
+      scrim.style.opacity = "1";
+    }
+
+    var first = panel.querySelector(".order-mode");
+    if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 60);
+  }
+
+  function closeOrder() {
+    var panel = document.getElementById("order-panel");
+    if (!panel || panel.hidden) return;
+    var done = function () {
+      panel.hidden = true;
+      document.body.classList.remove("order-open");
+      if (lenis) lenis.start();
+      if (orderLastFocus && orderLastFocus.isConnected) orderLastFocus.focus({ preventScroll: true });
+    };
+    if (hasGSAP && !REDUCED) {
+      gsap.timeline({ onComplete: done })
+        .to(panel.querySelector(".order-panel__card"), { autoAlpha: 0, y: 14, scale: 0.98, duration: 0.3, ease: "power2.in" })
+        .to(panel.querySelector(".order-panel__scrim"), { autoAlpha: 0, duration: 0.26 }, "-=0.2");
+    } else {
+      done();
+    }
+  }
+
+  function initOrder() {
+    var panel = document.getElementById("order-panel");
+    if (!panel) return;
+
+    document.addEventListener("click", function (e) {
+      var open = e.target.closest("[data-order-open]");
+      if (open) { e.preventDefault(); closeNav(true); openOrder(open); return; }
+      if (e.target.closest("[data-order-close]")) { e.preventDefault(); closeOrder(); }
+    });
+
+    /* Recogida / entrega */
+    var modes = panel.querySelector(".order-modes");
+    var tabs = Array.from(panel.querySelectorAll(".order-mode"));
+    var setMode = function (mode, focus) {
+      modes.dataset.active = mode;
+      tabs.forEach(function (t) {
+        var on = t.dataset.orderMode === mode;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        if (on && focus) t.focus();
+      });
+      var shown = null;
+      panel.querySelectorAll(".order-tab").forEach(function (p) {
+        var on = p.id === "panel-" + mode;
+        p.hidden = !on;
+        if (on) shown = p;
+      });
+      if (shown && hasGSAP && !REDUCED) {
+        gsap.fromTo(shown.querySelectorAll(".order-row"),
+          { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.06, ease: EASE, overwrite: true });
+      }
+    };
+    modes.dataset.active = "pickup";
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () { setMode(t.dataset.orderMode); });
+    });
+    modes.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      e.preventDefault();
+      var i = tabs.findIndex(function (t) { return t.getAttribute("aria-selected") === "true"; });
+      var next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+      setMode(next.dataset.orderMode, true);
+    });
+
+    /* Teclado: escape y trampa de foco */
+    document.addEventListener("keydown", function (e) {
+      if (panel.hidden) return;
+      if (e.key === "Escape") { e.preventDefault(); closeOrder(); return; }
+      if (e.key !== "Tab") return;
+      var f = Array.from(panel.querySelectorAll('a[href], button:not([disabled]):not([tabindex="-1"])'));
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  }
+
+  /* --------------------------------------------------------
      12b. Formulario de encargos (sin servidor todavía)
      Compone el resumen, lo copia al portapapeles y ofrece
      el teléfono, que es el canal que sí funciona hoy.
@@ -696,6 +803,7 @@
     initMasthead();
     initSlices();
     initFilters();
+    initOrder();
     initOpenState();
     initEncargo();
     initYear();
