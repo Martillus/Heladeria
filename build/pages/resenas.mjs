@@ -89,7 +89,7 @@ export default {
             <span class="mono" style="color:var(--fg-faint)">${r.when}</span>
           </div>
           <blockquote class="quote__text">“${r.text}”</blockquote>
-          ${r.reply ? `<div class="quote__reply"><span class="mono" style="display:block;margin-bottom:.5rem;color:var(--pistacchio)">${r.replyWhen}</span>${r.reply}</div>` : ""}
+          ${r.reply ? `<div class="quote__reply"><span class="mono" style="display:block;margin-bottom:.5rem;color:var(--accent)">${r.replyWhen}</span>${r.reply}</div>` : ""}
           <div class="quote__who">
             <span class="quote__av" aria-hidden="true">${r.who.charAt(0)}</span>
             <span><span style="display:block;color:var(--fg)">${r.who}</span><span class="mono">${r.meta}</span></span>
@@ -105,7 +105,7 @@ export default {
   </div>
 </section>
 
-<section class="section panna-zone">
+<section class="section contrast-zone">
   <div class="shell">
     <div class="grid12" style="align-items:end;row-gap:2rem;margin-bottom:clamp(1.5rem,3vw,2.5rem)">
       <div style="grid-column:1 / span 6">
@@ -117,7 +117,7 @@ export default {
     <ul class="menu-list">
       <li class="menu-row" style="border-top:1px solid var(--line-strong)">
         <span><span class="menu-row__name">La Gelateria Italiana</span><span class="menu-row__desc">Ríos Rosas 54, Chamberí</span></span>
-        <span class="menu-row__side" style="color:var(--amarena)">4,6 ★ · 753 reseñas</span>
+        <span class="menu-row__side" style="color:var(--accent)">4,6 ★ · 753 reseñas</span>
       </li>
       ${NEARBY.map(([n, r, c]) => `<li class="menu-row">
         <span><span class="menu-row__name">${n}</span><span class="menu-row__desc">Heladería en Madrid</span></span>

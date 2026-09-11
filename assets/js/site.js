@@ -350,12 +350,12 @@
       el.dataset.cursorBound = "1";
       el.addEventListener("mouseenter", function () {
         var txt = el.getAttribute("data-cursor");
-        gsap.to(ring, { scale: txt ? 2.1 : 1.55, borderColor: "rgba(189,208,124,.85)", duration: 0.35, ease: EASE });
+        gsap.to(ring, { scale: txt ? 2.1 : 1.55, borderColor: "rgba(142,34,49,.8)", duration: 0.35, ease: EASE });
         gsap.to(dot, { scale: 0.35, duration: 0.35, ease: EASE });
         if (txt && label) { label.textContent = txt; gsap.to(label, { autoAlpha: 1, duration: 0.25 }); }
       });
       el.addEventListener("mouseleave", function () {
-        gsap.to(ring, { scale: 1, borderColor: "rgba(243,238,226,.45)", duration: 0.35, ease: EASE });
+        gsap.to(ring, { scale: 1, borderColor: "rgba(42,32,24,.42)", duration: 0.35, ease: EASE });
         gsap.to(dot, { scale: 1, duration: 0.35, ease: EASE });
         if (label) gsap.to(label, { autoAlpha: 0, duration: 0.2 });
       });

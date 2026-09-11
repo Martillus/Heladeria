@@ -69,7 +69,7 @@ export const LOGO = (cls = "brand__mark") => `<svg class="${cls}" data-logo-slot
       <path d="M12.8 27.4c0-5.6 5-10.1 11.2-10.1s11.2 4.5 11.2 10.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
       <path d="M12.8 27.4h22.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
       <path d="M17.6 27.4 24 37.6l6.4-10.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="24" cy="13.1" r="2" fill="#bdd07c"/>
+      <circle cx="24" cy="13.1" r="2" fill="#8e2231"/>
     </svg>`;
 
 export const ARROW = `<svg class="btn__ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -94,7 +94,7 @@ export function head({ title, desc, page }) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${title}</title>
 <meta name="description" content="${desc}">
-<meta name="theme-color" content="#0b1410">
+<meta name="theme-color" content="#f4eee2">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${SITE.name}">
 <meta property="og:title" content="${title}">

@@ -2,50 +2,35 @@ import { SITE, photo, ARROW } from "../chrome.mjs";
 
 const SECTIONS = [
   {
-    k: "Tarrinas y conos", note: "Servido con espátula, siempre. El cono se prensa cada mañana.",
+    k: "Helados", note: "Servido con espátula, siempre. Cono o tarrina, tú eliges.",
     items: [
-      ["Piccolo", "Un sabor. Para probar sin comprometerse.", "100 ml · tarrina o cono"],
-      ["Medio", "Dos sabores. El pedido más habitual de la casa.", "180 ml · tarrina o cono"],
-      ["Grande", "Tres sabores y nata montada si la quieres.", "250 ml · tarrina o cono"],
-      ["Cono bagnato", "Cualquier tamaño, bañado en chocolate belga y avellana picada.", "Suplemento"]
+      ["Cono o tarrina pequeña", "Un sabor. Para probar sin comprometerse.", "3,60 €"],
+      ["Cono o tarrina mediana", "Hasta dos sabores. El pedido más habitual de la casa.", "4,00 €"],
+      ["Cono o tarrina grande", "Hasta tres sabores.", "4,60 €"],
+      ["Cono sin gluten", "Suplemento sobre cualquier tamaño.", "+0,50 €"]
     ]
   },
   {
-    k: "Copas de la casa", note: "Montadas al momento en copa de cristal, para tomar sentado.",
+    k: "Para llevar a casa", note: "En envase isotérmico. Aguanta unos cuarenta minutos fuera.",
     items: [
-      ["Affogato al caffè", "Dos bolas de fior di latte ahogadas en un espresso Illy recién tirado.", "Clásico"],
-      ["Coppa Bronte", "Pistacho, nata, pistacho picado y un hilo de crema de Bronte.", "Firma"],
-      ["Coppa Amarena", "Fior di latte, cereza amarena en almíbar y nata montada.", "Clásico"],
-      ["Tartufo nero", "Corazón de chocolate negro cubierto de cacao amargo.", "Para compartir"],
-      ["Coppa del giorno", "La combinación que monta el equipo cada semana. Pregunta cuál toca.", "Rotativa"]
+      ["Envase 500 g", "Los sabores que quieras.", "14,00 €"],
+      ["Envase 750 g", "Para una mesa de cuatro o cinco.", "20,00 €"],
+      ["Envase 1000 g", "Un kilo. Para no quedarse corto.", "26,00 €"]
     ]
   },
   {
-    k: "Caffetteria", note: "Café Illy 100 % Arábica, el mismo grano que va al gelato.",
+    k: "Café y batidos", note: "Los batidos se hacen con leche fresca y el sabor de helado que elijas.",
     items: [
-      ["Espresso", "Corto, en taza caliente.", "Illy"],
-      ["Cappuccino", "Leche texturizada, sin exceso de espuma.", "Illy"],
-      ["Caffè freddo", "Espresso enfriado de golpe sobre hielo.", "Verano"],
-      ["Cioccolata calda", "Chocolate belga fundido a la taza, denso.", "Invierno"]
+      ["Café", "Corto, en taza caliente.", "1,50 €"],
+      ["Café con leche", "Leche fresca de granja, como el gelato.", "2,00 €"],
+      ["Batido", "Con leche fresca y tu sabor de helado favorito.", "4,90 €"]
     ]
   },
   {
-    k: "Granizados y bebidas", note: "Fruta exprimida el mismo día.",
+    k: "Crepes", note: "Hechos al momento en la plancha.",
     items: [
-      ["Granita di limone", "Limón de Sorrento raspado, la receta siciliana.", "Vegano"],
-      ["Granita al caffè", "Café Illy granizado con nata por encima.", "Con cafeína"],
-      ["Frullato", "Batido de fruta de temporada con o sin leche.", "A elegir"],
-      ["Agua, refrescos y cerveza italiana", "Para acompañar.", "Varios"]
-    ]
-  },
-  {
-    k: "Tartas heladas y para llevar", note: "Por encargo con 48 horas de antelación. Llama al 680 51 15 61.",
-    items: [
-      ["Tarta helada a medida", "Elige dos o tres sabores y la base: bizcocho, galleta o merengue.", "Desde 6 raciones"],
-      ["Semifreddo al torroncino", "Turrón, avellana y merengue seco. La de las fiestas.", "Encargo"],
-      ["Tarrina 500 ml", "Dos sabores, en envase isotérmico para el camino.", "Para llevar"],
-      ["Tarrina 1 litro", "Hasta cuatro sabores. Aguanta unos 40 minutos fuera de casa.", "Para llevar"],
-      ["Pack de cassatine", "Porciones individuales listas para servir.", "Encargo"]
+      ["Azúcar y limón", "El clásico, sin más.", "4,00 €"],
+      ["Nutella", "Generoso.", "4,90 €"]
     ]
   }
 ];
@@ -64,7 +49,7 @@ export default {
         <h1 class="display display--xl"><span class="row"><span>La carta</span></span><span class="row"><span>de la <em class="italic">casa</em>.</span></span></h1>
       </div>
       <div class="stack">
-        <p class="lead">Cinco maneras de tomarlo: en la mano, en copa, en taza, en vaso alto o en una caja para el camino.</p>
+        <p class="lead">Cuatro maneras de tomarlo: en la mano, en una caja para el camino, en taza o en la plancha.</p>
         <div class="actions">
           <button class="btn btn--solid" type="button" data-order-open data-magnetic="0.22" aria-haspopup="dialog" aria-controls="order-panel"><span>Pedir online</span>${ARROW}</button>
           <a class="btn btn--ghost" href="tel:${SITE.phoneHref}" data-magnetic="0.18"><span>Encargar por teléfono</span></a>
@@ -87,7 +72,7 @@ export default {
           <ul class="menu-list">
             ${s.items.map(([n, d, side]) => `<li class="menu-row">
               <span><span class="menu-row__name">${n}</span><span class="menu-row__desc">${d}</span></span>
-              <span class="menu-row__side">${side}</span>
+              <span class="menu-row__side menu-row__side--price">${side}</span>
             </li>`).join("\n            ")}
           </ul>
         </div>`).join("\n        ")}
@@ -135,7 +120,7 @@ export default {
           <ul class="menu-list">
             ${s.items.map(([n, d, side]) => `<li class="menu-row">
               <span><span class="menu-row__name">${n}</span><span class="menu-row__desc">${d}</span></span>
-              <span class="menu-row__side">${side}</span>
+              <span class="menu-row__side menu-row__side--price">${side}</span>
             </li>`).join("\n            ")}
           </ul>
         </div>`).join("\n        ")}
@@ -143,14 +128,13 @@ export default {
 
     </div>
 
-    <p class="pending-note" style="margin-top:clamp(3rem,6vw,5rem)">
-      <span aria-hidden="true">·</span>
-      <span><b>Precios pendientes:</b> la carta se ha maquetado sin columna de precio porque no consta ninguno público. Cuando nos paséis la lista, se añade una columna de importe alineada a la derecha en <code>build/pages/carta.mjs</code> sin tocar el diseño.</span>
+    <p class="mono" style="margin-top:clamp(3rem,6vw,5rem);color:var(--fg-faint);text-align:center">
+      La degustación es gratis · Todos los días elaboramos sabores nuevos
     </p>
   </div>
 </section>
 
-<section class="section panna-zone">
+<section class="section contrast-zone">
   <div class="shell">
     <div class="grid12" style="align-items:center;row-gap:2.5rem">
       <div style="grid-column:1 / span 5" data-lines>

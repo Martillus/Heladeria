@@ -28,14 +28,15 @@ limpios, sin los parámetros de seguimiento que añade Google.
 
 ## Dirección de diseño
 
-**"Il Pozzetto"** — el frío del armario italiano. En una gelateria de verdad el helado
-vive tapado en cubetas de acero a −12 °C, no en montañas de colores. Toda la web parte
-de ahí: el fondo es el verde noche del interior del armario, los sabores son pozzetti
-con la tapa ladeada que se abre al pasar el ratón, y el cargador es una tapa que se
-levanta para enseñar el gelato.
+La paleta está sacada del local: las paredes crema, el suelo de roble, el rótulo de
+madera de la pared, el granate del panel de sabores y el acero de las cubetas. Los
+sabores se presentan como cubetas con la tapa ladeada que se abre al pasar el ratón, y
+el cargador es esa misma tapa levantándose para enseñar el gelato.
 
-- **Color** — verde notte `#0b1410`, panna `#f3eee2`, pistacchio `#bdd07c`,
-  amarena `#9e1b32`, acero `#c3cbcb`.
+- **Color** — crema `#f4eee2`, cacao `#2a2018`, madera `#b98a52`,
+  granate `#8e2231`, acero templado `#8b8376`.
+- Las secciones de contraste (`.contrast-zone`) invierten los roles a cacao sobre crema,
+  y el pie ancla la página en oscuro.
 - **Tipografía** — Bodoni Moda (display, tipografía italiana de Parma),
   Archivo (texto), DM Mono (datos y etiquetas). Autoalojadas en `assets/fonts/`.
 - **Movimiento** — GSAP + ScrollTrigger y Lenis, todo autoalojado en `assets/vendor/`.
@@ -122,13 +123,11 @@ Si algún día se publica en un hosting sin URLs limpias (FTP, GitHub Pages), se
    toda la web. Ver [`assets/logo/README.md`](assets/logo/README.md).
 3. **Hora de apertura** — de Google solo consta el cierre (23:00). El horario de apertura
    está puesto como propuesta en `build/pages/visitanos.mjs`.
-4. **Precios** — la carta se ha maquetado sin columna de precio porque no hay ninguno
-   público. Cuando la paséis, se añade sin tocar el diseño.
-5. **Destino del formulario de encargos** — hoy prepara el resumen y lo copia al
+4. **Destino del formulario de encargos** — hoy prepara el resumen y lo copia al
    portapapeles. Con un correo o un servicio (Formspree, Netlify Forms) se envía solo.
-6. **Sabores** — están confirmados pistacho, chocolate belga, café Illy, tiramisú,
-   turrón, chocolate y yogur. El resto de la lista es una propuesta editable en
-   `build/data.mjs`.
+5. **Descripciones de los sabores** — los 22 nombres están tomados de vuestro panel y
+   de las etiquetas de la vitrina, pero la frase que acompaña a cada uno es nuestra.
+   Repasadlas en `build/data.mjs`.
 
 ## Accesibilidad
 

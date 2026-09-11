@@ -1,10 +1,8 @@
 import { SITE, photo, ARROW, stars } from "../chrome.mjs";
 import { FLAVORS, REVIEWS, HIGHLIGHTS, INGREDIENTS } from "../data.mjs";
 
-const bench = FLAVORS.filter(f => f.real).slice(0, 5);
-const featured = FLAVORS.filter(f => f.star).concat(
-  FLAVORS.filter(f => ["Fior di latte", "Nocciola Piemonte IGP", "Limón de Sorrento", "Tiramisù", "Stracciatella"].includes(f.n))
-).slice(0, 8);
+const bench = FLAVORS.slice(0, 5);
+const featured = FLAVORS.filter(f => f.star).slice(0, 8);
 
 const pozzetto = f => `<a class="pozzetto" href="sabores.html" style="--flavor:${f.c}" data-cursor="Ver carta">
         <span class="pozzetto__well">
@@ -51,7 +49,7 @@ export default {
         Lo que ves a mediodía se hizo hoy.
       </p>
       <div class="actions" style="margin-top:clamp(1.4rem,2.6vw,2.2rem)">
-        <a class="btn btn--solid" href="sabores.html" data-magnetic="0.25"><span>Ver los 35 sabores</span>${ARROW}</a>
+        <a class="btn btn--solid" href="sabores.html" data-magnetic="0.25"><span>Ver los 22 sabores</span>${ARROW}</a>
         <a class="btn btn--ghost" href="visitanos.html" data-magnetic="0.18"><span>Cómo llegar</span></a>
       </div>
     </div>
@@ -86,10 +84,10 @@ export default {
 <section class="section--flush" style="padding-block:clamp(2.5rem,5vw,4.5rem);border-block:1px solid var(--line);overflow:hidden">
   <div class="marquee marquee--outline" data-speed="34" aria-hidden="true">
     <div class="marquee__track">
-      <span class="marquee__item">Pistacchio di Bronte<span class="marquee__dot"></span>Chocolate belga<span class="marquee__dot"></span>Caffè Illy<span class="marquee__dot"></span>Tiramisù<span class="marquee__dot"></span>Fior di latte<span class="marquee__dot"></span>Turrón<span class="marquee__dot"></span>Limone di Sorrento<span class="marquee__dot"></span></span>
+      <span class="marquee__item">Pistacchio Siciliano<span class="marquee__dot"></span>Chocolate Belga 70 %<span class="marquee__dot"></span>Café 100 % Arábica<span class="marquee__dot"></span>Avellana de Piemonte<span class="marquee__dot"></span>Fior di Latte<span class="marquee__dot"></span>Tiramisù<span class="marquee__dot"></span>Stracciatella<span class="marquee__dot"></span>Limone<span class="marquee__dot"></span></span>
     </div>
   </div>
-  <p class="visually-hidden">Sabores destacados: pistacho de Bronte, chocolate belga, café Illy, tiramisú, fior di latte, turrón y limón de Sorrento.</p>
+  <p class="visually-hidden">Sabores destacados: pistacho siciliano, chocolate belga 70 %, café 100 % arábica, avellana de Piemonte, fior di latte, tiramisú, stracciatella y limone.</p>
 </section>
 
 <!-- ============ TESIS ============ -->
@@ -116,7 +114,7 @@ export default {
           Al pedir, levantamos la tapa delante de ti.
         </p>
         <div class="figs">
-          <div><p class="fig__n"><span data-count="35">35</span></p><p class="fig__l">sabores en carta, rotando cada semana</p></div>
+          <div><p class="fig__n"><span data-count="22">22</span></p><p class="fig__l">sabores fijos en carta, más los del día</p></div>
           <div><p class="fig__n">−12<span style="font-size:.5em"> °C</span></p><p class="fig__l">temperatura del pozzetto, tapado</p></div>
           <div><p class="fig__n">0</p><p class="fig__l">grasas hidrogenadas y colorantes</p></div>
         </div>
@@ -131,10 +129,10 @@ export default {
     <header class="grid12" style="align-items:end;margin-bottom:clamp(2.5rem,5vw,4.5rem)">
       <div style="grid-column:1 / span 7" data-lines>
         <p class="eyebrow" style="margin-bottom:1.2rem">Levanta la tapa</p>
-        <h2 class="display display--l"><span class="row"><span>Ocho de los</span></span><span class="row"><span><em class="italic">treinta y cinco</em>.</span></span></h2>
+        <h2 class="display display--l"><span class="row"><span>Ocho de los</span></span><span class="row"><span><em class="italic">veintidós</em>.</span></span></h2>
       </div>
       <div style="grid-column:9 / span 4" class="stack">
-        <p class="lead">Pasa el cursor por cada pozzetto para abrirlo. Los sabores de temporada entran y salen según el mercado.</p>
+        <p class="lead">Pasa el cursor por cada sabor para descubrirlo. Los de fruta entran y salen según la temporada.</p>
         <a class="btn btn--ghost" href="sabores.html" data-magnetic="0.2"><span>La carta completa</span>${ARROW}</a>
       </div>
     </header>
@@ -168,7 +166,7 @@ export default {
 </section>
 
 <!-- ============ PROCESO (RESUMEN) ============ -->
-<section class="section panna-zone">
+<section class="section contrast-zone">
   <div class="shell">
     <div class="grid12" style="align-items:start;row-gap:clamp(2rem,4vw,3.5rem)">
       <div style="grid-column:1 / span 5" data-lines>
@@ -235,7 +233,7 @@ export default {
         <p class="mono" style="color:var(--fg-faint)">Dirección</p>
         <p class="display display--s">Ríos Rosas 54</p>
         <p style="color:var(--fg-mute)">Chamberí · 28003 Madrid</p>
-        <a class="mono ulink" style="color:var(--pistacchio)" href="${SITE.maps}" target="_blank" rel="noopener">Abrir en Maps →</a>
+        <a class="mono ulink" style="color:var(--accent)" href="${SITE.maps}" target="_blank" rel="noopener">Abrir en Maps →</a>
       </div>
       <div class="visit__cell">
         <p class="mono" style="color:var(--fg-faint)">Horario</p>
@@ -247,13 +245,13 @@ export default {
         <p class="mono" style="color:var(--fg-faint)">Teléfono</p>
         <p class="display display--s">${SITE.phone}</p>
         <p style="color:var(--fg-mute)">Encargos y tartas heladas</p>
-        <a class="mono ulink" style="color:var(--pistacchio)" href="tel:${SITE.phoneHref}">Llamar →</a>
+        <a class="mono ulink" style="color:var(--accent)" href="tel:${SITE.phoneHref}">Llamar →</a>
       </div>
       <div class="visit__cell">
         <p class="mono" style="color:var(--fg-faint)">Servicios</p>
         <p class="display display--s">Para llevar</p>
         <p style="color:var(--fg-mute)">Uber Eats y Glovo · recogida sin entrar · entrega sin contacto</p>
-        <button class="mono ulink" type="button" data-order-open aria-haspopup="dialog" aria-controls="order-panel" style="color:var(--pistacchio)">Pedir online →</button>
+        <button class="mono ulink" type="button" data-order-open aria-haspopup="dialog" aria-controls="order-panel" style="color:var(--accent)">Pedir online →</button>
       </div>
     </div>
   </div>

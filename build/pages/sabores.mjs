@@ -1,7 +1,7 @@
 import { SITE, photo, ARROW } from "../chrome.mjs";
 import { FLAVORS, FAMILIES } from "../data.mjs";
 
-const card = f => `<a class="pozzetto" href="carta.html" style="--flavor:${f.c}" data-cat="${f.f}${(f.tags||[]).includes("Vegano") ? " vegano" : ""}" data-cursor="Ver carta">
+const card = f => `<a class="pozzetto" href="carta.html" style="--flavor:${f.c}" data-cat="${f.f}" data-cursor="Ver carta">
       <span class="pozzetto__well">
         <span class="pozzetto__frost" aria-hidden="true"></span>
         <span class="pozzetto__lid" aria-hidden="true"></span>
@@ -16,7 +16,7 @@ const card = f => `<a class="pozzetto" href="carta.html" style="--flavor:${f.c}"
 export default {
   page: "sabores.html",
   title: "Sabores · La Gelateria Italiana",
-  desc: "Los 35 sabores de gelato y sorbete que rotan en los pozzetti de Ríos Rosas: pistacho de Bronte, chocolate belga, café Illy, sorbetes veganos y especialidades.",
+  desc: "Los 22 sabores de La Gelateria Italiana en Ríos Rosas: pistacho siciliano D.O.P., chocolate belga 70 %, café 100 % arábica, avellana del Piamonte y frutas de temporada.",
   body: `
 <header class="pagehead">
   <span class="pagehead__glow" aria-hidden="true"></span>
@@ -24,11 +24,11 @@ export default {
     <nav class="crumbs mono" aria-label="Migas de pan"><a href="index.html">Inicio</a><span aria-hidden="true">/</span><span>Sabores</span></nav>
     <div class="pagehead__grid">
       <div class="pagehead__title" data-lines>
-        <h1 class="display display--xl"><span class="row"><span>Treinta y</span></span><span class="row"><span><em class="italic">cinco</em> tapas</span></span><span class="row"><span>que abrir.</span></span></h1>
+        <h1 class="display display--xl"><span class="row"><span>Veintidós</span></span><span class="row"><span><em class="italic">fijos</em>, y los</span></span><span class="row"><span>del día.</span></span></h1>
       </div>
       <div class="stack">
-        <p class="lead">Cada cubeta vive tapada a −12 °C. La lista se mueve con el mercado: los sorbetes de temporada entran y salen, las cremas clásicas no se van nunca.</p>
-        <p class="mono" style="color:var(--pistacchio)"><span data-filter-live aria-live="polite">35 sabores</span> en carta</p>
+        <p class="lead">Esta es la carta fija. Además, todos los días elaboramos sabores nuevos en el obrador: las frutas entran y salen con la temporada y las cremas clásicas no se van nunca.</p>
+        <p class="mono" style="color:var(--accent)"><span data-filter-live aria-live="polite">22 sabores</span> en carta</p>
       </div>
     </div>
   </div>
@@ -38,7 +38,6 @@ export default {
   <div class="shell">
     <div class="filters" data-filters role="group" aria-label="Filtrar sabores por familia">
       ${FAMILIES.map((f, i) => `<button class="chip" type="button" data-filter="${f.k}" aria-pressed="${i === 0 ? "true" : "false"}">${f.label}<span class="chip__n">${f.k === "all" ? FLAVORS.length : FLAVORS.filter(x => x.f === f.k).length}</span></button>`).join("\n      ")}
-      <button class="chip" type="button" data-filter="vegano" aria-pressed="false">Veganos<span class="chip__n">${FLAVORS.filter(f => (f.tags||[]).includes("Vegano")).length}</span></button>
     </div>
   </div>
 </div>
@@ -50,12 +49,12 @@ export default {
     </div>
     <p class="pending-note" style="margin-top:clamp(2.5rem,5vw,4rem)">
       <span aria-hidden="true">·</span>
-      <span><b>Para el negocio:</b> los sabores confirmados por vuestras reseñas son pistacho, chocolate belga, café Illy, tiramisú, turrón, chocolate y yogur. El resto de la lista es una propuesta editable en <code>build/data.mjs</code>. Ajustad nombres, notas y alérgenos antes de publicar.</span>
+      <span><b>Para el negocio:</b> los 22 sabores están tomados del panel de la tienda y de las etiquetas de la vitrina. Las descripciones cortas de cada uno son nuestras: repasadlas y corregid lo que no cuadre en <code>build/data.mjs</code>.</span>
     </p>
   </div>
 </section>
 
-<section class="section panna-zone">
+<section class="section contrast-zone">
   <div class="shell">
     <div class="editorial">
       <div class="editorial__media">
@@ -79,7 +78,7 @@ export default {
         </p>
         <div class="figs">
           <div><p class="fig__n">−12<span style="font-size:.5em"> °C</span></p><p class="fig__l">en el pozzetto tapado</p></div>
-          <div><p class="fig__n"><span data-count="11">11</span></p><p class="fig__l">sorbetes veganos, sin lácteos</p></div>
+          <div><p class="fig__n"><span data-count="6">6</span></p><p class="fig__l">de fruta, con fruta de temporada</p></div>
           <div><p class="fig__n">24 h</p><p class="fig__l">vida útil de una cubeta en su punto</p></div>
         </div>
       </div>

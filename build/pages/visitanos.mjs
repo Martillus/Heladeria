@@ -54,7 +54,7 @@ export default {
       <div class="visit__cell">
         <p class="mono" style="color:var(--fg-faint)">Teléfono</p>
         <p class="display display--s">${SITE.phone}</p>
-        <a class="mono ulink" style="color:var(--pistacchio)" href="tel:${SITE.phoneHref}">Llamar →</a>
+        <a class="mono ulink" style="color:var(--accent)" href="tel:${SITE.phoneHref}">Llamar →</a>
       </div>
       <div class="visit__cell">
         <p class="mono" style="color:var(--fg-faint)">Cierre</p>
@@ -115,7 +115,7 @@ export default {
   </div>
 </section>
 
-<section class="section panna-zone">
+<section class="section contrast-zone">
   <div class="shell">
     <div class="grid12" style="row-gap:2.5rem;align-items:start">
       <div style="grid-column:1 / span 4">

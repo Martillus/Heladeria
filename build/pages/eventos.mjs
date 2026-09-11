@@ -51,7 +51,7 @@ export default {
       ${OFFERS.map((o, i) => `<article class="stackcard" style="top:calc(clamp(5rem,12vh,8rem) + ${i * 16}px)">
         <div class="stackcard__grid">
           <div class="stackcard__body">
-            <p class="mono" style="color:var(--pistacchio)">${o.idx} / 0${OFFERS.length}</p>
+            <p class="mono" style="color:var(--accent)">${o.idx} / 0${OFFERS.length}</p>
             <h2 class="display display--m">${o.t}</h2>
             <p class="lead" style="font-size:1.02rem">${o.d}</p>
             <p class="mono" style="color:var(--fg-faint)">${o.meta}</p>
@@ -66,7 +66,7 @@ export default {
   </div>
 </section>
 
-<section class="section panna-zone">
+<section class="section contrast-zone">
   <div class="shell">
     <div class="grid12" style="row-gap:2.5rem;align-items:start">
       <div style="grid-column:1 / span 5" data-lines>

@@ -16,7 +16,7 @@ export default {
       </div>
       <div class="stack">
         <p class="lead">Un gelato industrial se hace en veinte minutos con base en polvo. El nuestro empieza la tarde anterior y termina a las siete de la mañana siguiente.</p>
-        <p class="mono" style="color:var(--pistacchio)">Obrador propio en Ríos Rosas 54</p>
+        <p class="mono" style="color:var(--accent)">Obrador propio en Ríos Rosas 54</p>
       </div>
     </div>
   </div>
@@ -100,7 +100,7 @@ export default {
 </section>
 
 <!-- ============ INGREDIENTES: TARJETAS APILADAS ============ -->
-<section class="section panna-zone" style="padding-bottom:clamp(3rem,6vw,5rem)">
+<section class="section contrast-zone" style="padding-bottom:clamp(3rem,6vw,5rem)">
   <div class="shell">
     <header style="max-width:44ch;margin-bottom:clamp(2rem,4vw,3rem)">
       <p class="eyebrow">Origen</p>
@@ -110,7 +110,7 @@ export default {
       ${INGREDIENTS.map((i, k) => `<article class="stackcard" style="top:calc(clamp(5rem,12vh,8rem) + ${k * 14}px)">
         <div class="stackcard__grid">
           <div class="stackcard__body">
-            <p class="mono" style="color:var(--amarena)">${i.idx} / 04</p>
+            <p class="mono" style="color:var(--accent)">${i.idx} / 04</p>
             <h3 class="display display--s">${i.name}</h3>
             <p class="lead" style="font-size:1rem">${i.text}</p>
           </div>
@@ -132,7 +132,7 @@ export default {
       </div>
       <div style="grid-column:7 / span 6" class="stack">
         <p class="lead">Las reseñas que más nos gustan no hablan del helado, hablan de quien lo sirve: quien te deja probar tres sabores antes de decidir y quien te recomienda la combinación que no habrías pedido.</p>
-        <blockquote class="quote__text" style="border-left:2px solid var(--pistacchio);padding-left:1.2rem">“El personal es muy atento y ayer nos atendieron 2 chicos nuevos maravillosos. Volveremos siempre, sin duda, el mejor gelato de Madrid.”</blockquote>
+        <blockquote class="quote__text" style="border-left:2px solid var(--accent);padding-left:1.2rem">“El personal es muy atento y ayer nos atendieron 2 chicos nuevos maravillosos. Volveremos siempre, sin duda, el mejor gelato de Madrid.”</blockquote>
         <p class="mono" style="color:var(--fg-faint)">Pepe Jimenez · Local Guide · Google</p>
         <div class="actions"><a class="btn btn--ghost" href="resenas.html" data-magnetic="0.2"><span>Todas las reseñas</span>${ARROW}</a></div>
       </div>
