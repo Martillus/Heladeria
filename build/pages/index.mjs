@@ -1,4 +1,4 @@
-import { SITE, photo, ARROW, stars } from "../chrome.mjs";
+import { SITE, LOCALES, photo, ARROW, stars } from "../chrome.mjs";
 import { FLAVORS, REVIEWS, HIGHLIGHTS, INGREDIENTS } from "../data.mjs";
 
 const bench = FLAVORS.slice(0, 5);
@@ -19,7 +19,7 @@ const pozzetto = f => `<a class="pozzetto" href="sabores.html" style="--flavor:$
 export default {
   page: "index.html",
   title: "La Gelateria Italiana · Gelato artesanal en Ríos Rosas, Madrid",
-  desc: "Gelato italiano mantecado cada mañana en Chamberí. Más de 30 sabores en pozzetto, pistacho de Bronte y chocolate belga. Ríos Rosas 54, Madrid.",
+  desc: "Gelato italiano mantecado cada mañana en Madrid. 22 sabores, pistacho siciliano D.O.P. y chocolate belga 70 %. Dos locales: Ríos Rosas 54 (Chamberí) y Pl. de la República Dominicana 6 (Chamartín).",
   body: `
 <!-- ============ HERO: LA VITRINA ============ -->
 <section class="hero">
@@ -208,18 +208,17 @@ export default {
 
     <div class="quotes" data-reveal>
       ${REVIEWS.map(r => `<figure class="quote">
-        ${stars(r.stars)}
+        ${r.stars ? stars(r.stars) : ""}
         <blockquote class="quote__text">“${r.text}”</blockquote>
-        ${r.reply ? `<p class="quote__reply">${r.replyWhen}<br>${r.reply}</p>` : ""}
         <figcaption class="quote__who">
-          <span class="quote__av" aria-hidden="true">${r.who.charAt(0)}</span>
-          <span><span style="display:block;color:var(--fg)">${r.who}</span><span class="mono">${r.when}</span></span>
+          <span class="quote__av" aria-hidden="true">${r.anon ? "”" : r.who.charAt(0)}</span>
+          <span><span style="display:block;color:var(--fg)">${r.anon ? "Reseña en Google" : r.who}</span><span class="mono">${r.anon ? r.meta : r.when}</span></span>
         </figcaption>
       </figure>`).join("\n      ")}
     </div>
 
     <div style="margin-top:clamp(2rem,4vw,3.5rem);display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between">
-      <p class="mono" style="color:var(--fg-mute)">Lo más repetido: ${HIGHLIGHTS[0]}</p>
+      <p class="mono" style="color:var(--fg-mute)">Lo más repetido: ${HIGHLIGHTS[2]}</p>
       <a class="btn btn--ghost" href="resenas.html" data-magnetic="0.2"><span>Leer las reseñas</span>${ARROW}</a>
     </div>
   </div>
@@ -230,10 +229,16 @@ export default {
   <div class="shell">
     <div class="visit" data-reveal>
       <div class="visit__cell">
-        <p class="mono" style="color:var(--fg-faint)">Dirección</p>
+        <p class="mono" style="color:var(--fg-faint)">Chamberí</p>
         <p class="display display--s">Ríos Rosas 54</p>
-        <p style="color:var(--fg-mute)">Chamberí · 28003 Madrid</p>
-        <a class="mono ulink" style="color:var(--accent)" href="${SITE.maps}" target="_blank" rel="noopener">Abrir en Maps →</a>
+        <p style="color:var(--fg-mute)">28003 Madrid · con obrador propio</p>
+        <a class="mono ulink" style="color:var(--accent)" href="${LOCALES[0].maps}" target="_blank" rel="noopener">Abrir en Maps →</a>
+      </div>
+      <div class="visit__cell">
+        <p class="mono" style="color:var(--fg-faint)">Chamartín</p>
+        <p class="display display--s">R. Dominicana 6</p>
+        <p style="color:var(--fg-mute)">28016 Madrid · el segundo local</p>
+        <a class="mono ulink" style="color:var(--accent)" href="${LOCALES[1].maps}" target="_blank" rel="noopener">Abrir en Maps →</a>
       </div>
       <div class="visit__cell">
         <p class="mono" style="color:var(--fg-faint)">Horario</p>
@@ -242,15 +247,9 @@ export default {
         <p class="live-dot" data-open-state><i aria-hidden="true"></i><span data-open-text>Cierra a las ${SITE.closes}</span></p>
       </div>
       <div class="visit__cell">
-        <p class="mono" style="color:var(--fg-faint)">Teléfono</p>
+        <p class="mono" style="color:var(--fg-faint)">Teléfono y pedidos</p>
         <p class="display display--s">${SITE.phone}</p>
-        <p style="color:var(--fg-mute)">Encargos y tartas heladas</p>
-        <a class="mono ulink" style="color:var(--accent)" href="tel:${SITE.phoneHref}">Llamar →</a>
-      </div>
-      <div class="visit__cell">
-        <p class="mono" style="color:var(--fg-faint)">Servicios</p>
-        <p class="display display--s">Para llevar</p>
-        <p style="color:var(--fg-mute)">Uber Eats y Glovo · recogida sin entrar · entrega sin contacto</p>
+        <p style="color:var(--fg-mute)">Encargos, tartas heladas y pedido online por Uber Eats o Glovo</p>
         <button class="mono ulink" type="button" data-order-open aria-haspopup="dialog" aria-controls="order-panel" style="color:var(--accent)">Pedir online →</button>
       </div>
     </div>
@@ -262,7 +261,7 @@ export default {
   <span class="finale__blob" style="top:-20%;left:-8%" data-parallax="16"></span>
   <span class="finale__blob" style="bottom:-30%;right:-10%" data-parallax="-12"></span>
   <div class="shell finale__inner">
-    <p class="eyebrow">Ríos Rosas 54, Chamberí</p>
+    <p class="eyebrow">Chamberí y Chamartín</p>
     <h2 class="display display--l measure-tight" style="max-width:18ch">Hoy también se ha mantecado a las <em class="italic">siete</em>.</h2>
     <div class="actions actions--center">
       <button class="btn btn--solid" type="button" data-order-open data-magnetic="0.25" aria-haspopup="dialog" aria-controls="order-panel"><span>Pedir online</span>${ARROW}</button>

@@ -8,7 +8,7 @@ desaparece. No hay que tocar ni una línea de código.
 - Cada foto se usa **una sola vez** en toda la web.
 - Si falta alguna, el hueco se queda señalizado con su descripción: la web no se rompe.
 
-**Huecos: 26**
+**Huecos: 27**
 
 | # | Archivo | Página | Formato | Qué tiene que salir |
 |---|---------|--------|---------|---------------------|
@@ -37,7 +37,8 @@ desaparece. No hay que tocar ni una línea de código.
 | `E-02` | `evento-celebracion.jpg` | eventos.html | 1 / 1 · cuadrada o vertical | Mesa de celebración con tarrinas o cassatine servidas, gente alrededor sin protagonismo de rostros. |
 | `E-03` | `evento-catering.jpg` | eventos.html | 1 / 1 · cuadrada o vertical | Montaje de catering: cubetas de acero fuera de la tienda o el equipo sirviendo en un evento. |
 | `R-01` | `resenas-ambiente.jpg` | resenas.html | 4 / 5 · 4:5 vertical | Ambiente real de la tienda: cola en el mostrador o gente tomando el helado en la puerta. |
-| `V-01` | `fachada.jpg` | visitanos.html | 21 / 9 · 21:9 panorámica | La fachada de la tienda desde la acera de enfrente, con el rótulo visible y la luz encendida. Es la foto que más ayuda a encontrar el sitio. |
+| `V-01` | `fachada-rios-rosas.jpg` | visitanos.html | 16 / 10 · 16:10 apaisada | La fachada del local de Ríos Rosas desde la acera de enfrente, con el rótulo visible y la luz encendida. Es la foto que más ayuda a encontrar el sitio. |
+| `V-02` | `fachada-republica-dominicana.jpg` | visitanos.html | 16 / 10 · 16:10 apaisada | La fachada del local de la Plaza de la República Dominicana, en las mismas condiciones que la anterior para que las dos casen. |
 
 ## Logotipo
 

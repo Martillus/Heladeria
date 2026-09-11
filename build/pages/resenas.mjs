@@ -21,7 +21,7 @@ export default {
         <h1 class="display display--xl"><span class="row"><span><em class="italic">753</em> personas</span></span><span class="row"><span>ya lo han</span></span><span class="row"><span>probado.</span></span></h1>
       </div>
       <div class="stack">
-        <p class="lead">No editamos nada. Las buenas, las regulares y la respuesta que dimos a una que no lo era.</p>
+        <p class="lead">Una muestra de lo que escriben quienes ya han venido. Las 753 están en Google, sin filtrar.</p>
         <a class="btn btn--ghost" href="${SITE.maps}" target="_blank" rel="noopener" data-magnetic="0.2"><span>Ver en Google</span>${ARROW}</a>
       </div>
     </div>
@@ -69,7 +69,7 @@ export default {
         <div style="position:sticky;top:clamp(6rem,12vh,8rem)">
         <p class="eyebrow">Publicadas en Google</p>
         <h2 class="display display--m" style="margin-top:1rem">Con nombre <em class="italic">y apellido</em>.</h2>
-        <p class="lead" style="margin-top:1.4rem">Reproducimos las reseñas tal y como están publicadas, incluida la que nos puso dos estrellas.</p>
+        <p class="lead" style="margin-top:1.4rem">Reproducidas tal y como están publicadas, palabra por palabra. La nota media y el reparto de estrellas de arriba son los reales, sin recortar.</p>
         <div class="ph-frame" data-expand="14" style="margin-top:2rem">
           ${photo({
             id: "R-01", file: "resenas-ambiente.jpg",
@@ -85,20 +85,19 @@ export default {
       <div style="grid-column:6 / span 7" data-reveal>
         ${REVIEWS.map(r => `<article class="quote" style="margin-bottom:1.2rem">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
-            ${stars(r.stars)}
+            ${r.stars ? stars(r.stars) : `<span class="mono" style="color:var(--accent)">${r.meta}</span>`}
             <span class="mono" style="color:var(--fg-faint)">${r.when}</span>
           </div>
           <blockquote class="quote__text">“${r.text}”</blockquote>
-          ${r.reply ? `<div class="quote__reply"><span class="mono" style="display:block;margin-bottom:.5rem;color:var(--accent)">${r.replyWhen}</span>${r.reply}</div>` : ""}
           <div class="quote__who">
-            <span class="quote__av" aria-hidden="true">${r.who.charAt(0)}</span>
-            <span><span style="display:block;color:var(--fg)">${r.who}</span><span class="mono">${r.meta}</span></span>
+            <span class="quote__av" aria-hidden="true">${r.anon ? "”" : r.who.charAt(0)}</span>
+            <span><span style="display:block;color:var(--fg)">${r.anon ? "Reseña en Google" : r.who}</span><span class="mono">${r.anon ? "Sin autor en el extracto de la ficha" : r.meta}</span></span>
           </div>
         </article>`).join("\n        ")}
 
         <p class="pending-note">
           <span aria-hidden="true">·</span>
-          <span><b>Ampliable:</b> aquí aparecen las tres reseñas visibles en la ficha de Google que nos pasasteis. Si queréis mostrar más, se pueden añadir a mano en <code>build/data.mjs</code> o conectar la API de Google Places para traerlas en directo.</span>
+          <span><b>Ampliable:</b> aquí hay dos reseñas firmadas y un extracto destacado por Google. Si queréis mostrar más, se añaden a mano en <code>build/data.mjs</code> o se conecta la API de Google Places para traerlas en directo.</span>
         </p>
       </div>
     </div>

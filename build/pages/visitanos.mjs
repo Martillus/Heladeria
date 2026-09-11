@@ -1,4 +1,4 @@
-import { SITE, photo, ARROW } from "../chrome.mjs";
+import { SITE, LOCALES, photo, ARROW } from "../chrome.mjs";
 
 /* Curva de afluencia orientativa (base: gráfico de horas punta de Google). */
 const PEAK = [
@@ -8,8 +8,8 @@ const PEAK = [
 
 export default {
   page: "visitanos.html",
-  title: "Visítanos · La Gelateria Italiana, Ríos Rosas 54",
-  desc: "Cómo llegar a La Gelateria Italiana: Calle de Ríos Rosas 54, Chamberí, 28003 Madrid. Abierto todos los días hasta las 23:00. Teléfono 680 51 15 61.",
+  title: "Visítanos · La Gelateria Italiana, Chamberí y Chamartín",
+  desc: "Los dos locales de La Gelateria Italiana en Madrid: Ríos Rosas 54 (Chamberí) y Plaza de la República Dominicana 6 (Chamartín). Abierto todos los días hasta las 23:00.",
   body: `
 <header class="pagehead">
   <span class="pagehead__glow" aria-hidden="true"></span>
@@ -17,10 +17,10 @@ export default {
     <nav class="crumbs mono" aria-label="Migas de pan"><a href="index.html">Inicio</a><span aria-hidden="true">/</span><span>Visítanos</span></nav>
     <div class="pagehead__grid">
       <div class="pagehead__title" data-lines>
-        <h1 class="display display--xl"><span class="row"><span>Ríos Rosas</span></span><span class="row"><span><em class="italic">cincuenta</em></span></span><span class="row"><span>y cuatro.</span></span></h1>
+        <h1 class="display display--xl"><span class="row"><span><em class="italic">Dos</em> locales</span></span><span class="row"><span>en Madrid.</span></span></h1>
       </div>
       <div class="stack">
-        <p class="lead">Chamberí, 28003 Madrid. A pie de calle, con la puerta abierta hasta las once de la noche.</p>
+        <p class="lead">Chamberí y Chamartín, a pie de calle los dos, con la puerta abierta hasta las once de la noche.</p>
         <p class="live-dot" data-open-state><i aria-hidden="true"></i><span data-open-text>Cierra a las ${SITE.closes}</span></p>
         <a class="btn btn--solid" href="${SITE.maps}" target="_blank" rel="noopener" data-magnetic="0.22"><span>Abrir en Google Maps</span>${ARROW}</a>
       </div>
@@ -30,14 +30,31 @@ export default {
 
 <section class="section" style="padding-top:clamp(2rem,4vw,3rem)">
   <div class="shell">
-    <div class="ph-frame" data-expand="10">
-      ${photo({
-        id: "V-01", file: "fachada.jpg",
-        alt: "Fachada de La Gelateria Italiana en Ríos Rosas 54",
-        ar: "21 / 9",
-        desc: "La fachada de la tienda desde la acera de enfrente, con el rótulo visible y la luz encendida. Es la foto que más ayuda a encontrar el sitio.",
-        spec: "21:9 panorámica · mín. 2800 px"
-      })}
+    <div class="grid12" style="row-gap:1.5rem">
+      <div style="grid-column:1 / span 6">
+        <div class="ph-frame" data-expand="10">
+          ${photo({
+            id: "V-01", file: "fachada-rios-rosas.jpg",
+            alt: "Fachada de La Gelateria Italiana en Ríos Rosas 54",
+            ar: "16 / 10",
+            desc: "La fachada del local de Ríos Rosas desde la acera de enfrente, con el rótulo visible y la luz encendida. Es la foto que más ayuda a encontrar el sitio.",
+            spec: "16:10 apaisada · mín. 2200 px"
+          })}
+        </div>
+        <p class="mono" style="color:var(--fg-faint);margin-top:1rem">Local 01 · Ríos Rosas 54, Chamberí</p>
+      </div>
+      <div style="grid-column:7 / span 6">
+        <div class="ph-frame" data-expand="10">
+          ${photo({
+            id: "V-02", file: "fachada-republica-dominicana.jpg",
+            alt: "Fachada de La Gelateria Italiana en la Plaza de la República Dominicana",
+            ar: "16 / 10",
+            desc: "La fachada del local de la Plaza de la República Dominicana, en las mismas condiciones que la anterior para que las dos casen.",
+            spec: "16:10 apaisada · mín. 2200 px"
+          })}
+        </div>
+        <p class="mono" style="color:var(--fg-faint);margin-top:1rem">Local 02 · Pl. de la República Dominicana 6, Chamartín</p>
+      </div>
     </div>
   </div>
 </section>
@@ -45,26 +62,24 @@ export default {
 <section class="section" style="padding-top:0">
   <div class="shell">
     <div class="visit" data-reveal>
-      <div class="visit__cell">
-        <p class="mono" style="color:var(--fg-faint)">Dirección</p>
-        <p class="display display--s">C. de Ríos Rosas, 54</p>
-        <p style="color:var(--fg-mute)">Chamberí · 28003 Madrid</p>
-        <p class="mono" style="color:var(--fg-faint)">Plus Code ${SITE.plus}</p>
-      </div>
+      ${LOCALES.map((l, i) => `<div class="visit__cell">
+        <p class="mono" style="color:var(--accent)">Local 0${i + 1} · ${l.name}</p>
+        <p class="display display--s">${l.street}</p>
+        <p style="color:var(--fg-mute)">${l.area}</p>
+        <p style="color:var(--fg-mute)">${l.note}</p>
+        <a class="mono ulink" style="color:var(--accent)" href="${l.maps}" target="_blank" rel="noopener">Cómo llegar →</a>
+      </div>`).join("\n      ")}
       <div class="visit__cell">
         <p class="mono" style="color:var(--fg-faint)">Teléfono</p>
         <p class="display display--s">${SITE.phone}</p>
+        <p style="color:var(--fg-mute)">Encargos y consultas</p>
         <a class="mono ulink" style="color:var(--accent)" href="tel:${SITE.phoneHref}">Llamar →</a>
       </div>
       <div class="visit__cell">
         <p class="mono" style="color:var(--fg-faint)">Cierre</p>
         <p class="display display--s">23:00</p>
         <p style="color:var(--fg-mute)">Todos los días del año</p>
-      </div>
-      <div class="visit__cell">
-        <p class="mono" style="color:var(--fg-faint)">Valoración</p>
-        <p class="display display--s">${SITE.rating} ★</p>
-        <p style="color:var(--fg-mute)">${SITE.reviews} reseñas en Google</p>
+        <p class="mono" style="color:var(--fg-faint)">${SITE.rating} ★ · ${SITE.reviews} reseñas</p>
       </div>
     </div>
   </div>
@@ -85,7 +100,7 @@ export default {
         </ul>
         <p class="pending-note" style="margin-top:1.6rem">
           <span aria-hidden="true">·</span>
-          <span><b>Confirmad la apertura:</b> de vuestra ficha de Google solo consta la hora de cierre (23:00). La apertura a las 12:00 y el horario de festivos están puestos como propuesta. Decidnos los reales y se cambian en <code>build/pages/visitanos.mjs</code>.</span>
+          <span><b>Confirmad la apertura:</b> de la ficha de Google solo consta la hora de cierre (23:00). La apertura a las 12:00 está puesta como propuesta, y este horario se muestra para los dos locales. Si en República Dominicana el horario o el teléfono son distintos, decídnoslo y se separan en <code>build/chrome.mjs</code>.</span>
         </p>
       </div>
 
@@ -101,13 +116,13 @@ export default {
           <div class="peak-axis" aria-hidden="true">
             ${PEAK.map(([h]) => `<span>${h}</span>`).join("")}
           </div>
-          <p class="mono" style="color:var(--fg-faint);margin-top:1rem">Curva orientativa basada en el gráfico de afluencia de Google</p>
+          <p class="mono" style="color:var(--fg-faint);margin-top:1rem">Curva orientativa del local de Ríos Rosas, según el gráfico de afluencia de Google</p>
         </div>
 
         <div class="figs">
-          <div><p class="fig__n">L7</p><p class="fig__l">Metro Alonso Cano, a un par de minutos andando</p></div>
-          <div><p class="fig__n">L1</p><p class="fig__l">Metro Ríos Rosas, unos siete minutos</p></div>
-          <div><p class="fig__n">3, 12, 37</p><p class="fig__l">Líneas de autobús con parada cerca</p></div>
+          <div><p class="fig__n">L7</p><p class="fig__l">Metro Alonso Cano, para el local de Ríos Rosas</p></div>
+          <div><p class="fig__n">L9</p><p class="fig__l">Metro Colombia, para el de República Dominicana</p></div>
+          <div><p class="fig__n">L1</p><p class="fig__l">Metro Ríos Rosas, algo más andando</p></div>
         </div>
         <p class="mono" style="color:var(--fg-faint);margin-top:1rem">Tiempos y líneas aproximados · verificad antes de publicar</p>
       </div>
@@ -143,18 +158,22 @@ export default {
 
 <section class="section">
   <div class="shell">
-    <div style="border:1px solid var(--line);border-radius:4px;overflow:hidden">
-      <div class="ph" style="--ar:21 / 9" data-photo="M-01">
-        <figcaption class="ph__empty">
-          <span class="ph__ring" aria-hidden="true"></span>
-          <span class="ph__code">Mapa · pendiente</span>
-          <span class="ph__desc">Aquí va el mapa embebido de Google Maps con el pin de Ríos Rosas 54. Solo necesitamos que aceptéis el iframe de Google (implica cookies de terceros) o, si preferís evitarlo, colocamos una imagen estática del mapa enlazada a Maps.</span>
-          <span class="ph__spec">21:9 · iframe de Google Maps o imagen estática</span>
-        </figcaption>
-      </div>
-    </div>
-    <div class="actions" style="margin-top:1.5rem">
-      <a class="btn btn--ghost" href="${SITE.maps}" target="_blank" rel="noopener" data-magnetic="0.2"><span>Cómo llegar en Google Maps</span>${ARROW}</a>
+    <div class="grid12" style="row-gap:1.5rem">
+      ${LOCALES.map((l, i) => `<div style="grid-column:${i === 0 ? "1 / span 6" : "7 / span 6"}">
+        <div style="border:1px solid var(--line);border-radius:4px;overflow:hidden">
+          <div class="ph" style="--ar:4 / 3" data-photo="M-0${i + 1}">
+            <figcaption class="ph__empty">
+              <span class="ph__ring" aria-hidden="true"></span>
+              <span class="ph__code">Mapa · ${l.name}</span>
+              <span class="ph__desc">Aquí va el mapa embebido de Google Maps con el pin de ${l.street}. Necesitamos que aceptéis el iframe de Google (implica cookies de terceros) o, si preferís evitarlo, colocamos una imagen estática enlazada a Maps.</span>
+              <span class="ph__spec">4:3 · iframe de Google Maps o imagen estática</span>
+            </figcaption>
+          </div>
+        </div>
+        <div class="actions" style="margin-top:1rem">
+          <a class="btn btn--ghost" href="${l.maps}" target="_blank" rel="noopener" data-magnetic="0.2"><span>Ruta a ${l.name}</span>${ARROW}</a>
+        </div>
+      </div>`).join("\n      ")}
     </div>
   </div>
 </section>
@@ -163,7 +182,7 @@ export default {
   <span class="finale__blob" style="top:-24%;right:-6%" data-parallax="14"></span>
   <div class="shell finale__inner">
     <p class="eyebrow">Te esperamos</p>
-    <h2 class="display display--l" style="max-width:16ch">La tapa está puesta. Solo hay que <em class="italic">venir a abrirla</em>.</h2>
+    <h2 class="display display--l" style="max-width:17ch">Elige el que te pille <em class="italic">más cerca</em>.</h2>
     <div class="actions actions--center">
       <a class="btn btn--solid" href="${SITE.maps}" target="_blank" rel="noopener" data-magnetic="0.25"><span>Trazar la ruta</span>${ARROW}</a>
       <a class="btn btn--ghost" href="tel:${SITE.phoneHref}" data-magnetic="0.18"><span>${SITE.phone}</span></a>

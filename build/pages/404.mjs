@@ -1,9 +1,9 @@
-import { SITE, ARROW } from "../chrome.mjs";
+import { SITE, LOCALES, ARROW } from "../chrome.mjs";
 
 export default {
   page: "404.html",
   title: "Esa página no existe · La Gelateria Italiana",
-  desc: "La página que buscas no está aquí. Vuelve al inicio o mira la carta de La Gelateria Italiana, Ríos Rosas 54, Madrid.",
+  desc: "La página que buscas no está aquí. Vuelve al inicio o mira la carta de La Gelateria Italiana, con dos locales en Madrid.",
   hidden: true,
   body: `
 <section class="hero hero--404">
@@ -26,7 +26,7 @@ export default {
         <a class="btn btn--solid" href="index.html" data-magnetic="0.25"><span>Volver al inicio</span>${ARROW}</a>
         <a class="btn btn--ghost" href="sabores.html" data-magnetic="0.18"><span>Ver los sabores</span></a>
       </div>
-      <p class="mono" style="color:var(--fg-faint);margin-top:.6rem">${SITE.addressShort} · ${SITE.phone}</p>
+      <p class="mono" style="color:var(--fg-faint);margin-top:.6rem">${LOCALES.map(l => l.short).join(" · ")}</p>
     </div>
   </div>
 </section>

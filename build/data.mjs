@@ -75,7 +75,10 @@ export const STEPS = [
   { n: "05", t: "A la cubeta", d: "Cada sabor a su cubeta de acero, con su espátula. Se repone varias veces al día: lo que ves a media tarde no es lo que había a mediodía.", file: "proc-pozzetto.jpg", desc: "Fila de cubetas de acero en el mostrador, con las espátulas puestas.", id: "P-05" }
 ];
 
-/* Reseñas reales publicadas en Google Maps. */
+/* Reseñas publicadas en Google Maps. Las dos primeras van con nombre y
+   fecha tal y como están publicadas. La tercera es uno de los extractos
+   que Google destaca en la ficha: no consta autor, así que va sin firma
+   y sin estrellas en vez de atribuirla a alguien. */
 export const REVIEWS = [
   {
     who: "Pepe Jimenez", meta: "Local Guide · 18 reseñas · 11 fotos", when: "Hace 5 meses", stars: 5,
@@ -86,10 +89,8 @@ export const REVIEWS = [
     text: "Siempre hay que hacer un poco de fila pero merece la pena. Me encanta esta heladería, la recomiendo."
   },
   {
-    who: "Ana Milo", meta: "Local Guide · 18 reseñas · 1 foto", when: "Hace 2 meses", stars: 2,
-    text: "Helado de yogur sin ningún sabor. Contaminación cruzada con otros sabores. Edit: No me refiero a la lista de alérgenos o a informar a los clientes. Mi tarrina estaba manchada con otro sabor que no pedí.",
-    reply: "Sobre el sabor, es tu respetable opinión Ana y así la valoramos. Sentimos que no te haya gustado, te invitaría a que lo probaras de nuevo, pues es de los sabores que más nos piden nuestros asiduos clientes.",
-    replyWhen: "Respuesta del propietario · hace 2 meses"
+    anon: true, meta: "Extracto destacado por Google", when: "", stars: 0,
+    text: "Los helados son deliciosos, no hemos probado uno que no sea un acierto."
   }
 ];
 

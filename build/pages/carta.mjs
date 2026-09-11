@@ -38,7 +38,7 @@ const SECTIONS = [
 export default {
   page: "carta.html",
   title: "Carta · La Gelateria Italiana",
-  desc: "Conos y tarrinas, copas de la casa, caffetteria Illy, granizados y tartas heladas por encargo en La Gelateria Italiana, Ríos Rosas 54, Madrid.",
+  desc: "Conos y tarrinas desde 3,60 €, envases para llevar, café, batidos y crepes en La Gelateria Italiana. Dos locales en Madrid: Chamberí y Chamartín.",
   body: `
 <header class="pagehead">
   <span class="pagehead__glow" aria-hidden="true"></span>

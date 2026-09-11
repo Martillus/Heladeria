@@ -1,7 +1,8 @@
 # La Gelateria Italiana — sitio web
 
-Sitio de siete páginas para **La Gelateria Italiana**, gelateria artesanal en
-C. de Ríos Rosas 54, Chamberí, Madrid (4,6 ★ · 753 reseñas en Google).
+Sitio de siete páginas para **La Gelateria Italiana**, gelateria artesanal con dos
+locales en Madrid: C. de Ríos Rosas 54 (Chamberí, 4,6 ★ · 753 reseñas en Google) y
+Pl. de la República Dominicana 6 (Chamartín).
 
 HTML estático, sin framework ni proceso de servidor. Se sube tal cual a cualquier
 hosting: Vercel, Netlify, GitHub Pages, un FTP de toda la vida.
@@ -116,16 +117,20 @@ Si algún día se publica en un hosting sin URLs limpias (FTP, GitHub Pages), se
 
 ## Qué falta por vuestra parte
 
-1. **Las 26 fotografías** — la lista completa, con nombre de archivo y qué tiene que
+1. **Las 27 fotografías** — la lista completa, con nombre de archivo y qué tiene que
    salir en cada una, está en [`assets/img/README.md`](assets/img/README.md). Los huecos
    se rellenan solos al dejar el archivo en la carpeta.
 2. **El logotipo** — dejadlo en `assets/logo/logo.svg` y sustituye al provisional en
    toda la web. Ver [`assets/logo/README.md`](assets/logo/README.md).
 3. **Hora de apertura** — de Google solo consta el cierre (23:00). El horario de apertura
    está puesto como propuesta en `build/pages/visitanos.mjs`.
-4. **Destino del formulario de encargos** — hoy prepara el resumen y lo copia al
+4. **Datos del local de República Dominicana** — no tenemos teléfono, horario propio ni
+   enlaces de Uber Eats y Glovo para ese local. Ahora comparte el teléfono y el horario
+   de Ríos Rosas, y el pedido online se sirve solo desde Ríos Rosas. Si son distintos, se
+   separan en `LOCALES`, dentro de `build/chrome.mjs`.
+5. **Destino del formulario de encargos** — hoy prepara el resumen y lo copia al
    portapapeles. Con un correo o un servicio (Formspree, Netlify Forms) se envía solo.
-5. **Descripciones de los sabores** — los 22 nombres están tomados de vuestro panel y
+6. **Descripciones de los sabores** — los 22 nombres están tomados de vuestro panel y
    de las etiquetas de la vitrina, pero la frase que acompaña a cada uno es nuestra.
    Repasadlas en `build/data.mjs`.
 

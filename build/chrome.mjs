@@ -1,6 +1,6 @@
 export const SITE = {
   name: "La Gelateria Italiana",
-  tagline: "Gelato artigianale · Chamberí, Madrid",
+  tagline: "Gelato artigianale · Madrid",
   address: "C. de Ríos Rosas, 54, Chamberí, 28003 Madrid",
   addressShort: "Ríos Rosas 54 · Chamberí",
   phone: "680 51 15 61",
@@ -12,8 +12,41 @@ export const SITE = {
   closes: "23:00"
 };
 
+/* Los dos locales. El de Ríos Rosas es el que tiene ficha con reseñas,
+   teléfono y pedido online; el de República Dominicana está pendiente de
+   que el negocio nos pase teléfono y horario propios. */
+export const LOCALES = [
+  {
+    key: "rios-rosas",
+    name: "Ríos Rosas",
+    street: "C. de Ríos Rosas, 54",
+    area: "Chamberí · 28003 Madrid",
+    short: "Ríos Rosas 54 · Chamberí",
+    plus: "C8R3+JQ Madrid",
+    phone: "680 51 15 61",
+    phoneHref: "+34680511561",
+    maps: "https://www.google.com/maps/search/?api=1&query=La+Gelateria+Italiana+R%C3%ADos+Rosas+54+Madrid",
+    note: "El local original, con obrador propio.",
+    main: true
+  },
+  {
+    key: "republica-dominicana",
+    name: "República Dominicana",
+    street: "Pl. de la República Dominicana, 6",
+    area: "Chamartín · 28016 Madrid",
+    short: "Pl. República Dominicana 6 · Chamartín",
+    plus: "",
+    phone: "",
+    phoneHref: "",
+    maps: "https://www.google.com/maps/search/?api=1&query=La+Gelateria+Italiana+Plaza+de+la+Rep%C3%BAblica+Dominicana+6+Madrid",
+    note: "El mismo gelato, al otro lado del Paseo de la Castellana.",
+    main: false
+  }
+];
+
 /* Plataformas de pedido online enlazadas desde la ficha de Google.
-   URLs limpias: se han quitado los parámetros de seguimiento de Google. */
+   URLs limpias: se han quitado los parámetros de seguimiento de Google.
+   Ambas apuntan al local de Ríos Rosas. */
 export const ORDER = [
   {
     key: "ubereats",
@@ -108,7 +141,8 @@ export function head({ title, desc, page }) {
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/layout.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"IceCreamShop","name":"${SITE.name}","image":"","telephone":"+34 ${SITE.phone}","priceRange":"€€","servesCuisine":"Gelato italiano","address":{"@type":"PostalAddress","streetAddress":"Calle de Ríos Rosas, 54","addressLocality":"Madrid","addressRegion":"Madrid","postalCode":"28003","addressCountry":"ES"},"geo":{"@type":"GeoCoordinates","latitude":40.4417233,"longitude":-3.6955425},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.6","reviewCount":"753"}}
+[{"@context":"https://schema.org","@type":"IceCreamShop","name":"${SITE.name} — Ríos Rosas","image":"","telephone":"+34 ${SITE.phone}","priceRange":"€€","servesCuisine":"Gelato italiano","address":{"@type":"PostalAddress","streetAddress":"Calle de Ríos Rosas, 54","addressLocality":"Madrid","addressRegion":"Madrid","postalCode":"28003","addressCountry":"ES"},"geo":{"@type":"GeoCoordinates","latitude":40.4417233,"longitude":-3.6955425},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.6","reviewCount":"753"}},
+{"@context":"https://schema.org","@type":"IceCreamShop","name":"${SITE.name} — República Dominicana","image":"","priceRange":"€€","servesCuisine":"Gelato italiano","address":{"@type":"PostalAddress","streetAddress":"Plaza de la República Dominicana, 6","addressLocality":"Madrid","addressRegion":"Madrid","postalCode":"28016","addressCountry":"ES"}}]
 </script>
 </head>
 <body data-page="${page}">
@@ -170,7 +204,7 @@ export function head({ title, desc, page }) {
     </div>
   </div>
   <div class="nav-overlay__foot">
-    <span class="mono">${SITE.address}</span>
+    <span class="mono">${LOCALES.map(l => l.short).join(" · ")}</span>
     <a class="mono ulink" href="tel:${SITE.phoneHref}">${SITE.phone}</a>
     <span class="live-dot" data-open-state><i aria-hidden="true"></i><span data-open-text>Cierra a las ${SITE.closes}</span></span>
   </div>
@@ -199,7 +233,7 @@ export function orderPanel() {
       <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </button>
 
-    <p class="eyebrow">${SITE.addressShort}</p>
+    <p class="eyebrow">Se sirve desde Ríos Rosas 54</p>
     <h2 class="display display--m" id="order-title">Pedir <em class="italic">online</em></h2>
     <p class="order-panel__lead">Servimos por Uber Eats y Glovo. La tarrina sale en envase isotérmico: aguanta unos cuarenta minutos.</p>
 
@@ -252,11 +286,13 @@ ${orderPanel()}
         <ul>${NAV.map(n => `<li><a class="ulink" href="${n.href}">${n.label}</a></li>`).join("")}</ul>
       </div>
       <div class="footer__col">
-        <h3>La tienda</h3>
+        <h3>Los dos locales</h3>
         <ul>
-          <li><a class="ulink" href="${SITE.maps}" target="_blank" rel="noopener">${SITE.addressShort}</a></li>
+          ${LOCALES.map(l => `<li>
+            <a class="ulink" href="${l.maps}" target="_blank" rel="noopener">${l.street}</a>
+            <span style="display:block;color:var(--fg-faint);font-size:.82rem">${l.area}</span>
+          </li>`).join("\n          ")}
           <li><a class="ulink" href="tel:${SITE.phoneHref}">${SITE.phone}</a></li>
-          <li><span style="color:var(--fg-mute)">Plus Code ${SITE.plus}</span></li>
           <li><span style="color:var(--fg-mute)">Todos los días hasta las ${SITE.closes}</span></li>
         </ul>
       </div>

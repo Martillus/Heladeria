@@ -27,7 +27,7 @@ const OFFERS = [
 export default {
   page: "eventos.html",
   title: "Eventos y encargos · La Gelateria Italiana",
-  desc: "Tartas heladas por encargo, cassatine, catering y celebraciones con gelato artesanal en Madrid. Ríos Rosas 54, Chamberí. 680 51 15 61.",
+  desc: "Tartas heladas por encargo, cassatine, catering y celebraciones con gelato artesanal en Madrid. Dos locales: Chamberí y Chamartín. 680 51 15 61.",
   body: `
 <header class="pagehead">
   <span class="pagehead__glow" aria-hidden="true"></span>
