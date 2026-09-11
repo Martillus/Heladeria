@@ -2,12 +2,25 @@ import { writeFile, mkdir, readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { head, foot, NAV } from "./chrome.mjs";
 
-const PAGES = ["index", "sabores", "carta", "obrador", "eventos", "resenas", "visitanos"];
+const PAGES = ["index", "sabores", "carta", "obrador", "eventos", "resenas", "visitanos", "404"];
 
 const mods = await Promise.all(PAGES.map(p => import(`./pages/${p}.mjs`).then(m => m.default)));
 
+/* URLs limpias: /sabores en vez de /sabores.html.
+   Vercel las sirve con cleanUrls; para un hosting que no lo soporte
+   (FTP, GitHub Pages), genera con LINKS=ext y los enlaces vuelven a .html. */
+const CLEAN = process.env.LINKS !== "ext";
+const pageNames = mods.map(m => m.page.replace(".html", ""));
+
+function cleanLinks(html) {
+  if (!CLEAN) return html;
+  return html
+    .replace(/href="index\.html"/g, 'href="/"')
+    .replace(new RegExp(`href="(${pageNames.filter(n => n !== "index").join("|")})\\.html"`, "g"), 'href="/$1"');
+}
+
 for (const p of mods) {
-  const html = head({ title: p.title, desc: p.desc, page: p.page }) + p.body + foot();
+  const html = cleanLinks(head({ title: p.title, desc: p.desc, page: p.page }) + p.body + foot());
   await writeFile(p.page, html, "utf8");
   console.log(`  ${p.page.padEnd(16)} ${(html.length / 1024).toFixed(1)} KB`);
 }
@@ -20,6 +33,7 @@ const slotRe = /<figure class="ph[^"]*" style="([^"]*)" data-photo="([^"]+)">\s*
 const slots = [];
 const seen = new Set();
 for (const p of mods) {
+  if (p.hidden) continue;
   const html = await readFile(p.page, "utf8");
   for (const m of html.matchAll(slotRe)) {
     const [, style, id, file, alt, desc, spec] = m;
@@ -87,7 +101,7 @@ let js = "";
 for (const f of JS_FILES) js += await readFile(f, "utf8") + "\n;\n";
 
 const bodies = {};
-for (const p of mods) bodies[p.page] = p.body;
+for (const p of mods) if (!p.hidden) bodies[p.page] = p.body;
 
 const chromeOf = p => {
   const full = head({ title: p.title, desc: p.desc, page: p.page });

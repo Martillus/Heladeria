@@ -4,7 +4,7 @@ Sitio de siete páginas para **La Gelateria Italiana**, gelateria artesanal en
 C. de Ríos Rosas 54, Chamberí, Madrid (4,6 ★ · 753 reseñas en Google).
 
 HTML estático, sin framework ni proceso de servidor. Se sube tal cual a cualquier
-hosting: Netlify, Vercel, GitHub Pages, un FTP de toda la vida.
+hosting: Vercel, Netlify, GitHub Pages, un FTP de toda la vida.
 
 ---
 
@@ -19,6 +19,7 @@ hosting: Netlify, Vercel, GitHub Pages, un FTP de toda la vida.
 | `eventos.html` | Eventos | Tartas por encargo, celebraciones, catering y formulario de solicitud |
 | `resenas.html` | Reseñas | Nota media, distribución, reseñas reales de Google con la respuesta del propietario |
 | `visitanos.html` | Visítanos | Dirección, horario, horas punta, transporte y servicios |
+| `404.html` | Error 404 | "Esta cubeta está vacía", con vuelta al inicio |
 
 El botón **Pedir** de la cabecera abre un panel con las dos plataformas de reparto
 (Uber Eats y Glovo) y un selector de recogida o entrega, igual que hace la ficha de
@@ -80,6 +81,37 @@ node build/build.mjs
 ```
 
 No hay dependencias que instalar: solo Node.
+
+## Publicar en Vercel
+
+El repositorio ya trae `vercel.json`. No hay que configurar nada dentro de Vercel:
+ni comando de build, ni directorio de salida, ni variables de entorno.
+
+1. Entra en [vercel.com/new](https://vercel.com/new) con la cuenta de GitHub.
+2. Importa el repositorio **Martillus/Heladeria**.
+3. En *Framework Preset* deja **Other**. No toques Build ni Output.
+4. **Importante** — antes de desplegar, en *Settings → Git → Production Branch*
+   pon `claude/gelateria-italiana-website-5g6tho`. La rama por defecto del
+   repositorio no contiene la web, así que sin este paso Vercel publica un sitio vacío.
+   La alternativa es fusionar esa rama en la rama por defecto y dejar la producción ahí.
+5. **Deploy**. Tarda menos de un minuto.
+
+Para un dominio propio: *Settings → Domains*, añade `lagelateriaitaliana.es` (o el que
+sea) y Vercel dicta los registros DNS que hay que crear en el registrador.
+
+### Lo que hace `vercel.json`
+
+- **URLs limpias**: `/sabores` en vez de `/sabores.html`.
+- **Caché**: las fuentes un año, las imágenes una semana, el CSS y el JS siempre revalidados,
+  para que un cambio se vea al instante.
+- **Cabeceras de seguridad**: `nosniff`, `Referrer-Policy`, `X-Frame-Options` y una
+  `Permissions-Policy` que apaga cámara, micrófono y geolocalización.
+- `404.html` se sirve como página de error, con la identidad de la marca.
+
+`.vercelignore` deja fuera del despliegue `build/`, `.claude/` y `SKILLS-SETUP.md`.
+
+Si algún día se publica en un hosting sin URLs limpias (FTP, GitHub Pages), se genera con
+`LINKS=ext node build/build.mjs` y los enlaces vuelven a llevar `.html`.
 
 ## Qué falta por vuestra parte
 
