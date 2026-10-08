@@ -299,12 +299,14 @@
   function initMasthead() {
     var head = document.querySelector(".masthead");
     if (!head) return;
+    var bar = document.querySelector(".sticky-bar");
     var last = 0;
     var onScroll = function () {
       var y = window.scrollY;
       head.classList.toggle("is-stuck", y > 40);
       var hide = y > last && y > 320 && !navOpen;
       head.classList.toggle("is-hidden", hide);
+      if (bar) bar.classList.toggle("is-hidden", hide);
       last = y;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -344,17 +346,18 @@
     var ring = document.querySelector(".cursor__ring");
     if (!dot || !ring) return;
     var label = ring.querySelector("span");
+    var hoop = ring.querySelector("i");
     document.querySelectorAll("a, button, .gelato, .slice, [data-cursor]").forEach(function (el) {
       if (el.dataset.cursorBound === "1") return;
       el.dataset.cursorBound = "1";
       el.addEventListener("mouseenter", function () {
         var txt = el.getAttribute("data-cursor");
-        gsap.to(ring, { scale: txt ? 2.1 : 1.55, borderColor: "rgba(142,34,49,.8)", duration: 0.35, ease: EASE });
-        gsap.to(dot, { scale: 0.35, duration: 0.35, ease: EASE });
+        gsap.to(hoop, { scale: txt ? 2.3 : 1.55, borderColor: "rgba(142,34,49,.8)", duration: 0.35, ease: EASE });
+        gsap.to(dot, { scale: txt ? 0 : 0.35, duration: 0.35, ease: EASE });
         if (txt && label) { label.textContent = txt; gsap.to(label, { autoAlpha: 1, duration: 0.25 }); }
       });
       el.addEventListener("mouseleave", function () {
-        gsap.to(ring, { scale: 1, borderColor: "rgba(42,32,24,.42)", duration: 0.35, ease: EASE });
+        gsap.to(hoop, { scale: 1, borderColor: "rgba(42,32,24,.42)", duration: 0.35, ease: EASE });
         gsap.to(dot, { scale: 1, duration: 0.35, ease: EASE });
         if (label) gsap.to(label, { autoAlpha: 0, duration: 0.2 });
       });
@@ -457,8 +460,7 @@
     if (hero) {
       gsap.timeline({ scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: 0.6 } })
         .to(".hero__frost", { autoAlpha: 0, scale: 1.25, ease: "none" }, 0)
-        .to(".hero__inner", { yPercent: -14, autoAlpha: 0.15, ease: "none" }, 0)
-        .to(".hero__bench", { yPercent: 22, ease: "none" }, 0);
+        .to(".hero__inner", { yPercent: -14, autoAlpha: 0.15, ease: "none" }, 0);
     }
 
     /* Texto que se ilumina palabra a palabra */

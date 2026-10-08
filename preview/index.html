@@ -279,6 +279,7 @@ body.order-open { overflow: hidden; }
 h1, h2, h3, h4, h5, p, figure, blockquote, dl, dd { margin: 0; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
 img, svg, video { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
 img { height: auto; }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { background: none; border: 0; padding: 0; cursor: pointer; }
@@ -1183,8 +1184,7 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
   position: fixed;
   top: 0; left: 0;
   width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(42, 32, 24, 0.42);
+  place-items: center;
   pointer-events: none;
   z-index: 179;
   opacity: 0;
@@ -1192,14 +1192,32 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
   place-items: center;
   will-change: transform;
 }
+/* El aro es la pieza que escala */
+.cursor__ring i {
+  grid-area: 1 / 1;
+  width: 40px;
+  height: 40px;
+  justify-self: center;
+  align-self: center;
+  border-radius: 50%;
+  border: 1px solid rgba(42, 32, 24, 0.42);
+  will-change: transform;
+}
+/* El rótulo va en su propia capa, sin escalar, para que no se emborrone */
 .cursor__ring span {
+  grid-area: 1 / 1;
   font-family: var(--f-mono);
-  font-size: 0.5rem;
-  letter-spacing: 0.14em;
+  font-size: 0.56rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--cacao);
   opacity: 0;
   white-space: nowrap;
+  padding: 0.35em 0.7em;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--crema) 88%, transparent);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 @media (hover: none), (pointer: coarse) {
   .cursor, .cursor__ring { display: none; }
@@ -1556,12 +1574,11 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
   width: 100%;
   max-width: var(--max);
   margin-inline: auto;
-  padding: clamp(0.8rem, 2vh, 1.6rem) var(--pad-x) clamp(1.4rem, 3vh, 2.2rem);
-  align-items: end;
+  padding: clamp(1.4rem, 3.2vh, 2.4rem) var(--pad-x) clamp(2rem, 4.2vh, 3rem);
+  align-items: center;
 }
-.hero__bench .bench-cell { display: grid; gap: 0.55rem; justify-items: center; text-align: center; }
+.hero__bench .bench-cell { display: grid; gap: 0.7rem; justify-items: center; align-content: center; text-align: center; padding-inline: clamp(0.4rem, 1vw, 1rem); }
 .hero__bench .gelato__tin { max-width: clamp(58px, 6.4vw, 98px); }
-.hero__bench .bench-cell:nth-child(even) { transform: translateY(-14%); }
 .hero__bench .bench-name {
   font-family: var(--f-mono);
   font-size: 0.6rem;
@@ -2076,6 +2093,13 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
   border-bottom: 1px solid var(--line);
   border-top: 1px solid var(--line);
   padding-block: 0.5rem;
+  transition: transform 420ms var(--e-soft), opacity 300ms var(--e-soft);
+}
+/* Se comporta como la cabecera: al bajar se retira, al subir vuelve */
+.sticky-bar.is-hidden {
+  transform: translateY(calc(-100% - clamp(4.4rem, 6.4vw, 5.7rem)));
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ---------- Formulario ---------- */
@@ -2176,6 +2200,16 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
 /* Antes de un cierre a toda página sobra la mitad del aire */
 .section:has(+ .finale) { padding-bottom: calc(var(--sec-y) * 0.78); }
 
+/* En pantallas bajas el titular cede tamaño para que el banco de sabores
+   entre entero, con su aire arriba y abajo, sin salirse del primer vistazo */
+@media (min-width: 861px) and (max-height: 960px) {
+  .hero { --t-display-xl: clamp(2.9rem, 7.6vw, 7rem); }
+  .hero__inner { padding-top: clamp(4.5rem, 8.5vh, 6.5rem); }
+}
+@media (min-width: 861px) and (max-height: 820px) {
+  .hero { --t-display-xl: clamp(2.6rem, 6.6vw, 6rem); }
+}
+
 </style>
 </head>
 <body data-page="index.html">
@@ -2223,7 +2257,7 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
     </svg></span></div>
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"></div>
-<div class="cursor__ring" aria-hidden="true"><span></span></div>
+<div class="cursor__ring" aria-hidden="true"><i></i><span></span></div>
 
 <header class="masthead">
   <a class="brand" href="index.html" aria-label="La Gelateria Italiana — inicio">
@@ -3509,12 +3543,14 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
   function initMasthead() {
     var head = document.querySelector(".masthead");
     if (!head) return;
+    var bar = document.querySelector(".sticky-bar");
     var last = 0;
     var onScroll = function () {
       var y = window.scrollY;
       head.classList.toggle("is-stuck", y > 40);
       var hide = y > last && y > 320 && !navOpen;
       head.classList.toggle("is-hidden", hide);
+      if (bar) bar.classList.toggle("is-hidden", hide);
       last = y;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -3554,17 +3590,18 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     var ring = document.querySelector(".cursor__ring");
     if (!dot || !ring) return;
     var label = ring.querySelector("span");
+    var hoop = ring.querySelector("i");
     document.querySelectorAll("a, button, .gelato, .slice, [data-cursor]").forEach(function (el) {
       if (el.dataset.cursorBound === "1") return;
       el.dataset.cursorBound = "1";
       el.addEventListener("mouseenter", function () {
         var txt = el.getAttribute("data-cursor");
-        gsap.to(ring, { scale: txt ? 2.1 : 1.55, borderColor: "rgba(142,34,49,.8)", duration: 0.35, ease: EASE });
-        gsap.to(dot, { scale: 0.35, duration: 0.35, ease: EASE });
+        gsap.to(hoop, { scale: txt ? 2.3 : 1.55, borderColor: "rgba(142,34,49,.8)", duration: 0.35, ease: EASE });
+        gsap.to(dot, { scale: txt ? 0 : 0.35, duration: 0.35, ease: EASE });
         if (txt && label) { label.textContent = txt; gsap.to(label, { autoAlpha: 1, duration: 0.25 }); }
       });
       el.addEventListener("mouseleave", function () {
-        gsap.to(ring, { scale: 1, borderColor: "rgba(42,32,24,.42)", duration: 0.35, ease: EASE });
+        gsap.to(hoop, { scale: 1, borderColor: "rgba(42,32,24,.42)", duration: 0.35, ease: EASE });
         gsap.to(dot, { scale: 1, duration: 0.35, ease: EASE });
         if (label) gsap.to(label, { autoAlpha: 0, duration: 0.2 });
       });
@@ -3667,8 +3704,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     if (hero) {
       gsap.timeline({ scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: 0.6 } })
         .to(".hero__frost", { autoAlpha: 0, scale: 1.25, ease: "none" }, 0)
-        .to(".hero__inner", { yPercent: -14, autoAlpha: 0.15, ease: "none" }, 0)
-        .to(".hero__bench", { yPercent: 22, ease: "none" }, 0);
+        .to(".hero__inner", { yPercent: -14, autoAlpha: 0.15, ease: "none" }, 0);
     }
 
     /* Texto que se ilumina palabra a palabra */

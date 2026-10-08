@@ -218,7 +218,7 @@ export function head({ title, desc, page }) {
 <div class="curtain" aria-hidden="true"><span class="curtain__mark">${LOGO("").replace('role="img"', 'aria-hidden="true" role="presentation"')}</span></div>
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"></div>
-<div class="cursor__ring" aria-hidden="true"><span></span></div>
+<div class="cursor__ring" aria-hidden="true"><i></i><span></span></div>
 
 <header class="masthead">
   <a class="brand" href="index.html" aria-label="${SITE.name} — inicio">

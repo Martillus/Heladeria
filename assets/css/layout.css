@@ -92,12 +92,11 @@
   width: 100%;
   max-width: var(--max);
   margin-inline: auto;
-  padding: clamp(0.8rem, 2vh, 1.6rem) var(--pad-x) clamp(1.4rem, 3vh, 2.2rem);
-  align-items: end;
+  padding: clamp(1.4rem, 3.2vh, 2.4rem) var(--pad-x) clamp(2rem, 4.2vh, 3rem);
+  align-items: center;
 }
-.hero__bench .bench-cell { display: grid; gap: 0.55rem; justify-items: center; text-align: center; }
+.hero__bench .bench-cell { display: grid; gap: 0.7rem; justify-items: center; align-content: center; text-align: center; padding-inline: clamp(0.4rem, 1vw, 1rem); }
 .hero__bench .gelato__tin { max-width: clamp(58px, 6.4vw, 98px); }
-.hero__bench .bench-cell:nth-child(even) { transform: translateY(-14%); }
 .hero__bench .bench-name {
   font-family: var(--f-mono);
   font-size: 0.6rem;
@@ -612,6 +611,13 @@
   border-bottom: 1px solid var(--line);
   border-top: 1px solid var(--line);
   padding-block: 0.5rem;
+  transition: transform 420ms var(--e-soft), opacity 300ms var(--e-soft);
+}
+/* Se comporta como la cabecera: al bajar se retira, al subir vuelve */
+.sticky-bar.is-hidden {
+  transform: translateY(calc(-100% - clamp(4.4rem, 6.4vw, 5.7rem)));
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ---------- Formulario ---------- */
@@ -711,3 +717,13 @@
 
 /* Antes de un cierre a toda página sobra la mitad del aire */
 .section:has(+ .finale) { padding-bottom: calc(var(--sec-y) * 0.78); }
+
+/* En pantallas bajas el titular cede tamaño para que el banco de sabores
+   entre entero, con su aire arriba y abajo, sin salirse del primer vistazo */
+@media (min-width: 861px) and (max-height: 960px) {
+  .hero { --t-display-xl: clamp(2.9rem, 7.6vw, 7rem); }
+  .hero__inner { padding-top: clamp(4.5rem, 8.5vh, 6.5rem); }
+}
+@media (min-width: 861px) and (max-height: 820px) {
+  .hero { --t-display-xl: clamp(2.6rem, 6.6vw, 6rem); }
+}
