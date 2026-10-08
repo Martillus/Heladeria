@@ -54,7 +54,7 @@
 
   /* Ritmo */
   --pad-x: clamp(1.25rem, 4.2vw, 4.5rem);
-  --sec-y: clamp(5.5rem, 11vw, 13rem);
+  --sec-y: clamp(4.25rem, 8vw, 9.5rem);
   --gap: clamp(1rem, 1.8vw, 2rem);
   --max: 1560px;
   --rim: 1px;
@@ -167,8 +167,8 @@ a {
 .display .row {
   display: block;
   overflow: hidden;
-  padding-block: 0.18em 0.16em;
-  margin-block: -0.18em -0.16em;
+  padding-block: 0.24em 0.2em;
+  margin-block: -0.24em -0.2em;
 }
 .display .row > * { display: block; }
 

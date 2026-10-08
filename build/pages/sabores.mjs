@@ -31,6 +31,7 @@ export default {
   </div>
 </header>
 
+<div class="catalogo">
 <div class="sticky-bar">
   <div class="shell">
     <div class="filters" data-filters role="group" aria-label="Filtrar sabores por familia">
@@ -41,7 +42,7 @@ export default {
 
 <section class="section" style="padding-top:clamp(3rem,6vw,5rem)">
   <div class="shell">
-    <div class="pozzetti pozzetti--catalog" data-filter-target data-reveal>
+    <div class="sabores-grid sabores-grid--catalogo" data-filter-target data-reveal>
       ${FLAVORS.map(card).join("\n      ")}
     </div>
     <p class="pending-note" style="margin-top:clamp(2.5rem,5vw,4rem)">
@@ -50,6 +51,7 @@ export default {
     </p>
   </div>
 </section>
+</div>
 
 <section class="section contrast-zone">
   <div class="shell">
@@ -60,7 +62,7 @@ export default {
             id: "S-01", file: "sabores-espatula.jpg",
             alt: "Espátula extendiendo gelato en una tarrina",
             ar: "4 / 5",
-            desc: "Primer plano de la espátula extendiendo el gelato sobre la tarrina, con el pozzetto abierto detrás.",
+            desc: "Primer plano de la espátula extendiendo el gelato sobre la tarrina, con la vitrina detrás.",
             spec: "4:5 vertical · mín. 1600 px"
           })}
         </div>
@@ -74,7 +76,7 @@ export default {
           Es la forma italiana y es la única que usamos.
         </p>
         <div class="figs">
-          <div><p class="fig__n">−12<span style="font-size:.5em"> °C</span></p><p class="fig__l">en el pozzetto tapado</p></div>
+          <div><p class="fig__n">−12<span style="font-size:.5em"> °C</span></p><p class="fig__l">la temperatura de la vitrina</p></div>
           <div><p class="fig__n"><span data-count="6">6</span></p><p class="fig__l">de fruta, con fruta de temporada</p></div>
           <div><p class="fig__n">24 h</p><p class="fig__l">vida útil de una cubeta en su punto</p></div>
         </div>
@@ -91,8 +93,8 @@ export default {
         <h2 class="display display--s" style="margin-top:1rem">Pregunta siempre antes de pedir.</h2>
       </div>
       <div style="grid-column:6 / span 7" class="stack">
-        <p class="lead">Trabajamos a diario con leche, frutos secos, huevo, gluten y soja en el mismo obrador. Aunque cada cubeta tiene su tapa y su espátula, no podemos garantizar la ausencia total de trazas cruzadas.</p>
-        <p style="color:var(--fg-mute)">Si tienes una alergia declarada, dínoslo antes de servir: abrimos cubeta nueva, cambiamos de espátula y te enseñamos la ficha del sabor.</p>
+        <p class="lead">Trabajamos a diario con leche, frutos secos, huevo, gluten y soja en el mismo obrador. Aunque cada cubeta tiene su propia espátula, no podemos garantizar la ausencia total de trazas cruzadas.</p>
+        <p style="color:var(--fg-mute)">Si tienes una alergia declarada, dínoslo antes de servir: sacamos cubeta nueva, cambiamos de espátula y te enseñamos la ficha del sabor.</p>
         <div class="actions"><a class="btn btn--ghost" href="tel:${SITE.phoneHref}" data-magnetic="0.2"><span>Consultar por teléfono</span>${ARROW}</a></div>
       </div>
     </div>

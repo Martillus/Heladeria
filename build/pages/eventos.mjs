@@ -10,14 +10,14 @@ const OFFERS = [
   },
   {
     idx: "02", t: "Celebraciones y cumpleaños",
-    d: "Cassatine individuales, tarrinas rotuladas o un carrito de pozzetti servido por nuestro equipo. Nos adaptamos al número de invitados y al espacio.",
+    d: "Cassatine individuales, tarrinas rotuladas o un carrito con las cubetas y nuestro equipo sirviendo. Nos adaptamos al número de invitados y al espacio.",
     meta: "Desde 20 personas · presupuesto cerrado",
     file: "evento-celebracion.jpg", id: "E-02",
     desc: "Mesa de celebración con tarrinas o cassatine servidas, gente alrededor sin protagonismo de rostros."
   },
   {
     idx: "03", t: "Empresas y catering",
-    d: "Eventos corporativos, aperturas y ferias en Madrid. Llevamos el pozzetto al sitio, con espátula y el mismo gelato que servimos en tienda.",
+    d: "Eventos corporativos, aperturas y ferias en Madrid. Llevamos las cubetas al sitio, con espátula y el mismo gelato que servimos en tienda.",
     meta: "Consultar disponibilidad",
     file: "evento-catering.jpg", id: "E-03",
     desc: "Montaje de catering: cubetas de acero fuera de la tienda o el equipo sirviendo en un evento."
@@ -35,7 +35,7 @@ export default {
     <nav class="crumbs mono" aria-label="Migas de pan"><a href="index.html">Inicio</a><span aria-hidden="true">/</span><span>Eventos</span></nav>
     <div class="pagehead__grid">
       <div class="pagehead__title" data-lines>
-        <h1 class="display display--xl"><span class="row"><span>Encargos</span></span><span class="row"><span>que salen</span></span><span class="row"><span>del <em class="italic">pozzetto</em>.</span></span></h1>
+        <h1 class="display display--xl"><span class="row"><span>Encargos</span></span><span class="row"><span>que salen</span></span><span class="row"><span>del <em class="italic">obrador</em>.</span></span></h1>
       </div>
       <div class="stack">
         <p class="lead">Tartas heladas, cassatine y catering en Madrid, con el mismo gelato que servimos cada día en Ríos Rosas. Nada se compra hecho.</p>

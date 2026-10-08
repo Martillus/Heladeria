@@ -12,21 +12,21 @@ desaparece. No hay que tocar ni una línea de código.
 
 | # | Archivo | Página | Formato | Qué tiene que salir |
 |---|---------|--------|---------|---------------------|
-| `H-01` | `hero-mostrador.jpg` | index.html | 16 / 9 · 16:9 apaisada | El mostrador con los pozzetti de acero cerrados, visto de frente y con la luz cálida de la tienda encendida. |
+| `H-01` | `hero-mostrador.jpg` | index.html | 16 / 9 · 16:9 apaisada | La vitrina con las cubetas de acero a la vista, de frente y con la luz cálida de la tienda encendida. |
 | `A-01` | `obrador-manos.jpg` | index.html | 3 / 4 · 3:4 vertical | Vertical del obrador: manos trabajando el gelato con la espátula, o la mantecadora en marcha. |
 | `I-01` | `ing-pistacho.jpg` | index.html | 3 / 4 · vertical | Pistachos crudos en un cuenco, o el momento del tostado en el obrador. |
 | `I-02` | `ing-chocolate.jpg` | index.html | 3 / 4 · vertical | Pastillas o callets de cobertura belga, o chocolate fundido cayendo en hilo. |
 | `I-03` | `ing-cafe.jpg` | index.html | 3 / 4 · vertical | Taza de café sobre el mostrador, o granos junto a la tarrina. |
 | `I-04` | `ing-leche.jpg` | index.html | 3 / 4 · vertical | Leche vertiéndose en el pasteurizador, o el detalle de la mantecadora girando. |
-| `S-01` | `sabores-espatula.jpg` | sabores.html | 4 / 5 · 4:5 vertical | Primer plano de la espátula extendiendo el gelato sobre la tarrina, con el pozzetto abierto detrás. |
+| `S-01` | `sabores-espatula.jpg` | sabores.html | 4 / 5 · 4:5 vertical | Primer plano de la espátula extendiendo el gelato sobre la tarrina, con la vitrina detrás. |
 | `C-01` | `carta-cono.jpg` | carta.html | 3 / 4 · 3:4 vertical | Cono recién servido en primer plano, sujeto con la mano, con la tienda desenfocada al fondo. |
 | `C-02` | `carta-copa.jpg` | carta.html | 4 / 5 · 4:5 vertical | Una copa montada en cristal (tipo coppa con nata y fruta o affogato) sobre la mesa de la tienda. |
 | `C-03` | `carta-tarrinas.jpg` | carta.html | 16 / 10 · 16:10 apaisada | Tarrinas de 500 ml y 1 l cerradas con la etiqueta de la casa, listas en el mostrador. |
 | `P-01` | `proc-pesar.jpg` | obrador.html | 4 / 3 · 4:3 apaisada | Balanza con ingredientes secos, o el cuaderno de recetas del obrador. |
 | `P-02` | `proc-pasteurizar.jpg` | obrador.html | 4 / 3 · 4:3 apaisada | Pasteurizadora de acero en marcha, con el termómetro visible. |
-| `P-03` | `proc-madurar.jpg` | obrador.html | 4 / 3 · 4:3 apaisada | Cubetas tapadas madurando en la cámara frigorífica. |
+| `P-03` | `proc-madurar.jpg` | obrador.html | 4 / 3 · 4:3 apaisada | Las cubas de mezcla reposando en la cámara frigorífica. |
 | `P-04` | `proc-mantecar.jpg` | obrador.html | 4 / 3 · 4:3 apaisada | Gelato saliendo de la mantecadora hacia la cubeta de acero. |
-| `P-05` | `proc-pozzetto.jpg` | obrador.html | 4 / 3 · 4:3 apaisada | Fila de cubetas de acero en el mostrador, con las espátulas puestas. |
+| `P-05` | `proc-vitrina.jpg` | obrador.html | 4 / 3 · 4:3 apaisada | La vitrina llena, con las cubetas de acero alineadas y las espátulas puestas. |
 | `O-01` | `obrador-vista.jpg` | obrador.html | 16 / 10 · 16:10 apaisada | Plano general del obrador o de la tienda con el equipo trabajando detrás del mostrador. |
 | `O-02` | `obrador-detalle.jpg` | obrador.html | 3 / 4 · 3:4 vertical | Detalle vertical: fruta cortada, frutos secos molidos o la cubeta llenándose de gelato. |
 | `I-01b` | `ing-pistacho-2.jpg` | obrador.html | 1 / 1 · cuadrada o vertical | Pistachos crudos en un cuenco, o el momento del tostado en el obrador. |

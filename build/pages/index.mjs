@@ -4,7 +4,7 @@ import { FLAVORS, REVIEWS, HIGHLIGHTS, INGREDIENTS } from "../data.mjs";
 const bench = FLAVORS.slice(0, 5);
 const featured = FLAVORS.filter(f => f.star).slice(0, 8);
 
-const pozzetto = f => `<a class="gelato" href="sabores.html" style="--flavor:${f.c}" data-cursor="Ver carta">
+const flavorCard = f => `<a class="gelato" href="sabores.html" style="--flavor:${f.c}" data-cursor="Ver carta">
         ${gelatoMark(f.c, f.t)}
         <span class="gelato__body">
           <span class="gelato__name">${f.n}</span>
@@ -25,7 +25,7 @@ export default {
       id: "H-01", file: "hero-mostrador.jpg",
       alt: "Mostrador de La Gelateria Italiana en Ríos Rosas",
       ar: "16 / 9",
-      desc: "El mostrador con los pozzetti de acero cerrados, visto de frente y con la luz cálida de la tienda encendida.",
+      desc: "La vitrina con las cubetas de acero a la vista, de frente y con la luz cálida de la tienda encendida.",
       spec: "16:9 apaisada · mín. 2400 px",
       cls: "ph--bg"
     })}
@@ -42,7 +42,7 @@ export default {
         <span class="row"><span>la <em class="italic hero__accent">mañana</em>.</span></span>
       </h1>
       <p class="lead measure-tight" style="margin-top:clamp(1.2rem,2.2vw,2rem)">
-        Gelato italiano de verdad: tapado en pozzetto, sin colorantes y sin montañas de colores en vitrina.
+        Gelato italiano de verdad: mantecado esta misma mañana, sin colorantes y servido con espátula.
         Lo que ves a mediodía se hizo hoy.
       </p>
       <div class="actions" style="margin-top:clamp(1.4rem,2.6vw,2.2rem)">
@@ -103,13 +103,13 @@ export default {
         <p class="eyebrow">Lo que pasa antes de que abramos</p>
         <p class="scrub-text" style="margin-top:1.6rem">Un gelato honesto no se decora: se pesa, se maduran doce horas y se manteca la misma mañana en que se vende.</p>
         <p class="lead measure" style="margin-top:1.8rem">
-          Por eso nuestras cubetas están tapadas. El aire y la luz son los dos enemigos del gelato,
-          y una montaña de colores en vitrina es exactamente lo contrario de conservarlo bien.
-          Al pedir, levantamos la tapa delante de ti.
+          Por eso reponemos las cubetas varias veces al día en vez de llenarlas una vez y olvidarlas.
+          El tiempo es el enemigo del gelato: cuanto menos espera en la vitrina, mejor llega a la cuchara.
+          Lo que te servimos lleva horas hecho, no días.
         </p>
         <div class="figs">
           <div><p class="fig__n"><span data-count="22">22</span></p><p class="fig__l">sabores fijos en carta, más los del día</p></div>
-          <div><p class="fig__n">−12<span style="font-size:.5em"> °C</span></p><p class="fig__l">temperatura del pozzetto, tapado</p></div>
+          <div><p class="fig__n">−12<span style="font-size:.5em"> °C</span></p><p class="fig__l">temperatura de la vitrina</p></div>
           <div><p class="fig__n">0</p><p class="fig__l">grasas hidrogenadas y colorantes</p></div>
         </div>
       </div>
@@ -122,16 +122,16 @@ export default {
   <div class="shell">
     <header class="grid12" style="align-items:end;margin-bottom:clamp(2.5rem,5vw,4.5rem)">
       <div style="grid-column:1 / span 7" data-lines>
-        <p class="eyebrow" style="margin-bottom:1.2rem">Levanta la tapa</p>
+        <p class="eyebrow" style="margin-bottom:1.2rem">Lo que verás en la vitrina</p>
         <h2 class="display display--l"><span class="row"><span>Ocho de los</span></span><span class="row"><span><em class="italic">veintidós</em>.</span></span></h2>
       </div>
       <div style="grid-column:9 / span 4" class="stack">
-        <p class="lead">Pasa el cursor por cada sabor para descubrirlo. Los de fruta entran y salen según la temporada.</p>
+        <p class="lead">Pasa el cursor por cada sabor para verlo de cerca. Los de fruta entran y salen según la temporada.</p>
         <a class="btn btn--ghost" href="sabores.html" data-magnetic="0.2"><span>La carta completa</span>${ARROW}</a>
       </div>
     </header>
-    <div class="pozzetti" data-reveal>
-      ${featured.map(pozzetto).join("\n      ")}
+    <div class="sabores-grid" data-reveal>
+      ${featured.map(flavorCard).join("\n      ")}
     </div>
   </div>
 </section>
@@ -165,14 +165,14 @@ export default {
     <div class="grid12" style="align-items:start;row-gap:clamp(2rem,4vw,3.5rem)">
       <div style="grid-column:1 / span 5" data-lines>
         <p class="eyebrow" style="margin-bottom:1.2rem">Cuatro pasos y una espera</p>
-        <h2 class="display display--m"><span class="row"><span>Del cuaderno</span></span><span class="row"><span>al <em class="italic">pozzetto</em>.</span></span></h2>
+        <h2 class="display display--m"><span class="row"><span>Del cuaderno</span></span><span class="row"><span>a la <em class="italic">vitrina</em>.</span></span></h2>
         <a class="btn btn--ghost" href="obrador.html" data-magnetic="0.2" style="margin-top:2rem"><span>Entrar al obrador</span>${ARROW}</a>
       </div>
       <ol style="grid-column:7 / span 6" data-reveal>
         ${["Pesar cada base en gramos, no a ojo.",
            "Pasteurizar a 85 °C y enfriar de golpe.",
            "Madurar doce horas a 4 °C.",
-           "Mantecar a las siete y tapar la cubeta."].map((t, i) => `<li class="menu-row">
+           "Mantecar a las siete y llevarlo a la vitrina."].map((t, i) => `<li class="menu-row">
           <span><span class="menu-row__name">${t}</span></span>
           <span class="menu-row__side">0${i + 1}</span>
         </li>`).join("\n        ")}
@@ -219,7 +219,7 @@ export default {
 </section>
 
 <!-- ============ VISITA ============ -->
-<section class="section--half section">
+<section class="section--half">
   <div class="shell">
     <div class="visit" data-reveal>
       <div class="visit__cell">

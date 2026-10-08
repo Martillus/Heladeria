@@ -118,8 +118,7 @@
     var letters = loader.querySelectorAll(".loader__word span");
     var count = loader.querySelector(".loader__count");
     var bar = loader.querySelector(".loader__bar");
-    var lid = loader.querySelector(".pozzetto-mark__lid");
-    var scoop = loader.querySelector(".pozzetto-mark__scoop");
+    var mark = loader.querySelector(".gelato-mark");
 
     document.body.classList.add("is-loading");
 
@@ -145,16 +144,16 @@
 
     var counter = { v: 0 };
     tl.set(loader, { autoAlpha: 1 })
-      .fromTo(".pozzetto-mark", { scale: 0.82, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.7 })
+      .fromTo(".gelato-mark", { scale: 0.82, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.7 })
       .to(letters, { y: 0, duration: 0.9, stagger: 0.035 }, 0.15)
       .to(bar, { scaleX: 1, duration: 1.05, ease: "power2.inOut" }, 0.1)
       .to(counter, {
         v: 100, duration: 1.05, ease: "power2.inOut",
         onUpdate: function () { if (count) count.textContent = String(Math.round(counter.v)).padStart(3, "0"); }
       }, 0.1)
-      /* La tapa se levanta y gira: aparece el gelato */
-      .to(lid, { yPercent: -34, rotate: -16, scale: 0.94, autoAlpha: 0, duration: 0.8, ease: EASE_D }, "-=0.35")
-      .to(scoop, { scale: 1, autoAlpha: 1, duration: 0.7, ease: "back.out(1.6)" }, "<0.1")
+      /* La cuchara entra y recoge la bola */
+      .call(function () { if (mark) mark.classList.add("is-serving"); }, null, "-=0.45")
+      .to({}, { duration: 0.75 })
       .to(".loader__core", { y: -18, autoAlpha: 0, duration: 0.5 }, "+=0.15")
       .to(loader, { clipPath: "circle(0% at 50% 42%)", duration: 0.95, ease: EASE_D }, "-=0.25");
   }

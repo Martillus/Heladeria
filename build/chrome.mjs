@@ -74,7 +74,7 @@ export const ORDER = [
 
 export const NAV = [
   { href: "index.html",     label: "Inicio",    idx: "01", preview: "inicio",   desc: "El banco, la escarcha y el primer bocado." },
-  { href: "sabores.html",   label: "Sabores",   idx: "02", preview: "sabores",  desc: "Más de treinta pozzetti, rotando cada semana." },
+  { href: "sabores.html",   label: "Sabores",   idx: "02", preview: "sabores",  desc: "Veintidós sabores fijos, más los que salen cada día." },
   { href: "carta.html",     label: "Carta",     idx: "03", preview: "carta",    desc: "Conos, copas, caffetteria y tartas heladas." },
   { href: "obrador.html",   label: "Obrador",   idx: "04", preview: "obrador",  desc: "Cómo se manteca un gelato de verdad." },
   { href: "eventos.html",   label: "Eventos",   idx: "05", preview: "eventos",  desc: "Tartas por encargo, catering y celebraciones." },
@@ -98,10 +98,33 @@ export function photo({ id, file, alt, ar = "3 / 2", desc, spec, cls = "", compa
 }
 
 
-/* Icono de sabor: la cubeta abierta de la vitrina, con las montañitas que
-   deja el helado. El relieve lo pintan degradados en CSS, así que no hay
-   ningún identificador que se repita al poner veintidós en la misma página.
-   Al pasar el ratón entra la cuchara de coger helado, ya con su bola. */
+/* Icono de sabor: la cubeta abierta de la vitrina. El gelato a la vista,
+   con el relieve que deja al servirlo. Mismo dibujo para todos; cambia el
+   color del gelato y, si lo lleva, el de los tropezones. Al pasar el ratón
+   entra la cuchara de coger helado, ya con su bola. */
+function band(y, h) {
+  return `M-6 ${y} C 14 ${y - 11}, 30 ${y + 9}, 50 ${y} C 70 ${y - 9}, 86 ${y + 11}, 106 ${y}` +
+    ` L106 ${y + h} C 86 ${y + h + 11}, 70 ${y + h - 9}, 50 ${y + h} C 30 ${y + h + 9}, 14 ${y + h - 11}, -6 ${y + h} Z`;
+}
+
+const SPECKS = [[27, 21, 3.4], [63, 16, 2.6], [41, 44, 3.1], [76, 48, 2.4],
+                [20, 62, 2.9], [55, 70, 3.3], [82, 78, 2.5], [34, 86, 2.8], [66, 93, 2.3]];
+
+export function gelatoIcon({ topping = "" } = {}) {
+  const ridges = [6, 28, 50, 72].map(y =>
+    `<path d="${band(y, 7)}" fill="#ffffff" opacity=".2"/>` +
+    `<path d="${band(y + 7, 6)}" fill="#2a2018" opacity=".09"/>`
+  ).join("");
+  const specks = topping
+    ? SPECKS.map(([x, y, r]) => `<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r * 0.78}" fill="${topping}" opacity=".9"/>`).join("")
+    : "";
+  return `<svg class="gelato__surface" viewBox="0 0 100 100" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+          <g class="gelato__swirl">
+            <rect x="-14" y="-14" width="128" height="128" fill="currentColor"/>
+            ${ridges}${specks}
+          </g>
+        </svg>`;
+}
 
 /* Cuchara clásica de pinza: cazo redondo, cuello, aro alargado y palanca.
    Sin más detalle del necesario para que se reconozca a tamaño pequeño. */
@@ -118,9 +141,8 @@ export const SCOOP = `<svg class="gelato__scoop" viewBox="0 0 84 180" aria-hidde
         </svg>`;
 
 export function gelatoMark(flavor, topping) {
-  return `<span class="gelato__tin" style="--flavor:${flavor}${topping ? `;--topping:${topping}` : ""}">
-          <span class="gelato__swirl" aria-hidden="true"></span>
-          ${topping ? '<span class="gelato__chips" aria-hidden="true"></span>' : ""}
+  return `<span class="gelato__tin" style="--flavor:${flavor}">
+          ${gelatoIcon({ topping })}
           <span class="gelato__sweep" aria-hidden="true"></span>
         </span>
         <span class="gelato__tool" style="--flavor:${flavor}">${SCOOP}</span>`;
@@ -180,10 +202,7 @@ export function head({ title, desc, page }) {
 <div class="loader" aria-hidden="true">
   <div class="loader__field"></div>
   <div class="loader__core">
-    <div class="pozzetto-mark" aria-hidden="true">
-      <span class="pozzetto-mark__scoop"></span>
-      <span class="pozzetto-mark__lid"></span>
-    </div>
+    <div class="gelato gelato-mark" aria-hidden="true">${gelatoMark("#a8b573", "#3a2419")}</div>
     <p class="loader__word" aria-label="La Gelateria Italiana">${
       "LA GELATERIA".split("").map(c => `<span>${c === " " ? "&nbsp;" : c}</span>`).join("")
     }</p>

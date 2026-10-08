@@ -31,62 +31,12 @@
   z-index: 1;
 }
 
-/* El pozzetto: aro de acero con tapa que gira y se abre */
-.pozzetto-mark {
+/* La marca del cargador: la misma cubeta que los iconos de sabor */
+.gelato-mark {
   position: relative;
   width: clamp(112px, 15vw, 168px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background:
-    conic-gradient(from 210deg, #a9a296, #f3efe6 18%, #9b9387 38%, #e9e3d8 58%, #8f8779 78%, #c6bfb2);
-  box-shadow:
-    0 0 0 1px rgba(42, 32, 24, 0.16),
-    0 26px 60px -26px rgba(42, 32, 24, 0.5),
-    inset 0 0 26px rgba(42, 32, 24, 0.32);
 }
-.pozzetto-mark::after {
-  content: "";
-  position: absolute;
-  inset: 9%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 30%, #b3a48c, #7d6d57 78%);
-  box-shadow: inset 0 6px 22px rgba(42, 32, 24, 0.42);
-}
-/* La tapa */
-.pozzetto-mark__lid {
-  position: absolute;
-  inset: 11%;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 34% 26%, #f7f3ec, #aca496 46%, #7a7264 100%);
-  box-shadow: 0 10px 24px rgba(42, 32, 24, 0.4), inset 0 -6px 16px rgba(42, 32, 24, 0.28);
-  transform-origin: 50% 50%;
-  z-index: 2;
-}
-.pozzetto-mark__lid::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 34%;
-  height: 6px;
-  border-radius: 6px;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(180deg, #f4f0e8, #8f8779);
-  box-shadow: 0 2px 5px rgba(42, 32, 24, 0.4);
-}
-.pozzetto-mark__scoop {
-  position: absolute;
-  inset: 20%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 36% 30%, #d3dfa6, #a8b573 52%, #7d8a4a 100%);
-  box-shadow: inset -6px -10px 22px rgba(0, 0, 0, 0.28);
-  transform: scale(0.4);
-  opacity: 0;
-  z-index: 1;
-}
+.gelato-mark .gelato__tin { max-width: 100%; }
 
 .loader__word {
   display: flex;
@@ -416,47 +366,17 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
   transition: transform 700ms var(--e-out), box-shadow 700ms var(--e-out);
 }
 
-/* Las montañitas: cada degradado claro es una cima y cada oscuro, un valle */
-.gelato__swirl {
-  position: absolute;
-  inset: -18%;
-  border-radius: 50%;
-  background-color: var(--flavor, #a8b573);
-  background-image:
-    radial-gradient(circle at 27% 27%, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0) 44%),
-    radial-gradient(circle at 63% 19%, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0) 38%),
-    radial-gradient(circle at 19% 60%, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0) 36%),
-    radial-gradient(circle at 51% 51%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 40%),
-    radial-gradient(circle at 83% 56%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 34%),
-    radial-gradient(circle at 37% 85%, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0) 36%),
-    radial-gradient(circle at 76% 86%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 32%),
-    radial-gradient(circle at 44% 35%, rgba(42, 32, 24, 0.2), rgba(42, 32, 24, 0) 32%),
-    radial-gradient(circle at 71% 42%, rgba(42, 32, 24, 0.19), rgba(42, 32, 24, 0) 30%),
-    radial-gradient(circle at 25% 44%, rgba(42, 32, 24, 0.17), rgba(42, 32, 24, 0) 28%),
-    radial-gradient(circle at 58% 72%, rgba(42, 32, 24, 0.19), rgba(42, 32, 24, 0) 30%),
-    radial-gradient(circle at 16% 84%, rgba(42, 32, 24, 0.16), rgba(42, 32, 24, 0) 27%),
-    radial-gradient(circle at 90% 26%, rgba(42, 32, 24, 0.16), rgba(42, 32, 24, 0) 27%);
-  transform: rotate(var(--swirl, 0deg));
-  transition: transform 900ms var(--e-drawer);
-}
-
-/* Trocitos: chocolate, galleta o fruta según el sabor */
-.gelato__chips {
+.gelato__surface {
   position: absolute;
   inset: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  background-image:
-    radial-gradient(circle at 27% 21%, var(--topping) 0 2.6%, transparent 2.7%),
-    radial-gradient(circle at 63% 16%, var(--topping) 0 2%, transparent 2.1%),
-    radial-gradient(circle at 41% 44%, var(--topping) 0 2.4%, transparent 2.5%),
-    radial-gradient(circle at 76% 48%, var(--topping) 0 1.9%, transparent 2%),
-    radial-gradient(circle at 20% 62%, var(--topping) 0 2.2%, transparent 2.3%),
-    radial-gradient(circle at 55% 70%, var(--topping) 0 2.5%, transparent 2.6%),
-    radial-gradient(circle at 82% 78%, var(--topping) 0 1.9%, transparent 2%),
-    radial-gradient(circle at 34% 86%, var(--topping) 0 2.2%, transparent 2.3%),
-    radial-gradient(circle at 66% 93%, var(--topping) 0 1.8%, transparent 1.9%);
-  opacity: 0.9;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.gelato__swirl {
+  transform-origin: 50px 50px;
+  transform: rotate(var(--swirl, 0deg));
+  transition: transform 900ms var(--e-drawer);
 }
 
 /* Volumen: luz arriba a la izquierda, sombra al fondo de la cubeta */
@@ -504,6 +424,7 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
 }
 .gelato__scoop { display: block; width: 100%; height: auto; }
 
+.gelato.is-serving .gelato__tin,
 .gelato:hover .gelato__tin,
 .gelato:focus-within .gelato__tin {
   transform: translateY(-8px) scale(1.03);
@@ -513,19 +434,22 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
     0 0 0 7px rgba(139, 131, 118, 0.85),
     0 38px 64px -30px rgba(42, 32, 24, 0.5);
 }
+.gelato.is-serving .gelato__swirl,
 .gelato:hover .gelato__swirl,
 .gelato:focus-within .gelato__swirl { transform: rotate(calc(var(--swirl, 0deg) + 7deg)); }
+.gelato.is-serving .gelato__sweep,
 .gelato:hover .gelato__sweep,
 .gelato:focus-within .gelato__sweep { opacity: 1; transform: translate(16%, -16%); }
+.gelato.is-serving .gelato__tool,
 .gelato:hover .gelato__tool,
 .gelato:focus-within .gelato__tool { opacity: 1; transform: translate(-33%, -42%) rotate(34deg) scale(1); }
 
 /* Ninguna cubeta se alisa igual que la de al lado */
-.pozzetti > *:nth-child(5n+1) { --swirl: -8deg; }
-.pozzetti > *:nth-child(5n+2) { --swirl: 14deg; }
-.pozzetti > *:nth-child(5n+3) { --swirl: -19deg; }
-.pozzetti > *:nth-child(5n+4) { --swirl: 6deg; }
-.pozzetti > *:nth-child(5n+5) { --swirl: 23deg; }
+.sabores-grid > *:nth-child(5n+1) { --swirl: -8deg; }
+.sabores-grid > *:nth-child(5n+2) { --swirl: 14deg; }
+.sabores-grid > *:nth-child(5n+3) { --swirl: -19deg; }
+.sabores-grid > *:nth-child(5n+4) { --swirl: 6deg; }
+.sabores-grid > *:nth-child(5n+5) { --swirl: 23deg; }
 .hero__bench .bench-cell:nth-child(2n) .gelato__swirl { --swirl: 17deg; }
 
 .gelato__body { position: relative; z-index: 2; padding-top: 1.35rem; display: grid; gap: 0.4rem; }

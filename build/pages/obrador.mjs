@@ -55,7 +55,7 @@ export default {
 <section style="padding-block:clamp(2rem,4vw,3.5rem);border-block:1px solid var(--line);overflow:hidden">
   <div class="marquee" data-speed="30" data-dir="rtl" aria-hidden="true">
     <div class="marquee__track">
-      <span class="marquee__item">85 °C<span class="marquee__dot"></span>12 h a 4 °C<span class="marquee__dot"></span>−8 °C al salir<span class="marquee__dot"></span>−12 °C en pozzetto<span class="marquee__dot"></span>0 grasas hidrogenadas<span class="marquee__dot"></span></span>
+      <span class="marquee__item">85 °C<span class="marquee__dot"></span>12 h a 4 °C<span class="marquee__dot"></span>−8 °C al salir<span class="marquee__dot"></span>−12 °C en vitrina<span class="marquee__dot"></span>0 grasas hidrogenadas<span class="marquee__dot"></span></span>
     </div>
   </div>
 </section>
@@ -144,7 +144,7 @@ export default {
   <span class="finale__blob" style="top:-25%;left:-4%" data-parallax="14"></span>
   <div class="shell finale__inner">
     <p class="eyebrow">Ríos Rosas 54</p>
-    <h2 class="display display--l" style="max-width:18ch">Ven a la hora en que se abre la <em class="italic">primera tapa</em>.</h2>
+    <h2 class="display display--l" style="max-width:18ch">Ven a la hora en que sale la <em class="italic">primera cubeta</em>.</h2>
     <div class="actions actions--center">
       <a class="btn btn--solid" href="visitanos.html" data-magnetic="0.25"><span>Cómo llegar</span>${ARROW}</a>
       <a class="btn btn--ghost" href="sabores.html" data-magnetic="0.18"><span>Ver sabores</span></a>
