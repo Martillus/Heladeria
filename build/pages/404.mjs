@@ -1,4 +1,4 @@
-import { SITE, LOCALES, ARROW } from "../chrome.mjs";
+import { SITE, LOCALES, ARROW, gelatoMark } from "../chrome.mjs";
 
 export default {
   page: "404.html",
@@ -10,11 +10,8 @@ export default {
   <div class="hero__wash" aria-hidden="true"></div>
   <div class="hero__inner" style="grid-template-columns:1fr;align-items:center;justify-items:center;text-align:center;padding-block:clamp(8rem,20vh,12rem)">
     <div style="display:grid;justify-items:center;gap:clamp(1.4rem,3vw,2.2rem);max-width:min(100%,44rem)">
-      <span class="pozzetto" style="--flavor:#bdd07c;width:clamp(110px,14vw,170px)" aria-hidden="true">
-        <span class="pozzetto__well">
-          <span class="pozzetto__frost"></span>
-          <span class="pozzetto__lid"></span>
-        </span>
+      <span class="gelato" style="width:clamp(110px,14vw,170px)" aria-hidden="true">
+        ${gelatoMark("#a8b573", "#3a2419")}
       </span>
       <p class="eyebrow">Error 404</p>
       <h1 class="display display--l" data-lines>

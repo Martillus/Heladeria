@@ -1,18 +1,15 @@
-import { SITE, LOCALES, photo, ARROW, stars } from "../chrome.mjs";
+import { SITE, LOCALES, photo, ARROW, stars, gelatoMark } from "../chrome.mjs";
 import { FLAVORS, REVIEWS, HIGHLIGHTS, INGREDIENTS } from "../data.mjs";
 
 const bench = FLAVORS.slice(0, 5);
 const featured = FLAVORS.filter(f => f.star).slice(0, 8);
 
-const pozzetto = f => `<a class="pozzetto" href="sabores.html" style="--flavor:${f.c}" data-cursor="Ver carta">
-        <span class="pozzetto__well">
-          <span class="pozzetto__frost" aria-hidden="true"></span>
-          <span class="pozzetto__lid" aria-hidden="true"></span>
-        </span>
-        <span class="pozzetto__body">
-          <span class="pozzetto__name">${f.n}</span>
-          <span class="pozzetto__note">${f.note}</span>
-          ${f.tags && f.tags.length ? `<span class="pozzetto__tags">${f.tags.map(t => `<span class="tag ${t === "Vegano" ? "tag--v" : ""}">${t}</span>`).join("")}</span>` : ""}
+const pozzetto = f => `<a class="gelato" href="sabores.html" style="--flavor:${f.c}" data-cursor="Ver carta">
+        ${gelatoMark(f.c, f.t)}
+        <span class="gelato__body">
+          <span class="gelato__name">${f.n}</span>
+          <span class="gelato__note">${f.note}</span>
+          ${f.tags && f.tags.length ? `<span class="gelato__tags">${f.tags.map(t => `<span class="tag ${t === "Vegano" ? "tag--v" : ""}">${t}</span>`).join("")}</span>` : ""}
         </span>
       </a>`;
 
@@ -64,11 +61,8 @@ export default {
 
   <div class="hero__bench">
     ${bench.map(f => `<div class="bench-cell">
-      <span class="pozzetto" style="--flavor:${f.c};width:100%">
-        <span class="pozzetto__well">
-          <span class="pozzetto__frost" aria-hidden="true"></span>
-          <span class="pozzetto__lid" aria-hidden="true"></span>
-        </span>
+      <span class="gelato" style="--flavor:${f.c};width:100%">
+        ${gelatoMark(f.c, f.t)}
       </span>
       <span class="bench-name">${f.n}</span>
     </div>`).join("\n    ")}

@@ -1,15 +1,12 @@
-import { SITE, photo, ARROW } from "../chrome.mjs";
+import { SITE, photo, ARROW, gelatoMark } from "../chrome.mjs";
 import { FLAVORS, FAMILIES } from "../data.mjs";
 
-const card = f => `<a class="pozzetto" href="carta.html" style="--flavor:${f.c}" data-cat="${f.f}" data-cursor="Ver carta">
-      <span class="pozzetto__well">
-        <span class="pozzetto__frost" aria-hidden="true"></span>
-        <span class="pozzetto__lid" aria-hidden="true"></span>
-      </span>
-      <span class="pozzetto__body">
-        <span class="pozzetto__name">${f.n}</span>
-        <span class="pozzetto__note">${f.note}</span>
-        ${(f.tags||[]).length ? `<span class="pozzetto__tags">${f.tags.map(t => `<span class="tag ${t === "Vegano" ? "tag--v" : t === "Con alcohol" ? "tag--a" : ""}">${t}</span>`).join("")}</span>` : ""}
+const card = f => `<a class="gelato" href="carta.html" style="--flavor:${f.c}" data-cat="${f.f}" data-cursor="Ver carta">
+      ${gelatoMark(f.c, f.t)}
+      <span class="gelato__body">
+        <span class="gelato__name">${f.n}</span>
+        <span class="gelato__note">${f.note}</span>
+        ${(f.tags||[]).length ? `<span class="gelato__tags">${f.tags.map(t => `<span class="tag ${t === "Vegano" ? "tag--v" : t === "Con alcohol" ? "tag--a" : ""}">${t}</span>`).join("")}</span>` : ""}
       </span>
     </a>`;
 

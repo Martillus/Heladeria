@@ -96,7 +96,7 @@
   align-items: end;
 }
 .hero__bench .bench-cell { display: grid; gap: 0.55rem; justify-items: center; text-align: center; }
-.hero__bench .pozzetto__well { max-width: clamp(58px, 6.4vw, 98px); }
+.hero__bench .gelato__tin { max-width: clamp(58px, 6.4vw, 98px); }
 .hero__bench .bench-cell:nth-child(even) { transform: translateY(-14%); }
 .hero__bench .bench-name {
   font-family: var(--f-mono);
@@ -703,7 +703,7 @@
 /* Página 404 */
 .hero--404 { grid-template-rows: 1fr; min-height: 100svh; }
 .hero--404 .hero__inner { padding-inline: var(--pad-x); }
-.hero--404 .pozzetto__well { max-width: 100%; }
+.hero--404 .gelato__tin { max-width: 100%; }
 
 /* Precios: se leen antes que la descripción, no después */
 .menu-row__side--price {

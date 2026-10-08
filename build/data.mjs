@@ -7,24 +7,24 @@ export const FLAVORS = [
   { n: "Café 100 % Arábica", f: "crema", c: "#6b4a33", note: "El mismo café que servimos en taza, sobre base de leche fresca.", tags: ["Con cafeína"], star: true },
   { n: "Avellana de Piemonte", f: "crema", c: "#b08554", note: "Avellana del Piamonte con Denominación de Origen, tostada y molida en pasta.", tags: ["D.O.P."], star: true },
   { n: "Fior di Latte", f: "crema", c: "#f6f0e2", note: "Solo leche fresca de granja, nata y azúcar. El examen de cualquier gelateria.", star: true },
-  { n: "Tiramisù", f: "especial", c: "#c9a87c", note: "Mascarpone, bizcocho empapado en café y cacao amargo por encima.", star: true },
-  { n: "Stracciatella", f: "crema", c: "#efe7d6", note: "Fior di latte con hilos de chocolate templado a mano.", star: true },
+  { n: "Tiramisù", f: "especial", c: "#c9a87c", t: "#4a3222", note: "Mascarpone, bizcocho empapado en café y cacao amargo por encima.", star: true },
+  { n: "Stracciatella", f: "crema", c: "#efe7d6", t: "#3a2419", note: "Fior di latte con hilos de chocolate templado a mano.", star: true },
   { n: "Limone", f: "frutta", c: "#ede07e", note: "Limón de temporada. Corta cualquier cosa que lleves antes.", tags: ["Fruta de temporada"], star: true },
 
-  { n: "Chocolate", f: "cioccolato", c: "#53331f", note: "Cacao puro, denso y sin adornos." },
-  { n: "Menta y Galleta", f: "cioccolato", c: "#bfd3c0", note: "Menta infusionada con galleta de cacao triturada." },
-  { n: "Nocciotella", f: "crema", c: "#7a5238", note: "Avellana y cacao, la merienda de siempre hecha gelato." },
+  { n: "Chocolate", f: "cioccolato", c: "#53331f", t: "#2c1a10", note: "Cacao puro, denso y sin adornos." },
+  { n: "Menta y Galleta", f: "cioccolato", c: "#bfd3c0", t: "#3a2419", note: "Menta infusionada con galleta de cacao triturada." },
+  { n: "Nocciotella", f: "crema", c: "#7a5238", t: "#f0e3c2", note: "Avellana y cacao, la merienda de siempre hecha gelato." },
   { n: "Vainilla", f: "crema", c: "#f0e3c2", note: "Vaina abierta y raspada: se ven los puntos negros." },
   { n: "Leche merengada", f: "crema", c: "#f3eada", note: "Leche, canela y limón. La receta de aquí, no de Italia." },
   { n: "Yogurt", f: "crema", c: "#f4efe6", note: "Yogur natural, ácido y limpio." },
-  { n: "Cheesecake", f: "especial", c: "#e8c98f", note: "Queso crema y base de galleta." },
+  { n: "Cheesecake", f: "especial", c: "#e8c98f", t: "#b8445c", note: "Queso crema y base de galleta." },
   { n: "Dulce de leche", f: "especial", c: "#c98b4b", note: "Cocido lento hasta el punto de caramelo." },
-  { n: "Panettone", f: "especial", c: "#e7cfa0", note: "Sabor de temporada, elaborado en tienda.", tags: ["Rotativo"] },
+  { n: "Panettone", f: "especial", c: "#e7cfa0", t: "#c98b4b", note: "Sabor de temporada, elaborado en tienda.", tags: ["Rotativo"] },
 
-  { n: "Cocco", f: "frutta", c: "#f4f0e6", note: "Coco rallado sobre base de leche fresca." },
+  { n: "Cocco", f: "frutta", c: "#f4f0e6", t: "#ddd0b4", note: "Coco rallado sobre base de leche fresca." },
   { n: "Mango", f: "frutta", c: "#e7a93f", note: "Pulpa de mango maduro, nada más.", tags: ["Fruta de temporada"] },
   { n: "Maracujá", f: "frutta", c: "#e3b84a", note: "Muy aromático y tenso. Entró hace poco y se ha quedado.", tags: ["Rotativo"] },
-  { n: "Frambuesa", f: "frutta", c: "#c2445c", note: "Ácida, con pepita, de fruta de temporada.", tags: ["Fruta de temporada"] },
+  { n: "Frambuesa", f: "frutta", c: "#c2445c", t: "#7d1b2b", note: "Ácida, con pepita, de fruta de temporada.", tags: ["Fruta de temporada"] },
   { n: "Ananas", f: "frutta", c: "#e8d272", note: "Piña fresca cortada en tienda.", tags: ["Fruta de temporada"] }
 ];
 

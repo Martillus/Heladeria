@@ -97,6 +97,35 @@ export function photo({ id, file, alt, ar = "3 / 2", desc, spec, cls = "", compa
       </figure>`;
 }
 
+
+/* Icono de sabor: la cubeta abierta de la vitrina, con las montañitas que
+   deja el helado. El relieve lo pintan degradados en CSS, así que no hay
+   ningún identificador que se repita al poner veintidós en la misma página.
+   Al pasar el ratón entra la cuchara de coger helado, ya con su bola. */
+
+/* Cuchara clásica de pinza: cazo redondo, cuello, aro alargado y palanca.
+   Sin más detalle del necesario para que se reconozca a tamaño pequeño. */
+export const SCOOP = `<svg class="gelato__scoop" viewBox="0 0 84 180" aria-hidden="true" focusable="false">
+          <rect x="35" y="72" width="14" height="26" rx="7" fill="#a79f93"/>
+          <rect x="18" y="92" width="48" height="82" rx="24" fill="none" stroke="#b2a99c" stroke-width="7"/>
+          <rect x="18" y="92" width="48" height="82" rx="24" fill="none" stroke="#f3eee4" stroke-width="2.4"/>
+          <path d="M30 100 56 162" stroke="#bbb2a5" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="42" cy="42" r="39" fill="#9d958a"/>
+          <circle cx="42" cy="42" r="29" fill="currentColor"/>
+          <ellipse cx="32" cy="32" rx="13" ry="10" fill="#ffffff" opacity=".3"/>
+          <circle cx="42" cy="42" r="34" fill="none" stroke="#f3eee4" stroke-width="9"/>
+          <path d="M16 28a39 39 0 0 1 21-15" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity=".65"/>
+        </svg>`;
+
+export function gelatoMark(flavor, topping) {
+  return `<span class="gelato__tin" style="--flavor:${flavor}${topping ? `;--topping:${topping}` : ""}">
+          <span class="gelato__swirl" aria-hidden="true"></span>
+          ${topping ? '<span class="gelato__chips" aria-hidden="true"></span>' : ""}
+          <span class="gelato__sweep" aria-hidden="true"></span>
+        </span>
+        <span class="gelato__tool" style="--flavor:${flavor}">${SCOOP}</span>`;
+}
+
 export const LOGO = (cls = "brand__mark") => `<svg class="${cls}" data-logo-slot viewBox="0 0 48 48" role="img" aria-label="La Gelateria Italiana">
       <circle cx="24" cy="24" r="22.4" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".45"/>
       <path d="M12.8 27.4c0-5.6 5-10.1 11.2-10.1s11.2 4.5 11.2 10.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>

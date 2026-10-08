@@ -345,7 +345,7 @@
     var ring = document.querySelector(".cursor__ring");
     if (!dot || !ring) return;
     var label = ring.querySelector("span");
-    document.querySelectorAll("a, button, .pozzetto, .slice, [data-cursor]").forEach(function (el) {
+    document.querySelectorAll("a, button, .gelato, .slice, [data-cursor]").forEach(function (el) {
       if (el.dataset.cursorBound === "1") return;
       el.dataset.cursorBound = "1";
       el.addEventListener("mouseenter", function () {
