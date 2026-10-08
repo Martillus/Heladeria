@@ -85,9 +85,9 @@ export default {
   </div>
 </section>
 
-<section class="section" style="padding-top:0">
+<section class="section">
   <div class="shell">
-    <div class="grid12" style="row-gap:2rem;align-items:start">
+    <div class="grid12" style="row-gap:clamp(2rem,4vw,3rem);align-items:start">
       <div style="grid-column:1 / span 4">
         <p class="eyebrow">Alérgenos</p>
         <h2 class="display display--s" style="margin-top:1rem">Pregunta siempre antes de pedir.</h2>
@@ -95,7 +95,7 @@ export default {
       <div style="grid-column:6 / span 7" class="stack">
         <p class="lead">Trabajamos a diario con leche, frutos secos, huevo, gluten y soja en el mismo obrador. Aunque cada cubeta tiene su propia espátula, no podemos garantizar la ausencia total de trazas cruzadas.</p>
         <p style="color:var(--fg-mute)">Si tienes una alergia declarada, dínoslo antes de servir: sacamos cubeta nueva, cambiamos de espátula y te enseñamos la ficha del sabor.</p>
-        <div class="actions"><a class="btn btn--ghost" href="tel:${SITE.phoneHref}" data-magnetic="0.2"><span>Consultar por teléfono</span>${ARROW}</a></div>
+        <div class="actions" style="margin-top:0.6rem"><a class="btn btn--ghost" href="tel:${SITE.phoneHref}" data-magnetic="0.2"><span>Consultar por teléfono</span>${ARROW}</a></div>
       </div>
     </div>
   </div>

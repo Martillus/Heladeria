@@ -710,4 +710,4 @@
 .catalogo { position: relative; }
 
 /* Antes de un cierre a toda página sobra la mitad del aire */
-.section:has(+ .finale) { padding-bottom: calc(var(--sec-y) * 0.45); }
+.section:has(+ .finale) { padding-bottom: calc(var(--sec-y) * 0.78); }
