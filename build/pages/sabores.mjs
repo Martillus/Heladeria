@@ -31,6 +31,24 @@ export default {
   </div>
 </header>
 
+<!-- ============ LO REAL, ANTES QUE LOS ICONOS ============ -->
+<section class="vitrina">
+  <div class="shell">
+    <div class="vitrina__head">
+      <p class="eyebrow">Servido hoy en Ríos Rosas</p>
+      <p class="lead measure">Así sale de la vitrina. Ni montajes ni fotos de banco: son las tarrinas que cruzan el mostrador cada día.</p>
+    </div>
+  </div>
+  <div class="vitrina__rail" data-speed="54" aria-label="Tarrinas servidas en La Gelateria Italiana">
+    <div class="vitrina__track">
+      ${GALERIA.map(g => `<figure class="vitrina__shot">
+        <img src="assets/img/${g.f}" alt="${g.alt}" loading="lazy" decoding="async">
+        <figcaption class="vitrina__cap">${g.alt}</figcaption>
+      </figure>`).join("\n      ")}
+    </div>
+  </div>
+</section>
+
 <div class="catalogo">
 <div class="sticky-bar">
   <div class="shell">
@@ -52,23 +70,6 @@ export default {
   </div>
 </section>
 </div>
-
-<!-- ============ LO QUE SALE POR LA PUERTA ============ -->
-<section class="section" style="padding-block:calc(var(--sec-y) * 0.5) 0">
-  <div class="shell">
-    <header style="max-width:46ch;margin-bottom:clamp(1.8rem,3.5vw,2.8rem)" data-lines>
-      <p class="eyebrow" style="margin-bottom:1.2rem">Lo que sale por la puerta</p>
-      <h2 class="display display--m"><span class="row"><span>Servido, no</span></span><span class="row"><span><em class="italic">fotografiado</em>.</span></span></h2>
-    </header>
-  </div>
-  <div class="tarrinas" data-speed="46" aria-label="Tarrinas servidas en La Gelateria Italiana">
-    <div class="tarrinas__track">
-      ${GALERIA.map(g => `<figure class="tarrina">
-        <img src="assets/img/${g.f}" alt="${g.alt}" loading="lazy" decoding="async" width="900" height="650">
-      </figure>`).join("\n      ")}
-    </div>
-  </div>
-</section>
 
 <section class="section contrast-zone">
   <div class="shell">

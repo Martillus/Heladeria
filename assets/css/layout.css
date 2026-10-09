@@ -737,35 +737,68 @@
   .hero { --t-display-xl: clamp(2.6rem, 6.6vw, 6rem); }
 }
 
-/* ---------- Cinta de tarrinas ---------- */
-.tarrinas {
-  display: flex;
+/* ---------- La vitrina: lo real antes que los iconos ---------- */
+.vitrina {
+  padding-block: clamp(1rem, 2.5vw, 2.5rem) clamp(1.8rem, 3.5vw, 3rem);
   overflow: hidden;
-  width: 100%;
-  user-select: none;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
-.tarrinas__track {
+.vitrina__head {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(1.6rem, 3vw, 2.6rem);
+  max-width: 62ch;
+}
+
+.vitrina__rail {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+.vitrina__track {
   display: flex;
   flex: none;
-  gap: clamp(0.8rem, 1.6vw, 1.4rem);
-  padding-right: clamp(0.8rem, 1.6vw, 1.4rem);
+  gap: clamp(0.7rem, 1.4vw, 1.2rem);
+  padding-right: clamp(0.7rem, 1.4vw, 1.2rem);
   will-change: transform;
 }
-.tarrina {
+
+.vitrina__shot {
+  position: relative;
   flex: none;
-  width: clamp(190px, 21vw, 320px);
-  aspect-ratio: 5 / 4;
+  width: clamp(230px, 25vw, 380px);
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 4px;
   background: var(--crema-3);
-  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(42, 32, 24, 0.06), 0 18px 40px -22px rgba(42, 32, 24, 0.34);
 }
-.tarrina img {
+.vitrina__shot img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 900ms var(--e-out);
+  transition: transform 1000ms var(--e-out);
 }
-.tarrina:hover img { transform: scale(1.06); }
+.vitrina__shot:hover img { transform: scale(1.07); }
+
+.vitrina__cap {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2.4rem 1rem 0.95rem;
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--crema);
+  background: linear-gradient(180deg, transparent, rgba(42, 32, 24, 0.62) 48%, rgba(42, 32, 24, 0.93));
+  opacity: 0;
+  transform: translateY(0.6rem);
+  transition: opacity 420ms var(--e-out), transform 520ms var(--e-out);
+}
+.vitrina__shot:hover .vitrina__cap { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 700px) {
+  .vitrina__shot { width: clamp(180px, 58vw, 250px); }
+}

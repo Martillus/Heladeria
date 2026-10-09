@@ -526,8 +526,8 @@
     });
 
     /* Marquesinas */
-    gsap.utils.toArray(".marquee, .tarrinas").forEach(function (m) {
-      var track = m.querySelector(".marquee__track, .tarrinas__track");
+    gsap.utils.toArray(".marquee, .vitrina__rail").forEach(function (m) {
+      var track = m.querySelector(".marquee__track, .vitrina__track");
       if (!track) return;
       var clone = track.cloneNode(true);
       clone.setAttribute("aria-hidden", "true");
