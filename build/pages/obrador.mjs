@@ -37,7 +37,7 @@ export default {
 
       <div class="pinwrap__steps">
         ${STEPS.map(s => `<article class="step">
-          <div class="step__frame" data-expand="14">
+          <div class="step__frame" data-expand="14" style="--step-ar:${s.ar || "4 / 3"}">
             ${photo({ id: s.id, file: s.file, alt: s.t, ar: "4 / 3", desc: s.desc, spec: "4:3 apaisada · mín. 1800 px" })}
           </div>
           <div class="step__head">

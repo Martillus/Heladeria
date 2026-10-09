@@ -13,7 +13,7 @@ const OFFERS = [
     d: "Cassatine individuales, tarrinas rotuladas o un carrito con las cubetas y nuestro equipo sirviendo. Nos adaptamos al número de invitados y al espacio.",
     meta: "Desde 20 personas · presupuesto cerrado",
     file: "evento-celebracion.jpg", id: "E-02",
-    desc: "Mesa de celebración con tarrinas o cassatine servidas, gente alrededor sin protagonismo de rostros."
+    desc: "Gente disfrutando del helado en la tienda, sin protagonismo de rostros."
   },
   {
     idx: "03", t: "Empresas y catering",

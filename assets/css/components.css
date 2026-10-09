@@ -485,14 +485,16 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
   border-radius: var(--ph-radius, 4px);
   isolation: isolate;
 }
+/* La imagen siempre ocupa su caja: si fuese display:none, el navegador no
+   dispararía la carga diferida y la foto no llegaría a pedirse nunca.
+   El hueco se dibuja encima y se retira cuando la foto ha cargado. */
 .ph__img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: var(--pos, center);
-  display: none;
 }
-.ph.is-loaded .ph__img { display: block; }
 .ph.is-loaded .ph__empty { display: none; }
 
 .ph__empty {

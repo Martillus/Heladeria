@@ -71,7 +71,7 @@ export const STEPS = [
   { n: "01", t: "Pesar en frío", d: "Cada base se calcula por gramos: grasa, azúcares y sólidos. Un punto de más y el gelato cristaliza; uno de menos y se derrite en la mano.", file: "proc-pesar.jpg", desc: "Balanza con ingredientes secos, o el cuaderno de recetas del obrador.", id: "P-01" },
   { n: "02", t: "Pasteurizar a 85 °C", d: "La mezcla sube hasta 85 °C y baja de golpe a 4 °C. Es lo que hace que un gelato artesanal sea seguro sin necesitar conservantes.", file: "proc-pasteurizar.jpg", desc: "Pasteurizadora de acero en marcha, con el termómetro visible.", id: "P-02" },
   { n: "03", t: "Madurar toda la noche", d: "Doce horas de reposo a 4 °C. Las proteínas se hidratan y las grasas cristalizan: sin esta espera el sabor se queda plano.", file: "proc-madurar.jpg", desc: "Las cubas de mezcla reposando en la cámara frigorífica.", id: "P-03" },
-  { n: "04", t: "Mantecar por la mañana", d: "A las siete de la mañana la mantecadora bate y congela a la vez. Sale a -8 °C, denso y con poco aire. Solo dura un día bueno.", file: "proc-mantecar.jpg", desc: "Gelato saliendo de la mantecadora hacia la cubeta de acero.", id: "P-04" },
+  { n: "04", t: "Mantecar por la mañana", d: "A las siete de la mañana la mantecadora bate y congela a la vez. Sale a -8 °C, denso y con poco aire. Solo dura un día bueno.", file: "proc-mantecar.jpg", ar: "3 / 4", desc: "Gelato saliendo de la mantecadora hacia la cubeta de acero.", id: "P-04" },
   { n: "05", t: "A la cubeta", d: "Cada sabor a su cubeta de acero, con su espátula. Se repone varias veces al día: lo que ves a media tarde no es lo que había a mediodía.", file: "proc-vitrina.jpg", desc: "La vitrina llena, con las cubetas de acero alineadas y las espátulas puestas.", id: "P-05" }
 ];
 
@@ -102,4 +102,19 @@ export const HIGHLIGHTS = [
 
 export const MENTIONS = [
   { k: "sabores", n: 98 }, { k: "pistacho", n: 57 }, { k: "chocolate belga", n: 19 }, { k: "ricos", n: 19 }
+];
+
+/* Tarrinas reales servidas en tienda. Se muestran en una cinta continua
+   en la página de sabores; son las fotos de producto que nos pasó el negocio. */
+export const GALERIA = [
+  { f: "vitrina-01.jpg", alt: "Tarrina de stracciatella con virutas de chocolate" },
+  { f: "vitrina-02.jpg", alt: "Tarrina de dulce de leche con galleta" },
+  { f: "vitrina-03.jpg", alt: "Tarrina de crema con gajos de naranja" },
+  { f: "vitrina-04.jpg", alt: "Tarrina de fresa con fresa fresca" },
+  { f: "vitrina-05.jpg", alt: "Tarrina de frutos rojos con granola" },
+  { f: "vitrina-06.jpg", alt: "Tarrina de frutos rojos con chocolate y frutos secos" },
+  { f: "vitrina-07.jpg", alt: "Tarrina de leche merengada con canela en rama" },
+  { f: "vitrina-08.jpg", alt: "Tarrina de frutos rojos con moras" },
+  { f: "vitrina-09.jpg", alt: "Tarrina de maracuyá" },
+  { f: "vitrina-10.jpg", alt: "Tarrina de dulce de leche con avellana y chocolate" }
 ];

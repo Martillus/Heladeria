@@ -1,5 +1,5 @@
 import { SITE, photo, ARROW, gelatoMark } from "../chrome.mjs";
-import { FLAVORS, FAMILIES } from "../data.mjs";
+import { FLAVORS, FAMILIES, GALERIA } from "../data.mjs";
 
 const card = f => `<a class="gelato" href="carta.html" style="--flavor:${f.c}" data-cat="${f.f}" data-cursor="Ver carta">
       ${gelatoMark(f.c, f.t)}
@@ -53,6 +53,23 @@ export default {
 </section>
 </div>
 
+<!-- ============ LO QUE SALE POR LA PUERTA ============ -->
+<section class="section" style="padding-block:calc(var(--sec-y) * 0.5) 0">
+  <div class="shell">
+    <header style="max-width:46ch;margin-bottom:clamp(1.8rem,3.5vw,2.8rem)" data-lines>
+      <p class="eyebrow" style="margin-bottom:1.2rem">Lo que sale por la puerta</p>
+      <h2 class="display display--m"><span class="row"><span>Servido, no</span></span><span class="row"><span><em class="italic">fotografiado</em>.</span></span></h2>
+    </header>
+  </div>
+  <div class="tarrinas" data-speed="46" aria-label="Tarrinas servidas en La Gelateria Italiana">
+    <div class="tarrinas__track">
+      ${GALERIA.map(g => `<figure class="tarrina">
+        <img src="assets/img/${g.f}" alt="${g.alt}" loading="lazy" decoding="async" width="900" height="650">
+      </figure>`).join("\n      ")}
+    </div>
+  </div>
+</section>
+
 <section class="section contrast-zone">
   <div class="shell">
     <div class="editorial">
@@ -60,7 +77,7 @@ export default {
         <div class="ph-frame" data-expand="12">
           ${photo({
             id: "S-01", file: "sabores-espatula.jpg",
-            alt: "Espátula extendiendo gelato en una tarrina",
+            alt: "Cono de pistacho con nata y galleta sostenido delante de la vitrina",
             ar: "4 / 5",
             desc: "Primer plano de la espátula extendiendo el gelato sobre la tarrina, con la vitrina detrás.",
             spec: "4:5 vertical · mín. 1600 px"

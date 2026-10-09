@@ -23,7 +23,7 @@ export default {
   <div class="hero__bg" data-parallax="10">
     ${photo({
       id: "H-01", file: "hero-mostrador.jpg",
-      alt: "Mostrador de La Gelateria Italiana en Ríos Rosas",
+      alt: "Interior de La Gelateria Italiana: el rótulo de madera en la pared y la vitrina llena de cubetas",
       ar: "16 / 9",
       desc: "La vitrina con las cubetas de acero a la vista, de frente y con la luz cálida de la tienda encendida.",
       spec: "16:9 apaisada · mín. 2400 px",
@@ -91,10 +91,10 @@ export default {
       <div class="editorial__media">
         <div class="ph-frame" data-expand="14">
           ${photo({
-            id: "A-01", file: "obrador-manos.jpg",
-            alt: "Elaboración del gelato en el obrador",
+            id: "A-01", file: "obrador-cubeta.jpg",
+            alt: "Cubeta recién llena de gelato de nata con un hilo de sirope, bajo las lámparas del local",
             ar: "3 / 4",
-            desc: "Vertical del obrador: manos trabajando el gelato con la espátula, o la mantecadora en marcha.",
+            desc: "Vertical del obrador: una cubeta recién llena, aún con el relieve de la espátula.",
             spec: "3:4 vertical · mín. 1600 px"
           })}
         </div>

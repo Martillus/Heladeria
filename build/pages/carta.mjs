@@ -83,7 +83,7 @@ export default {
         <div class="ph-frame" data-expand="16">
           ${photo({
             id: "C-01", file: "carta-cono.jpg",
-            alt: "Cono de gelato recién servido",
+            alt: "Cono de nata con una galleta, recién servido y sostenido en la mano",
             ar: "3 / 4",
             desc: "Cono recién servido en primer plano, sujeto con la mano, con la tienda desenfocada al fondo.",
             spec: "3:4 vertical · mín. 1600 px"
@@ -102,7 +102,7 @@ export default {
         <div class="ph-frame" data-expand="16">
           ${photo({
             id: "C-02", file: "carta-copa.jpg",
-            alt: "Copa de la casa montada en cristal",
+            alt: "Copa de la casa en cristal, con frambuesas y galleta, sobre la mesa",
             ar: "4 / 5",
             desc: "Una copa montada en cristal (tipo coppa con nata y fruta o affogato) sobre la mesa de la tienda.",
             spec: "4:5 vertical · mín. 1600 px"
@@ -137,7 +137,7 @@ export default {
 <section class="section contrast-zone">
   <div class="shell">
     <div class="grid12" style="align-items:center;row-gap:2.5rem">
-      <div style="grid-column:1 / span 5" data-lines>
+      <div style="grid-column:1 / span 6" data-lines>
         <p class="eyebrow" style="margin-bottom:1rem">Para llevar</p>
         <h2 class="display display--m"><span class="row"><span>Cuarenta</span></span><span class="row"><span><em class="italic">minutos</em> de</span></span><span class="row"><span>margen.</span></span></h2>
         <p class="lead measure" style="margin-top:1.6rem">Las tarrinas salen en envase isotérmico con placa de frío. Si el trayecto es más largo, dínoslo y añadimos hielo seco.</p>
@@ -145,14 +145,14 @@ export default {
           <button class="btn btn--ghost" type="button" data-order-open data-magnetic="0.2" aria-haspopup="dialog" aria-controls="order-panel"><span>Pedir en Uber Eats o Glovo</span>${ARROW}</button>
         </div>
       </div>
-      <div style="grid-column:7 / span 6">
+      <div style="grid-column:8 / span 5">
         <div class="ph-frame" data-expand="12">
           ${photo({
             id: "C-03", file: "carta-tarrinas.jpg",
-            alt: "Tarrinas de medio litro y un litro preparadas para llevar",
-            ar: "16 / 10",
-            desc: "Tarrinas de 500 ml y 1 l cerradas con la etiqueta de la casa, listas en el mostrador.",
-            spec: "16:10 apaisada · mín. 2000 px"
+            alt: "Tres tarrinas de La Gelateria sostenidas en la calle, a la salida de la tienda",
+            ar: "4 / 5",
+            desc: "Tarrinas cerradas con la etiqueta de la casa, listas para el camino.",
+            spec: "4:5 vertical · mín. 1400 px"
           })}
         </div>
       </div>

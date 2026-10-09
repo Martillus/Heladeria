@@ -117,9 +117,12 @@ Si algún día se publica en un hosting sin URLs limpias (FTP, GitHub Pages), se
 
 ## Qué falta por vuestra parte
 
-1. **Las 27 fotografías** — la lista completa, con nombre de archivo y qué tiene que
-   salir en cada una, está en [`assets/img/README.md`](assets/img/README.md). Los huecos
-   se rellenan solos al dejar el archivo en la carpeta.
+1. **Faltan seis fotografías.** Las otras veintiuna ya están colocadas, más una cinta
+   de diez tarrinas en la página de sabores. Quedan por hacer: la balanza del obrador,
+   la pasteurizadora, la cámara de maduración, una tarta helada, un montaje de catering
+   y la fachada del local de República Dominicana. La lista con nombre de archivo y
+   encuadre está en [`assets/img/README.md`](assets/img/README.md): basta con dejar el
+   archivo en la carpeta y el hueco se rellena solo.
 2. **El logotipo** — dejadlo en `assets/logo/logo.svg` y sustituye al provisional en
    toda la web. Ver [`assets/logo/README.md`](assets/logo/README.md).
 3. **Hora de apertura** — de Google solo consta el cierre (23:00). El horario de apertura

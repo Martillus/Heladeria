@@ -73,7 +73,7 @@ export default {
         <div class="ph-frame" data-expand="14" style="margin-top:2rem">
           ${photo({
             id: "R-01", file: "resenas-ambiente.jpg",
-            alt: "Clientes en la heladería",
+            alt: "Dos clientes brindando con sus tarrinas delante de la vitrina",
             ar: "4 / 5",
             desc: "Ambiente real de la tienda: cola en el mostrador o gente tomando el helado en la puerta.",
             spec: "4:5 vertical · mín. 1600 px"
