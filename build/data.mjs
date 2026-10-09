@@ -116,5 +116,6 @@ export const GALERIA = [
   { f: "vitrina-07.jpg", alt: "Tarrina de leche merengada con canela en rama" },
   { f: "vitrina-08.jpg", alt: "Tarrina de frutos rojos con moras" },
   { f: "vitrina-09.jpg", alt: "Tarrina de maracuyá" },
-  { f: "vitrina-10.jpg", alt: "Tarrina de dulce de leche con avellana y chocolate" }
+  { f: "vitrina-10.jpg", alt: "Tarrina de dulce de leche con avellana y chocolate" },
+  { f: "vitrina-11.jpg", alt: "Tres tarrinas recién servidas, ya en la calle" }
 ];

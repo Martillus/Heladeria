@@ -149,9 +149,9 @@ export default {
         <div class="ph-frame" data-expand="12">
           ${photo({
             id: "C-03", file: "carta-tarrinas.jpg",
-            alt: "Tres tarrinas de La Gelateria sostenidas en la calle, a la salida de la tienda",
+            alt: "Envase de litro con tres sabores, abierto en el congelador",
             ar: "4 / 5",
-            desc: "Tarrinas cerradas con la etiqueta de la casa, listas para el camino.",
+            desc: "El envase isotérmico abierto, con los sabores dentro.",
             spec: "4:5 vertical · mín. 1400 px"
           })}
         </div>

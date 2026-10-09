@@ -13,7 +13,7 @@ desaparece. No hay que tocar ni una línea de código.
 | # | Archivo | Página | Formato | Qué tiene que salir |
 |---|---------|--------|---------|---------------------|
 | `H-01` | `hero-mostrador.jpg` | index.html | 16 / 9 · 16:9 apaisada | La vitrina con las cubetas de acero a la vista, de frente y con la luz cálida de la tienda encendida. |
-| `A-01` | `obrador-cubeta.jpg` | index.html | 3 / 4 · 3:4 vertical | Vertical del obrador: una cubeta recién llena, aún con el relieve de la espátula. |
+| `A-01` | `obrador-cubeta.jpg` | index.html | 3 / 4 · 3:4 vertical | Vertical del obrador: una cubeta recién llena, aún con el relieve de la espátula y el caramelo recién hilado. |
 | `I-01` | `ing-pistacho.jpg` | index.html | 3 / 4 · vertical | Pistachos crudos en un cuenco, o el momento del tostado en el obrador. |
 | `I-02` | `ing-chocolate.jpg` | index.html | 3 / 4 · vertical | Pastillas o callets de cobertura belga, o chocolate fundido cayendo en hilo. |
 | `I-03` | `ing-cafe.jpg` | index.html | 3 / 4 · vertical | Taza de café sobre el mostrador, o granos junto a la tarrina. |
@@ -21,7 +21,7 @@ desaparece. No hay que tocar ni una línea de código.
 | `S-01` | `sabores-espatula.jpg` | sabores.html | 4 / 5 · 4:5 vertical | Primer plano de la espátula extendiendo el gelato sobre la tarrina, con la vitrina detrás. |
 | `C-01` | `carta-cono.jpg` | carta.html | 3 / 4 · 3:4 vertical | Cono recién servido en primer plano, sujeto con la mano, con la tienda desenfocada al fondo. |
 | `C-02` | `carta-copa.jpg` | carta.html | 4 / 5 · 4:5 vertical | Una copa montada en cristal (tipo coppa con nata y fruta o affogato) sobre la mesa de la tienda. |
-| `C-03` | `carta-tarrinas.jpg` | carta.html | 4 / 5 · 4:5 vertical | Tarrinas cerradas con la etiqueta de la casa, listas para el camino. |
+| `C-03` | `carta-tarrinas.jpg` | carta.html | 4 / 5 · 4:5 vertical | El envase isotérmico abierto, con los sabores dentro. |
 | `P-01` | `proc-pesar.jpg` | obrador.html | 4 / 3 · 4:3 apaisada | Balanza con ingredientes secos, o el cuaderno de recetas del obrador. |
 | `P-02` | `proc-pasteurizar.jpg` | obrador.html | 4 / 3 · 4:3 apaisada | Pasteurizadora de acero en marcha, con el termómetro visible. |
 | `P-03` | `proc-madurar.jpg` | obrador.html | 4 / 3 · 4:3 apaisada | Las cubas de mezcla reposando en la cámara frigorífica. |
@@ -33,12 +33,12 @@ desaparece. No hay que tocar ni una línea de código.
 | `I-02b` | `ing-chocolate-2.jpg` | obrador.html | 1 / 1 · cuadrada o vertical | Pastillas o callets de cobertura belga, o chocolate fundido cayendo en hilo. |
 | `I-03b` | `ing-cafe-2.jpg` | obrador.html | 1 / 1 · cuadrada o vertical | Taza de café sobre el mostrador, o granos junto a la tarrina. |
 | `I-04b` | `ing-leche-2.jpg` | obrador.html | 1 / 1 · cuadrada o vertical | Leche vertiéndose en el pasteurizador, o el detalle de la mantecadora girando. |
-| `E-01` | `evento-tarta.jpg` | eventos.html | 1 / 1 · cuadrada o vertical | Tarta helada entera, decorada y fotografiada de tres cuartos sobre una superficie limpia. |
+| `E-01` | `evento-tarta.jpg` | eventos.html | 1 / 1 · cuadrada o vertical | Porción de tarta helada emplatada, con cacao espolveado alrededor. |
 | `E-02` | `evento-celebracion.jpg` | eventos.html | 1 / 1 · cuadrada o vertical | Gente disfrutando del helado en la tienda, sin protagonismo de rostros. |
 | `E-03` | `evento-catering.jpg` | eventos.html | 1 / 1 · cuadrada o vertical | Montaje de catering: cubetas de acero fuera de la tienda o el equipo sirviendo en un evento. |
 | `R-01` | `resenas-ambiente.jpg` | resenas.html | 4 / 5 · 4:5 vertical | Ambiente real de la tienda: cola en el mostrador o gente tomando el helado en la puerta. |
-| `V-01` | `fachada-rios-rosas.jpg` | visitanos.html | 4 / 5 · 4:5 vertical | La fachada del local de Ríos Rosas desde la acera, con el rótulo visible. |
-| `V-02` | `fachada-republica-dominicana.jpg` | visitanos.html | 4 / 5 · 4:5 vertical | La fachada del local de la Plaza de la República Dominicana, desde la acera y con el rótulo visible, para que haga juego con la anterior. |
+| `V-01` | `fachada-rios-rosas.jpg` | visitanos.html | 1 / 1 · 4:5 vertical | La fachada del local de Ríos Rosas desde la acera, con el rótulo visible. |
+| `V-02` | `fachada-republica-dominicana.jpg` | visitanos.html | 1 / 1 · 4:5 vertical | La fachada del local de la Plaza de la República Dominicana, desde la acera y con el rótulo visible, para que haga juego con la anterior. |
 
 ## Logotipo
 

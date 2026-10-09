@@ -92,9 +92,9 @@ export default {
         <div class="ph-frame" data-expand="14">
           ${photo({
             id: "A-01", file: "obrador-cubeta.jpg",
-            alt: "Cubeta recién llena de gelato de nata con un hilo de sirope, bajo las lámparas del local",
+            alt: "Cubeta recién llena de gelato de nata con hilos de caramelo y crocanti, bajo las lámparas del local",
             ar: "3 / 4",
-            desc: "Vertical del obrador: una cubeta recién llena, aún con el relieve de la espátula.",
+            desc: "Vertical del obrador: una cubeta recién llena, aún con el relieve de la espátula y el caramelo recién hilado.",
             spec: "3:4 vertical · mín. 1600 px"
           })}
         </div>

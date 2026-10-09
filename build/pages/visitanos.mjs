@@ -36,7 +36,7 @@ export default {
           ${photo({
             id: "V-01", file: "fachada-rios-rosas.jpg",
             alt: "Fachada de La Gelateria Italiana en Ríos Rosas 54, con la puerta abierta y clientes dentro",
-            ar: "4 / 5",
+            ar: "1 / 1",
             desc: "La fachada del local de Ríos Rosas desde la acera, con el rótulo visible.",
             spec: "4:5 vertical · mín. 1400 px"
           })}
@@ -47,8 +47,8 @@ export default {
         <div class="ph-frame" data-expand="10">
           ${photo({
             id: "V-02", file: "fachada-republica-dominicana.jpg",
-            alt: "Fachada de La Gelateria Italiana en la Plaza de la República Dominicana",
-            ar: "4 / 5",
+            alt: "Fachada de La Gelateria Italiana en la Plaza de la República Dominicana, con el local abierto",
+            ar: "1 / 1",
             desc: "La fachada del local de la Plaza de la República Dominicana, desde la acera y con el rótulo visible, para que haga juego con la anterior.",
             spec: "4:5 vertical · mín. 1400 px"
           })}

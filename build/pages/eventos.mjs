@@ -6,7 +6,7 @@ const OFFERS = [
     d: "Eliges dos o tres sabores y la base: bizcocho empapado, galleta prensada o merengue seco. Se monta a mano y se decora con fruta o chocolate templado.",
     meta: "Desde 6 raciones · 48 h de antelación",
     file: "evento-tarta.jpg", id: "E-01",
-    desc: "Tarta helada entera, decorada y fotografiada de tres cuartos sobre una superficie limpia."
+    desc: "Porción de tarta helada emplatada, con cacao espolveado alrededor."
   },
   {
     idx: "02", t: "Celebraciones y cumpleaños",

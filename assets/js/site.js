@@ -525,28 +525,76 @@
       });
     });
 
-    /* Marquesinas */
-    gsap.utils.toArray(".marquee, .vitrina__rail").forEach(function (m) {
-      var track = m.querySelector(".marquee__track, .vitrina__track");
-      if (!track) return;
-      var clone = track.cloneNode(true);
-      clone.setAttribute("aria-hidden", "true");
-      m.appendChild(clone);
-      var dir = m.dataset.dir === "rtl" ? 1 : -1;
-      var speed = parseFloat(m.dataset.speed) || 26;
-      var tween = gsap.to([track, clone], {
-        xPercent: dir * -100, repeat: -1, duration: speed, ease: "none"
+    /* Cintas infinitas: se clona la pista las veces que haga falta para
+       cubrir el ancho visible, y se desplaza exactamente el ancho de una.
+       Con una sola copia, al terminar el recorrido quedaba hueco por el
+       lado contrario y la cinta parecía vaciarse. */
+    var loops = [];
+
+    function buildLoop(rail) {
+      var original = rail.querySelector(".marquee__track, .vitrina__track");
+      if (!original) return;
+
+      /* limpiar una construcción anterior (recálculo al redimensionar) */
+      if (rail.dataset.looped === "1") {
+        Array.from(rail.children).forEach(function (c, i) { if (i > 0) c.remove(); });
+        gsap.set(original, { clearProps: "transform" });
+      }
+
+      var unit = original.getBoundingClientRect().width;
+      if (!unit) return;
+
+      var copies = Math.ceil(rail.getBoundingClientRect().width / unit) + 1;
+      for (var i = 1; i < Math.max(2, copies); i++) {
+        var c = original.cloneNode(true);
+        c.setAttribute("aria-hidden", "true");
+        rail.appendChild(c);
+      }
+      rail.dataset.looped = "1";
+
+      var tracks = Array.from(rail.children);
+      var rtl = rail.dataset.dir === "rtl";
+      var pxPerSecond = unit / (parseFloat(rail.dataset.speed) || 26);
+
+      gsap.set(tracks, { x: rtl ? -unit : 0 });
+      var tween = gsap.to(tracks, {
+        x: rtl ? 0 : -unit,
+        duration: unit / pxPerSecond,
+        ease: "none",
+        repeat: -1
       });
-      if (dir === 1) gsap.set([track, clone], { xPercent: -100 });
-      /* El scroll acelera y cambia el sentido */
+
+      /* el scroll la acelera, sin llegar a cambiarle el sentido */
       ScrollTrigger.create({
-        trigger: m,
+        trigger: rail,
         start: "top bottom",
         end: "bottom top",
         onUpdate: function (self) {
           tween.timeScale(1 + Math.min(Math.abs(self.getVelocity()) / 900, 3));
         }
       });
+
+      loops.push({ rail: rail, tween: tween });
+    }
+
+    var rails = gsap.utils.toArray(".marquee, .vitrina__rail");
+    var buildAll = function () { rails.forEach(buildLoop); ScrollTrigger.refresh(); };
+
+    /* las cintas de texto necesitan la tipografía ya cargada para medir bien */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(buildAll);
+    } else {
+      buildAll();
+    }
+
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        loops.forEach(function (l) { l.tween.kill(); });
+        loops = [];
+        buildAll();
+      }, 220);
     });
 
     /* Tarjetas apiladas: la de abajo empuja a la de arriba */
