@@ -177,7 +177,28 @@ ${shell}
 </body>
 </html>`;
 
+/* Las fotografías viajan dentro del archivo: así la vista previa se puede
+   abrir suelta, sin la carpeta assets/ al lado. */
+const { readdir } = await import("node:fs/promises");
+let withImages = preview;
+const imgFiles = (await readdir("assets/img")).filter(f => /\.(jpe?g|png|webp|avif)$/i.test(f));
+const mime = f => f.endsWith(".png") ? "image/png" : f.endsWith(".webp") ? "image/webp" : f.endsWith(".avif") ? "image/avif" : "image/jpeg";
+let inlined = 0;
+for (const f of imgFiles) {
+  const ref = `assets/img/${f}`;
+  if (!withImages.includes(ref)) continue;
+  const b64 = (await readFile(`assets/img/${f}`)).toString("base64");
+  const uri = `data:${mime(f)};base64,${b64}`;
+  /* El cuerpo de cada página viaja dentro de una cadena JSON, con las
+     comillas escapadas; hay que sustituir las dos formas. La ruta también
+     aparece como texto visible en el hueco pendiente, y esa no se toca. */
+  withImages = withImages.split(`"${ref}"`).join(`"${uri}"`);
+  withImages = withImages.split(`\\"${ref}\\"`).join(`\\"${uri}\\"`);
+  inlined++;
+}
+
 await mkdir("preview", { recursive: true });
-await writeFile("preview/index.html", preview, "utf8");
-console.log(`  preview/index.html  ${(preview.length / 1024 / 1024).toFixed(2)} MB`);
+await writeFile("preview/index.html", withImages, "utf8");
+console.log(`  fotos incrustadas en la vista previa: ${inlined}`);
+console.log(`  preview/index.html  ${(withImages.length / 1024 / 1024).toFixed(2)} MB`);
 console.log(`\nListo: ${mods.length} páginas + vista previa.`);
