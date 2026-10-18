@@ -5,7 +5,7 @@ const bench = FLAVORS.slice(0, 5);
 const featured = FLAVORS.filter(f => f.star).slice(0, 8);
 
 const flavorCard = f => `<a class="gelato" href="sabores.html" style="--flavor:${f.c}" data-cursor="Ver carta">
-        ${gelatoMark(f.c, f.t)}
+        ${gelatoMark(f)}
         <span class="gelato__body">
           <span class="gelato__name">${f.n}</span>
           <span class="gelato__note">${f.note}</span>
@@ -62,7 +62,7 @@ export default {
   <div class="hero__bench">
     ${bench.map(f => `<div class="bench-cell">
       <span class="gelato" style="--flavor:${f.c};width:100%">
-        ${gelatoMark(f.c, f.t)}
+        ${gelatoMark(f)}
       </span>
       <span class="bench-name">${f.n}</span>
     </div>`).join("\n    ")}

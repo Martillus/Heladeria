@@ -36,7 +36,7 @@
   position: relative;
   width: clamp(112px, 15vw, 168px);
 }
-.gelato-mark .gelato__tin { max-width: 100%; }
+.gelato-mark .gelato__cup { max-width: 100%; }
 
 .loader__word {
   display: flex;
@@ -338,8 +338,8 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
 .nav-overlay__foot a:hover { color: var(--accent); }
 
 /* ---------- 5. El icono de sabor ---------- */
-/* La cubeta abierta de la vitrina: el gelato a la vista, con el relieve
-   que deja la espátula. Un solo dibujo, el color lo pone cada sabor. */
+/* La tarrina de sabor. El dibujo es el mismo para los 22: lo único que
+   cambia por sabor es el color del helado, el topping y la salsa. */
 .gelato {
   position: relative;
   display: grid;
@@ -348,109 +348,83 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
   isolation: isolate;
 }
 
-.gelato__tin {
-  position: relative;
+.gelato__cup {
   display: block;
   width: 100%;
   max-width: 232px;
+  height: auto;
   margin-inline: auto;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  color: var(--flavor, #a8b573);
-  box-shadow:
-    0 0 0 1px rgba(42, 32, 24, 0.14),
-    0 0 0 6px var(--bg),
-    0 0 0 7px rgba(139, 131, 118, 0.45),
-    0 24px 48px -26px rgba(42, 32, 24, 0.42);
-  transition: transform 700ms var(--e-out), box-shadow 700ms var(--e-out);
+  overflow: visible;
+  transition: transform 520ms var(--e-out);
+}
+.gelato__brand { font-family: var(--f-body); font-weight: 500; }
+.gelato__brand-it { font-family: var(--f-script); }
+
+/* El helado se hunde un poco cuando entra la cuchara */
+.gelato__cream {
+  transform-box: view-box;
+  transform-origin: 72px 128px;
+  transition: transform 460ms cubic-bezier(0.3, 1.4, 0.5, 1) 60ms;
 }
 
-.gelato__surface {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.gelato__swirl {
-  transform-origin: 50px 50px;
-  transform: rotate(var(--swirl, 0deg));
-  transition: transform 900ms var(--e-drawer);
-}
-
-/* Volumen: luz arriba a la izquierda, sombra al fondo de la cubeta */
-.gelato__tin::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  background:
-    radial-gradient(62% 56% at 32% 26%, rgba(255, 255, 255, 0.32), transparent 72%),
-    radial-gradient(74% 68% at 76% 82%, rgba(42, 32, 24, 0.28), transparent 74%);
-}
-
-/* El rastro liso que deja la espátula al pasar */
-.gelato__sweep {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  background: linear-gradient(116deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.46) 44%,
-    rgba(255, 255, 255, 0.16) 54%,
-    transparent 64%);
+/* La sombra del corte, donde la pala atraviesa la superficie */
+.gelato__cut {
   opacity: 0;
-  transform: translate(-26%, 26%);
-  transition: opacity 480ms var(--e-out), transform 820ms var(--e-drawer);
+  transition: opacity 220ms ease 150ms;
 }
 
-/* La cuchara entra desde abajo a la izquierda y se queda hundida en el helado */
-.gelato__tool {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  top: 50%;
-  width: 29%;
-  color: var(--flavor, #a8b573);
-  pointer-events: none;
+/* La cucharita cae girando desde arriba a la derecha y se clava. El rebote
+   corto del final lo pone la curva de salida, no una animación aparte. */
+.gelato__spoon {
+  transform-box: view-box;
+  transform-origin: -18px 0px;
+  transform: translate(var(--sx0)) translate(0, var(--sy0)) rotate(-17deg);
   opacity: 0;
-  transform-origin: 50% 23%;
-  transform: translate(-106%, 8%) rotate(34deg) scale(0.86);
-  filter: drop-shadow(0 6px 12px rgba(42, 32, 24, 0.34));
-  transition: transform 780ms var(--e-drawer), opacity 300ms var(--e-out);
+  transition: transform 520ms cubic-bezier(0.3, 1.35, 0.45, 1), opacity 160ms ease;
 }
-.gelato__scoop { display: block; width: 100%; height: auto; }
+.gelato__wobble { transform-box: view-box; transform-origin: -18px 0px; }
 
-.gelato.is-serving .gelato__tin,
-.gelato:hover .gelato__tin,
-.gelato:focus-within .gelato__tin {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow:
-    0 0 0 1px rgba(42, 32, 24, 0.2),
-    0 0 0 6px var(--bg),
-    0 0 0 7px rgba(139, 131, 118, 0.85),
-    0 38px 64px -30px rgba(42, 32, 24, 0.5);
+.gelato.is-serving .gelato__cup,
+.gelato:hover .gelato__cup,
+.gelato:focus-within .gelato__cup { transform: translateY(-4px); }
+
+.gelato.is-serving .gelato__cream,
+.gelato:hover .gelato__cream,
+.gelato:focus-within .gelato__cream { transform: scaleY(0.975) scaleX(1.012); }
+
+.gelato.is-serving .gelato__cut,
+.gelato:hover .gelato__cut,
+.gelato:focus-within .gelato__cut { opacity: 0.22; }
+
+.gelato.is-serving .gelato__spoon,
+.gelato:hover .gelato__spoon,
+.gelato:focus-within .gelato__spoon {
+  transform: translate(var(--sx1)) translate(0, var(--sy1)) rotate(20deg);
+  opacity: 1;
 }
-.gelato.is-serving .gelato__swirl,
-.gelato:hover .gelato__swirl,
-.gelato:focus-within .gelato__swirl { transform: rotate(calc(var(--swirl, 0deg) + 7deg)); }
-.gelato.is-serving .gelato__sweep,
-.gelato:hover .gelato__sweep,
-.gelato:focus-within .gelato__sweep { opacity: 1; transform: translate(16%, -16%); }
-.gelato.is-serving .gelato__tool,
-.gelato:hover .gelato__tool,
-.gelato:focus-within .gelato__tool { opacity: 1; transform: translate(-33%, -42%) rotate(34deg) scale(1); }
+.gelato.is-serving .gelato__wobble,
+.gelato:hover .gelato__wobble,
+.gelato:focus-within .gelato__wobble {
+  animation: gelato-wobble 780ms cubic-bezier(0.25, 0.85, 0.35, 1) 400ms 1;
+}
 
-/* Ninguna cubeta se alisa igual que la de al lado */
-.sabores-grid > *:nth-child(5n+1) { --swirl: -8deg; }
-.sabores-grid > *:nth-child(5n+2) { --swirl: 14deg; }
-.sabores-grid > *:nth-child(5n+3) { --swirl: -19deg; }
-.sabores-grid > *:nth-child(5n+4) { --swirl: 6deg; }
-.sabores-grid > *:nth-child(5n+5) { --swirl: 23deg; }
-.hero__bench .bench-cell:nth-child(2n) .gelato__swirl { --swirl: 17deg; }
+@keyframes gelato-wobble {
+  0%   { transform: rotate(0deg); }
+  26%  { transform: rotate(-3.4deg); }
+  52%  { transform: rotate(2deg); }
+  76%  { transform: rotate(-0.9deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gelato__cup, .gelato__cream, .gelato__spoon, .gelato__cut { transition-duration: 1ms !important; }
+  .gelato.is-serving .gelato__wobble,
+  .gelato:hover .gelato__wobble,
+  .gelato:focus-within .gelato__wobble { animation: none; }
+  .gelato.is-serving .gelato__cream,
+  .gelato:hover .gelato__cream,
+  .gelato:focus-within .gelato__cream { transform: none; }
+}
 
 .gelato__body { position: relative; z-index: 2; padding-top: 1.35rem; display: grid; gap: 0.4rem; }
 .gelato__name {
@@ -986,3 +960,6 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
   .order-panel { place-items: end center; padding-inline: 0.7rem; }
   .order-panel__card { width: 100%; }
 }
+
+/* El bloque compartido de degradados y filtros no se pinta */
+.gelato-defs { position: absolute; width: 0; height: 0; overflow: hidden; }

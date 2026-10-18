@@ -102,50 +102,240 @@ export function photo({ id, file, alt, ar = "3 / 2", desc, spec, cls = "", compa
    con el relieve que deja al servirlo. Mismo dibujo para todos; cambia el
    color del gelato y, si lo lleva, el de los tropezones. Al pasar el ratón
    entra la cuchara de coger helado, ya con su bola. */
-function band(y, h) {
-  return `M-6 ${y} C 14 ${y - 11}, 30 ${y + 9}, 50 ${y} C 70 ${y - 9}, 86 ${y + 11}, 106 ${y}` +
-    ` L106 ${y + h} C 86 ${y + h + 11}, 70 ${y + h - 9}, 50 ${y + h} C 30 ${y + h + 9}, 14 ${y + h - 11}, -6 ${y + h} Z`;
+/* ============================================================
+   EL ICONO DE SABOR — una tarrina de las que cruzan el mostrador.
+   Vista frontal, el helado mantecado desbordando el borde y, al pasar el
+   ratón, la cucharita de tarrina cayendo hasta quedarse clavada.
+
+   El relieve no son trazos pintados: es un mapa de alturas de ruido fractal
+   iluminado y multiplicado sobre el color del sabor. Eso es lo que lo separa
+   de una gelatina. Y va en modo mate — el volumen se modela oscureciendo, no
+   sumando blanco.
+
+   Por sabor solo cambian tres cosas: el color del helado, el topping y, si
+   lleva, la salsa o mermelada.
+   ============================================================ */
+
+const BASE_Y = 123;          // la línea del borde de la tarrina
+const TIP = [107, 84];       // donde queda la punta de la pala al clavarse
+
+/* Generador reproducible: cada sabor reparte su topping distinto, pero
+   siempre igual entre compilaciones. */
+function sower(seed) {
+  let s = seed % 2147483647;
+  if (s <= 0) s += 2147483646;
+  return () => (s = (s * 16807) % 2147483647) / 2147483647;
 }
 
-const SPECKS = [[27, 21, 3.4], [63, 16, 2.6], [41, 44, 3.1], [76, 48, 2.4],
-                [20, 62, 2.9], [55, 70, 3.3], [82, 78, 2.5], [34, 86, 2.8], [66, 93, 2.3]];
+function seedOf(text) {
+  let h = 2166136261;
+  for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 16777619);
+  return Math.abs(h);
+}
 
-export function gelatoIcon({ topping = "" } = {}) {
-  const ridges = [6, 28, 50, 72].map(y =>
-    `<path d="${band(y, 7)}" fill="#ffffff" opacity=".2"/>` +
-    `<path d="${band(y + 7, 6)}" fill="#2a2018" opacity=".09"/>`
-  ).join("");
-  const specks = topping
-    ? SPECKS.map(([x, y, r]) => `<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r * 0.78}" fill="${topping}" opacity=".9"/>`).join("")
-    : "";
-  return `<svg class="gelato__surface" viewBox="0 0 100 100" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
-          <g class="gelato__swirl">
-            <rect x="-14" y="-14" width="128" height="128" fill="currentColor"/>
-            ${ridges}${specks}
+/* La silueta del mantecado. Círculo arriba para que la cúpula se cierre
+   redonda, ensanche solo cerca de la horizontal, y grumos en el contorno que
+   se apagan al acercarse a la cumbre: un único pico, faldas irregulares. */
+function moundPath() {
+  const cx = 89, cy = BASE_Y - 14, rad = 44, N = 40, pts = [];
+  for (let k = 0; k <= N; k++) {
+    const th = Math.PI * (1 - k / N);
+    const taper = Math.min(1, Math.sin(th) * 3);
+    const lump = (2.2 * Math.sin(5 * th + 1.2) + 1.3 * Math.sin(8 * th + 0.3)) * taper;
+    const r = rad + 8 * Math.pow(Math.abs(Math.cos(th)), 2.4) + lump;
+    pts.push([cx + r * Math.cos(th), cy - r * Math.sin(th)]);
+  }
+  let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+  for (let k = 0; k < N; k++) {
+    const p0 = pts[k > 0 ? k - 1 : 0], p1 = pts[k], p2 = pts[k + 1], p3 = pts[k < N - 1 ? k + 2 : N];
+    d += ` C${(p1[0] + (p2[0] - p0[0]) / 6).toFixed(1)} ${(p1[1] + (p2[1] - p0[1]) / 6).toFixed(1)}` +
+         ` ${(p2[0] - (p3[0] - p1[0]) / 6).toFixed(1)} ${(p2[1] - (p3[1] - p1[1]) / 6).toFixed(1)}` +
+         ` ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
+  }
+  return d +
+    ` C145 ${BASE_Y - 6} 144 ${BASE_Y + 1} 141 ${BASE_Y + 8}` +
+    ` L141 ${BASE_Y + 40} L37 ${BASE_Y + 40}` +
+    ` C34 ${BASE_Y + 1} 33 ${BASE_Y - 6} 37 ${BASE_Y - 14} Z`;
+}
+
+const MOUND = moundPath();
+
+/* ¿Cae el punto dentro del montón? Sirve para no sembrar topping en el aire. */
+function onMound(x, y) {
+  const cx = 89, cy = BASE_Y - 14;
+  const dx = x - cx, dy = cy - y;
+  if (dy < -12) return false;
+  const th = Math.atan2(Math.max(dy, 0.001), dx);
+  const r = 44 + 8 * Math.pow(Math.abs(Math.cos(th)), 2.4);
+  return Math.hypot(dx, dy) < r - 5;
+}
+
+/* Siembra n piezas de topping sobre la masa, más densas hacia la cumbre. */
+function scatter(rnd, n, draw) {
+  const out = [];
+  let guard = 0;
+  while (out.length < n && guard++ < n * 40) {
+    const x = 40 + rnd() * 98;
+    const y = BASE_Y - 58 + rnd() * rnd() * 52;   // rnd² agrupa arriba
+    if (!onMound(x, y)) continue;
+    out.push(draw(x, y, rnd));
+  }
+  return out.join("");
+}
+
+function toppingArt(top, seed) {
+  if (!top) return "";
+  const rnd = sower(seed);
+  const c = top.c;
+  if (top.k === "chips") {
+    // Virutas de chocolate: cuadraditos irregulares, cada uno a su aire.
+    return scatter(rnd, 11, (x, y, r) => {
+      const w = 2.6 + r() * 2.2, h = 2 + r() * 1.8, a = r() * 90 - 45;
+      return `<rect x="${(x - w / 2).toFixed(1)}" y="${(y - h / 2).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="0.7" fill="${c}" transform="rotate(${a.toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`;
+    });
+  }
+  if (top.k === "crumble") {
+    // Crocanti y migas: más piezas, más pequeñas y más juntas.
+    return scatter(rnd, 22, (x, y, r) => {
+      const s = 1.2 + r() * 1.9, a = r() * 180;
+      return `<path d="M${(-s).toFixed(1)} 0 L0 ${(-s * 0.9).toFixed(1)} L${s.toFixed(1)} ${(s * 0.2).toFixed(1)} L${(s * 0.1).toFixed(1)} ${s.toFixed(1)} Z" fill="${c}" opacity=".92" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${a.toFixed(0)})"/>`;
+    });
+  }
+  if (top.k === "shred") {
+    // Ralladura: hebras finas, casi horizontales.
+    return scatter(rnd, 16, (x, y, r) => {
+      const l = 3.4 + r() * 3.4, a = r() * 70 - 35;
+      return `<path d="M${(-l / 2).toFixed(1)} 0 L${(l / 2).toFixed(1)} 0" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity=".9" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${a.toFixed(0)})"/>`;
+    });
+  }
+  if (top.k === "seeds") {
+    // Pepitas: óvalos pequeños y oscuros.
+    return scatter(rnd, 14, (x, y, r) => {
+      const s = 1 + r() * 0.9;
+      return `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${(s * 1.3).toFixed(1)}" ry="${s.toFixed(1)}" fill="${c}" opacity=".9" transform="rotate(${(r() * 90 - 45).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`;
+    });
+  }
+  if (top.k === "dust") {
+    // Espolvoreado de canela: puntos muy finos, sin forma propia.
+    return scatter(rnd, 40, (x, y, r) =>
+      `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(0.5 + r() * 0.8).toFixed(1)}" fill="${c}" opacity="${(0.4 + r() * 0.4).toFixed(2)}"/>`);
+  }
+  return "";
+}
+
+/* La mermelada o la salsa: un hilo que cruza la cumbre y cae por la ladera
+   derecha, con dos gotas. Va brillante a propósito — es lo único del dibujo
+   que no es mate, y por eso se lee como salsa y no como helado. */
+function sauceArt(color) {
+  if (!color) return "";
+  const y = v => BASE_Y - v;
+  const ribbon = `M62 ${y(30)} C70 ${y(42)} 82 ${y(46)} 94 ${y(40)} C104 ${y(35)} 110 ${y(27)} 112 ${y(17)}`;
+  return `<g class="gelato__sauce">
+          <path d="${ribbon}" fill="none" stroke="#2a2018" stroke-width="7" stroke-linecap="round" opacity=".18" transform="translate(0 1.8)"/>
+          <path d="${ribbon}" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round"/>
+          <path d="${ribbon}" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity=".26" transform="translate(-0.8 -1.2)"/>
+          <ellipse cx="112" cy="${y(12)}" rx="3.8" ry="4.6" fill="${color}"/>
+          <ellipse cx="111" cy="${y(14)}" rx="1.1" ry="1.5" fill="#ffffff" opacity=".3"/>
+        </g>`;
+}
+
+/* La cucharita plana de tarrina, dibujada con la punta de la pala en (0,0)
+   para que gire sobre el punto por el que se clava. */
+const SPOON = `<g class="gelato__wobble">
+          <path d="M-9.6 -36 C-9.6 -42 -6.6 -44.6 0 -44.6 C6.6 -44.6 9.6 -42 9.6 -36 L9 -14.5 C9 -5.4 5.4 0 0 0 C-5.4 0 -9 -5.4 -9 -14.5 Z" fill="url(#gspoon)" stroke="#bdb5a6" stroke-width="0.9"/>
+          <rect x="-4.9" y="-64" width="9.8" height="26" rx="4.9" fill="url(#gspoon)" stroke="#bdb5a6" stroke-width="0.9"/>
+          <path d="M-5.4 -38 C-5.4 -40.6 -3 -41.6 0 -41.6 C3 -41.6 5.4 -40.6 5.4 -38 L5 -20 C5 -13.6 2.8 -10.4 0 -10.4 C-2.8 -10.4 -5 -13.6 -5 -20 Z" fill="#fff" opacity=".55"/>
+          <path d="M-2 -61 L-2 -41" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".7"/>
+        </g>`;
+
+/* Migas de hielo de la cumbre. El grano fino lo pone el mapa de relieve. */
+const CRUMBS = [[75, 86], [84, 88], [67, 93], [91, 92], [79, 96], [58, 104], [104, 101]]
+  .map(([x, y]) => `<circle cx="${x}" cy="${y + BASE_Y - 125}" r="1.7" fill="#2a2018" opacity=".12"/>`).join("");
+
+/* Los degradados, filtros y recortes son idénticos para los 22 sabores, así
+   que van una sola vez por página y cada tarrina los referencia por id. Sin
+   esto cada icono arrastraba 12 KB repetidos. */
+export const GELATO_DEFS = `<svg class="gelato-defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <defs>
+        <path id="gmound" d="${MOUND}"/>
+        <radialGradient id="gshade" gradientUnits="userSpaceOnUse" cx="70" cy="${BASE_Y - 40}" r="90">
+          <stop offset=".34" stop-color="#2a2018" stop-opacity="0"/>
+          <stop offset=".6" stop-color="#2a2018" stop-opacity=".22"/>
+          <stop offset="1" stop-color="#2a2018" stop-opacity=".54"/>
+        </radialGradient>
+        <linearGradient id="gpaper" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#e6ddcc"/><stop offset=".16" stop-color="#fdfbf5"/>
+          <stop offset=".52" stop-color="#f4efe3"/><stop offset=".84" stop-color="#e6ddcc"/>
+          <stop offset="1" stop-color="#ddd3c0"/>
+        </linearGradient>
+        <linearGradient id="gspoon" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#e4ded2"/><stop offset=".26" stop-color="#ffffff"/>
+          <stop offset=".62" stop-color="#f6f3ec"/><stop offset="1" stop-color="#d7d0c1"/>
+        </linearGradient>
+        <filter id="gblur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.2"/></filter>
+        <filter id="gsoft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="0.9"/></filter>
+        <filter id="grelief" x="-4%" y="-4%" width="108%" height="108%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.135" numOctaves="2" seed="11" result="n"/>
+          <feColorMatrix in="n" type="matrix" result="h" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0"/>
+          <feDiffuseLighting in="h" surfaceScale="6.5" diffuseConstant="1" lighting-color="#ffffff" result="d">
+            <feDistantLight azimuth="228" elevation="52"/></feDiffuseLighting>
+          <feComponentTransfer in="d" result="m">
+            <feFuncR type="linear" slope="0.52" intercept="0.56"/>
+            <feFuncG type="linear" slope="0.52" intercept="0.56"/>
+            <feFuncB type="linear" slope="0.52" intercept="0.56"/></feComponentTransfer>
+          <feComposite in="m" in2="SourceGraphic" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" result="c"/>
+          <feComposite in="c" in2="SourceAlpha" operator="in"/>
+        </filter>
+        <clipPath id="gtub"><rect x="-20" y="-60" width="220" height="${BASE_Y + 61}"/></clipPath>
+        <clipPath id="gcream"><use href="#gmound"/></clipPath>
+        <mask id="gburied" maskUnits="userSpaceOnUse" x="-20" y="-80" width="220" height="300">
+          <rect x="-20" y="-80" width="220" height="300" fill="#fff"/>
+          <use href="#gmound" fill="#000"/>
+        </mask>
+      </defs>
+    </svg>`;
+
+export function gelatoMark(flavor) {
+  const f = typeof flavor === "string" ? { n: flavor, c: flavor } : flavor;
+  const seed = seedOf(f.n || f.c || "gelato");
+  const ex = TIP[0] + 6, ey = TIP[1] - 14;      // por donde la pala entra en el helado
+
+  return `<svg class="gelato__cup" viewBox="18 0 144 200" aria-hidden="true" focusable="false" style="--flavor:${f.c}">
+        <ellipse cx="90" cy="188" rx="46" ry="7" fill="#2a2018" opacity=".10"/>
+        <g class="gelato__tub">
+          <path d="M35 124 L41 186 L139 186 L145 124 Z" fill="url(#gpaper)"/>
+
+          <g class="gelato__cream" clip-path="url(#gtub)">
+            <use href="#gmound" fill="var(--flavor)" filter="url(#grelief)"/>
+            <g clip-path="url(#gcream)">
+              <use href="#gmound" fill="none" stroke="#2a2018" stroke-width="18" opacity=".2" filter="url(#gblur)"/>
+              <use href="#gmound" fill="url(#gshade)"/>
+              <path d="M83 ${BASE_Y - 53} C77 ${BASE_Y - 33} 82 ${BASE_Y - 16} 74 ${BASE_Y + 3}" fill="none" stroke="#2a2018" stroke-width="4.4" stroke-linecap="round" opacity=".16" filter="url(#gsoft)"/>
+              ${CRUMBS}
+              ${toppingArt(f.top, seed)}
+              ${sauceArt(f.sauce)}
+            </g>
+            <rect x="37" y="115" width="106" height="10" fill="#2a2018" opacity=".15" filter="url(#gblur)"/>
           </g>
-        </svg>`;
-}
 
-/* Cuchara clásica de pinza: cazo redondo, cuello, aro alargado y palanca.
-   Sin más detalle del necesario para que se reconozca a tamaño pequeño. */
-export const SCOOP = `<svg class="gelato__scoop" viewBox="0 0 84 180" aria-hidden="true" focusable="false">
-          <rect x="35" y="72" width="14" height="26" rx="7" fill="#a79f93"/>
-          <rect x="18" y="92" width="48" height="82" rx="24" fill="none" stroke="#b2a99c" stroke-width="7"/>
-          <rect x="18" y="92" width="48" height="82" rx="24" fill="none" stroke="#f3eee4" stroke-width="2.4"/>
-          <path d="M30 100 56 162" stroke="#bbb2a5" stroke-width="6" stroke-linecap="round"/>
-          <circle cx="42" cy="42" r="39" fill="#9d958a"/>
-          <circle cx="42" cy="42" r="29" fill="currentColor"/>
-          <ellipse cx="32" cy="32" rx="13" ry="10" fill="#ffffff" opacity=".3"/>
-          <circle cx="42" cy="42" r="34" fill="none" stroke="#f3eee4" stroke-width="9"/>
-          <path d="M16 28a39 39 0 0 1 21-15" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity=".65"/>
-        </svg>`;
+          <rect x="31.5" y="115" width="117" height="10" rx="5" fill="#fdfbf5"/>
+          <rect x="31.5" y="115" width="117" height="10" rx="5" fill="none" stroke="#ddd3c0" stroke-width="1.1"/>
 
-export function gelatoMark(flavor, topping) {
-  return `<span class="gelato__tin" style="--flavor:${flavor}">
-          ${gelatoIcon({ topping })}
-          <span class="gelato__sweep" aria-hidden="true"></span>
-        </span>
-        <span class="gelato__tool" style="--flavor:${flavor}">${SCOOP}</span>`;
+          <rect x="48" y="139" width="84" height="28" fill="#f4efe3" opacity=".5"/>
+          <rect x="48" y="139" width="84" height="28" fill="none" stroke="#2a2018" stroke-width="1.5"/>
+          <text class="gelato__brand" x="90" y="155" font-size="9.2" letter-spacing="1" fill="#2a2018" text-anchor="middle">LA GELATERIA</text>
+          <text class="gelato__brand-it" x="114" y="170" font-size="11" fill="#2a2018" text-anchor="middle">italiana</text>
+
+          <g class="gelato__cut" transform="rotate(20 ${ex} ${ey})">
+            <ellipse cx="${ex}" cy="${ey + 1.5}" rx="13" ry="5.4" fill="#2a2018" filter="url(#gblur)"/>
+          </g>
+          <g mask="url(#gburied)">
+            <g class="gelato__spoon" style="--sx0:${TIP[0] + 14}px;--sy0:${TIP[1] - 118}px;--sx1:${TIP[0]}px;--sy1:${TIP[1]}px">
+              ${SPOON}
+            </g>
+          </g>
+        </g>
+      </svg>`;
 }
 
 export const LOGO = (cls = "brand__mark") => `<svg class="${cls}" data-logo-slot viewBox="0 0 48 48" role="img" aria-label="La Gelateria Italiana">
@@ -199,10 +389,11 @@ export function head({ title, desc, page }) {
 <body data-page="${page}">
 <a class="skip-link" href="#main">Saltar al contenido</a>
 
+${GELATO_DEFS}
 <div class="loader" aria-hidden="true">
   <div class="loader__field"></div>
   <div class="loader__core">
-    <div class="gelato gelato-mark" aria-hidden="true">${gelatoMark("#a8b573", "#3a2419")}</div>
+    <div class="gelato gelato-mark" aria-hidden="true">${gelatoMark({ n: "Loader", c: "#a8b573", top: { k: "chips", c: "#3a2419" } })}</div>
     <p class="loader__word" aria-label="La Gelateria Italiana">${
       "LA GELATERIA".split("").map(c => `<span>${c === " " ? "&nbsp;" : c}</span>`).join("")
     }</p>

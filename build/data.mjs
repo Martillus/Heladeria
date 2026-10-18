@@ -2,30 +2,30 @@
    y de las etiquetas de la vitrina. El panel avisa de que cada día se elaboran
    sabores nuevos, así que la carta fija convive con los rotativos. */
 export const FLAVORS = [
-  { n: "Pistacchio Siciliano", f: "crema", c: "#a8b573", note: "Pistacho siciliano con Denominación de Origen. El más pedido de la casa.", tags: ["D.O.P."], star: true },
-  { n: "Chocolate Belga 70 %", f: "cioccolato", c: "#3e2417", note: "Cobertura belga al 70 %. Amargo primero, largo después.", tags: ["70 %"], star: true },
-  { n: "Café 100 % Arábica", f: "crema", c: "#6b4a33", note: "El mismo café que servimos en taza, sobre base de leche fresca.", tags: ["Con cafeína"], star: true },
-  { n: "Avellana de Piemonte", f: "crema", c: "#b08554", note: "Avellana del Piamonte con Denominación de Origen, tostada y molida en pasta.", tags: ["D.O.P."], star: true },
+  { n: "Pistacchio Siciliano", f: "crema", c: "#a8b573", top: { k: "crumble", c: "#76884a" }, note: "Pistacho siciliano con Denominación de Origen. El más pedido de la casa.", tags: ["D.O.P."], star: true },
+  { n: "Chocolate Belga 70 %", f: "cioccolato", c: "#3e2417", top: { k: "chips", c: "#1e0e07" }, note: "Cobertura belga al 70 %. Amargo primero, largo después.", tags: ["70 %"], star: true },
+  { n: "Café 100 % Arábica", f: "crema", c: "#6b4a33", top: { k: "chips", c: "#33200f" }, note: "El mismo café que servimos en taza, sobre base de leche fresca.", tags: ["Con cafeína"], star: true },
+  { n: "Avellana de Piemonte", f: "crema", c: "#b08554", top: { k: "crumble", c: "#7d5227" }, note: "Avellana del Piamonte con Denominación de Origen, tostada y molida en pasta.", tags: ["D.O.P."], star: true },
   { n: "Fior di Latte", f: "crema", c: "#f6f0e2", note: "Solo leche fresca de granja, nata y azúcar. El examen de cualquier gelateria.", star: true },
-  { n: "Tiramisù", f: "especial", c: "#c9a87c", t: "#4a3222", note: "Mascarpone, bizcocho empapado en café y cacao amargo por encima.", star: true },
-  { n: "Stracciatella", f: "crema", c: "#efe7d6", t: "#3a2419", note: "Fior di latte con hilos de chocolate templado a mano.", star: true },
-  { n: "Limone", f: "frutta", c: "#ede07e", note: "Limón de temporada. Corta cualquier cosa que lleves antes.", tags: ["Fruta de temporada"], star: true },
+  { n: "Tiramisù", f: "especial", c: "#c9a87c", top: { k: "crumble", c: "#4a3222" }, note: "Mascarpone, bizcocho empapado en café y cacao amargo por encima.", star: true },
+  { n: "Stracciatella", f: "crema", c: "#efe7d6", top: { k: "chips", c: "#2e1a11" }, note: "Fior di latte con hilos de chocolate templado a mano.", star: true },
+  { n: "Limone", f: "frutta", c: "#ede07e", top: { k: "shred", c: "#c9ad2a" }, note: "Limón de temporada. Corta cualquier cosa que lleves antes.", tags: ["Fruta de temporada"], star: true },
 
-  { n: "Chocolate", f: "cioccolato", c: "#53331f", t: "#2c1a10", note: "Cacao puro, denso y sin adornos." },
-  { n: "Menta y Galleta", f: "cioccolato", c: "#bfd3c0", t: "#3a2419", note: "Menta infusionada con galleta de cacao triturada." },
-  { n: "Nocciotella", f: "crema", c: "#7a5238", t: "#f0e3c2", note: "Avellana y cacao, la merienda de siempre hecha gelato." },
-  { n: "Vainilla", f: "crema", c: "#f0e3c2", note: "Vaina abierta y raspada: se ven los puntos negros." },
-  { n: "Leche merengada", f: "crema", c: "#f3eada", note: "Leche, canela y limón. La receta de aquí, no de Italia." },
-  { n: "Yogurt", f: "crema", c: "#f4efe6", note: "Yogur natural, ácido y limpio." },
-  { n: "Cheesecake", f: "especial", c: "#e8c98f", t: "#b8445c", note: "Queso crema y base de galleta." },
-  { n: "Dulce de leche", f: "especial", c: "#c98b4b", note: "Cocido lento hasta el punto de caramelo." },
-  { n: "Panettone", f: "especial", c: "#e7cfa0", t: "#c98b4b", note: "Sabor de temporada, elaborado en tienda.", tags: ["Rotativo"] },
+  { n: "Chocolate", f: "cioccolato", c: "#53331f", top: { k: "chips", c: "#2c1a10" }, note: "Cacao puro, denso y sin adornos." },
+  { n: "Menta y Galleta", f: "cioccolato", c: "#bfd3c0", top: { k: "chips", c: "#3a2419" }, note: "Menta infusionada con galleta de cacao triturada." },
+  { n: "Nocciotella", f: "crema", c: "#7a5238", sauce: "#43271a", top: { k: "crumble", c: "#d9bd86" }, note: "Avellana y cacao, la merienda de siempre hecha gelato." },
+  { n: "Vainilla", f: "crema", c: "#f0e3c2", top: { k: "seeds", c: "#3b2d1d" }, note: "Vaina abierta y raspada: se ven los puntos negros." },
+  { n: "Leche merengada", f: "crema", c: "#f3eada", top: { k: "dust", c: "#9c6a3c" }, note: "Leche, canela y limón. La receta de aquí, no de Italia." },
+  { n: "Yogurt", f: "crema", c: "#f4efe6", sauce: "#b33a52", note: "Yogur natural, ácido y limpio, con mermelada de frutos rojos." },
+  { n: "Cheesecake", f: "especial", c: "#e8c98f", sauce: "#b8445c", top: { k: "crumble", c: "#c09253" }, note: "Queso crema, base de galleta y mermelada de fresa." },
+  { n: "Dulce de leche", f: "especial", c: "#c98b4b", sauce: "#8f4d15", note: "Cocido lento hasta el punto de caramelo, con su hilo por encima." },
+  { n: "Panettone", f: "especial", c: "#e7cfa0", top: { k: "crumble", c: "#b9742f" }, note: "Sabor de temporada, elaborado en tienda.", tags: ["Rotativo"] },
 
-  { n: "Cocco", f: "frutta", c: "#f4f0e6", t: "#ddd0b4", note: "Coco rallado sobre base de leche fresca." },
-  { n: "Mango", f: "frutta", c: "#e7a93f", note: "Pulpa de mango maduro, nada más.", tags: ["Fruta de temporada"] },
-  { n: "Maracujá", f: "frutta", c: "#e3b84a", note: "Muy aromático y tenso. Entró hace poco y se ha quedado.", tags: ["Rotativo"] },
-  { n: "Frambuesa", f: "frutta", c: "#c2445c", t: "#7d1b2b", note: "Ácida, con pepita, de fruta de temporada.", tags: ["Fruta de temporada"] },
-  { n: "Ananas", f: "frutta", c: "#e8d272", note: "Piña fresca cortada en tienda.", tags: ["Fruta de temporada"] }
+  { n: "Cocco", f: "frutta", c: "#f4f0e6", top: { k: "shred", c: "#cfc0a0" }, note: "Coco rallado sobre base de leche fresca." },
+  { n: "Mango", f: "frutta", c: "#e7a93f", sauce: "#c06a0c", note: "Pulpa de mango maduro, nada más.", tags: ["Fruta de temporada"] },
+  { n: "Maracujá", f: "frutta", c: "#e3b84a", top: { k: "seeds", c: "#3a2a14" }, note: "Muy aromático y tenso. Entró hace poco y se ha quedado.", tags: ["Rotativo"] },
+  { n: "Frambuesa", f: "frutta", c: "#c2445c", sauce: "#7d1b2b", top: { k: "seeds", c: "#5e1120" }, note: "Ácida, con pepita, de fruta de temporada.", tags: ["Fruta de temporada"] },
+  { n: "Ananas", f: "frutta", c: "#e8d272", top: { k: "crumble", c: "#c9a81f" }, note: "Piña fresca cortada en tienda.", tags: ["Fruta de temporada"] }
 ];
 
 export const FAMILIES = [

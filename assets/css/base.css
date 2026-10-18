@@ -42,6 +42,7 @@
   --f-display: "Bodoni Moda", "Didot", "Times New Roman", serif;
   --f-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --f-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --f-script: "Sacramento", "Snell Roundhand", cursive;
 
   --t-display-xl: clamp(2.9rem, 10.5vw, 11.5rem);
   --t-display-l: clamp(2.5rem, 6.6vw, 6.2rem);

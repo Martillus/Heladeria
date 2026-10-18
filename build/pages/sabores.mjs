@@ -2,7 +2,7 @@ import { SITE, photo, ARROW, gelatoMark } from "../chrome.mjs";
 import { FLAVORS, FAMILIES, GALERIA } from "../data.mjs";
 
 const card = f => `<a class="gelato" href="carta.html" style="--flavor:${f.c}" data-cat="${f.f}" data-cursor="Ver carta">
-      ${gelatoMark(f.c, f.t)}
+      ${gelatoMark(f)}
       <span class="gelato__body">
         <span class="gelato__name">${f.n}</span>
         <span class="gelato__note">${f.note}</span>

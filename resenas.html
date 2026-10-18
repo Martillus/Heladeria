@@ -26,29 +26,89 @@
 <body data-page="resenas.html">
 <a class="skip-link" href="#main">Saltar al contenido</a>
 
+<svg class="gelato-defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <defs>
+        <path id="gmound" d="M37.0 109.0 C37.1 108.3 37.4 106.3 37.7 105.0 C38.0 103.6 38.4 102.3 38.8 101.0 C39.1 99.8 39.6 98.5 39.9 97.2 C40.2 95.9 40.4 94.6 40.6 93.3 C40.8 91.9 40.9 90.5 41.2 89.2 C41.5 87.8 41.7 86.5 42.2 85.2 C42.7 83.9 43.3 82.6 44.1 81.5 C44.8 80.3 45.7 79.2 46.8 78.3 C47.9 77.4 49.1 76.7 50.4 76.0 C51.7 75.4 53.1 74.9 54.5 74.5 C55.9 74.1 57.4 73.9 58.8 73.7 C60.2 73.4 61.6 73.3 62.9 73.1 C64.2 72.9 65.4 72.7 66.6 72.5 C67.8 72.2 68.8 71.9 69.9 71.4 C70.9 71.0 71.9 70.5 72.8 70.0 C73.8 69.5 74.8 68.8 75.8 68.3 C76.8 67.7 77.7 67.0 78.8 66.5 C79.8 66.0 80.9 65.4 82.0 65.0 C83.1 64.6 84.3 64.3 85.5 64.1 C86.6 63.9 87.8 63.8 89.0 63.8 C90.2 63.8 91.4 63.9 92.5 64.0 C93.7 64.1 94.9 64.3 96.0 64.5 C97.2 64.7 98.4 64.9 99.5 65.1 C100.7 65.3 101.9 65.5 103.1 65.7 C104.2 66.0 105.4 66.2 106.6 66.5 C107.8 66.8 109.0 67.1 110.1 67.6 C111.3 68.0 112.4 68.5 113.5 69.1 C114.5 69.7 115.5 70.4 116.5 71.2 C117.4 72.0 118.3 72.9 119.1 73.7 C119.9 74.6 120.7 75.6 121.4 76.6 C122.2 77.5 122.9 78.5 123.6 79.4 C124.4 80.4 125.1 81.3 126.0 82.1 C126.8 83.0 127.7 83.8 128.7 84.7 C129.7 85.5 130.8 86.3 131.9 87.1 C133.0 88.0 134.2 88.8 135.4 89.8 C136.5 90.7 137.8 91.7 138.7 92.9 C139.6 94.0 140.3 95.3 140.8 96.6 C141.3 97.9 141.5 99.3 141.7 100.7 C141.8 102.0 141.7 103.5 141.5 104.9 C141.4 106.3 141.1 108.3 141.0 109.0 C145 117 144 124 141 131 L141 163 L37 163 C34 124 33 117 37 109 Z"/>
+        <radialGradient id="gshade" gradientUnits="userSpaceOnUse" cx="70" cy="83" r="90">
+          <stop offset=".34" stop-color="#2a2018" stop-opacity="0"/>
+          <stop offset=".6" stop-color="#2a2018" stop-opacity=".22"/>
+          <stop offset="1" stop-color="#2a2018" stop-opacity=".54"/>
+        </radialGradient>
+        <linearGradient id="gpaper" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#e6ddcc"/><stop offset=".16" stop-color="#fdfbf5"/>
+          <stop offset=".52" stop-color="#f4efe3"/><stop offset=".84" stop-color="#e6ddcc"/>
+          <stop offset="1" stop-color="#ddd3c0"/>
+        </linearGradient>
+        <linearGradient id="gspoon" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#e4ded2"/><stop offset=".26" stop-color="#ffffff"/>
+          <stop offset=".62" stop-color="#f6f3ec"/><stop offset="1" stop-color="#d7d0c1"/>
+        </linearGradient>
+        <filter id="gblur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.2"/></filter>
+        <filter id="gsoft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="0.9"/></filter>
+        <filter id="grelief" x="-4%" y="-4%" width="108%" height="108%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.135" numOctaves="2" seed="11" result="n"/>
+          <feColorMatrix in="n" type="matrix" result="h" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0"/>
+          <feDiffuseLighting in="h" surfaceScale="6.5" diffuseConstant="1" lighting-color="#ffffff" result="d">
+            <feDistantLight azimuth="228" elevation="52"/></feDiffuseLighting>
+          <feComponentTransfer in="d" result="m">
+            <feFuncR type="linear" slope="0.52" intercept="0.56"/>
+            <feFuncG type="linear" slope="0.52" intercept="0.56"/>
+            <feFuncB type="linear" slope="0.52" intercept="0.56"/></feComponentTransfer>
+          <feComposite in="m" in2="SourceGraphic" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" result="c"/>
+          <feComposite in="c" in2="SourceAlpha" operator="in"/>
+        </filter>
+        <clipPath id="gtub"><rect x="-20" y="-60" width="220" height="184"/></clipPath>
+        <clipPath id="gcream"><use href="#gmound"/></clipPath>
+        <mask id="gburied" maskUnits="userSpaceOnUse" x="-20" y="-80" width="220" height="300">
+          <rect x="-20" y="-80" width="220" height="300" fill="#fff"/>
+          <use href="#gmound" fill="#000"/>
+        </mask>
+      </defs>
+    </svg>
 <div class="loader" aria-hidden="true">
   <div class="loader__field"></div>
   <div class="loader__core">
-    <div class="gelato gelato-mark" aria-hidden="true"><span class="gelato__tin" style="--flavor:#a8b573">
-          <svg class="gelato__surface" viewBox="0 0 100 100" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
-          <g class="gelato__swirl">
-            <rect x="-14" y="-14" width="128" height="128" fill="currentColor"/>
-            <path d="M-6 6 C 14 -5, 30 15, 50 6 C 70 -3, 86 17, 106 6 L106 13 C 86 24, 70 4, 50 13 C 30 22, 14 2, -6 13 Z" fill="#ffffff" opacity=".2"/><path d="M-6 13 C 14 2, 30 22, 50 13 C 70 4, 86 24, 106 13 L106 19 C 86 30, 70 10, 50 19 C 30 28, 14 8, -6 19 Z" fill="#2a2018" opacity=".09"/><path d="M-6 28 C 14 17, 30 37, 50 28 C 70 19, 86 39, 106 28 L106 35 C 86 46, 70 26, 50 35 C 30 44, 14 24, -6 35 Z" fill="#ffffff" opacity=".2"/><path d="M-6 35 C 14 24, 30 44, 50 35 C 70 26, 86 46, 106 35 L106 41 C 86 52, 70 32, 50 41 C 30 50, 14 30, -6 41 Z" fill="#2a2018" opacity=".09"/><path d="M-6 50 C 14 39, 30 59, 50 50 C 70 41, 86 61, 106 50 L106 57 C 86 68, 70 48, 50 57 C 30 66, 14 46, -6 57 Z" fill="#ffffff" opacity=".2"/><path d="M-6 57 C 14 46, 30 66, 50 57 C 70 48, 86 68, 106 57 L106 63 C 86 74, 70 54, 50 63 C 30 72, 14 52, -6 63 Z" fill="#2a2018" opacity=".09"/><path d="M-6 72 C 14 61, 30 81, 50 72 C 70 63, 86 83, 106 72 L106 79 C 86 90, 70 70, 50 79 C 30 88, 14 68, -6 79 Z" fill="#ffffff" opacity=".2"/><path d="M-6 79 C 14 68, 30 88, 50 79 C 70 70, 86 90, 106 79 L106 85 C 86 96, 70 76, 50 85 C 30 94, 14 74, -6 85 Z" fill="#2a2018" opacity=".09"/><ellipse cx="27" cy="21" rx="3.4" ry="2.652" fill="#3a2419" opacity=".9"/><ellipse cx="63" cy="16" rx="2.6" ry="2.028" fill="#3a2419" opacity=".9"/><ellipse cx="41" cy="44" rx="3.1" ry="2.418" fill="#3a2419" opacity=".9"/><ellipse cx="76" cy="48" rx="2.4" ry="1.8719999999999999" fill="#3a2419" opacity=".9"/><ellipse cx="20" cy="62" rx="2.9" ry="2.262" fill="#3a2419" opacity=".9"/><ellipse cx="55" cy="70" rx="3.3" ry="2.574" fill="#3a2419" opacity=".9"/><ellipse cx="82" cy="78" rx="2.5" ry="1.9500000000000002" fill="#3a2419" opacity=".9"/><ellipse cx="34" cy="86" rx="2.8" ry="2.1839999999999997" fill="#3a2419" opacity=".9"/><ellipse cx="66" cy="93" rx="2.3" ry="1.7939999999999998" fill="#3a2419" opacity=".9"/>
+    <div class="gelato gelato-mark" aria-hidden="true"><svg class="gelato__cup" viewBox="18 0 144 200" aria-hidden="true" focusable="false" style="--flavor:#a8b573">
+        <ellipse cx="90" cy="188" rx="46" ry="7" fill="#2a2018" opacity=".10"/>
+        <g class="gelato__tub">
+          <path d="M35 124 L41 186 L139 186 L145 124 Z" fill="url(#gpaper)"/>
+
+          <g class="gelato__cream" clip-path="url(#gtub)">
+            <use href="#gmound" fill="var(--flavor)" filter="url(#grelief)"/>
+            <g clip-path="url(#gcream)">
+              <use href="#gmound" fill="none" stroke="#2a2018" stroke-width="18" opacity=".2" filter="url(#gblur)"/>
+              <use href="#gmound" fill="url(#gshade)"/>
+              <path d="M83 70 C77 90 82 107 74 126" fill="none" stroke="#2a2018" stroke-width="4.4" stroke-linecap="round" opacity=".16" filter="url(#gsoft)"/>
+              <circle cx="75" cy="84" r="1.7" fill="#2a2018" opacity=".12"/><circle cx="84" cy="86" r="1.7" fill="#2a2018" opacity=".12"/><circle cx="67" cy="91" r="1.7" fill="#2a2018" opacity=".12"/><circle cx="91" cy="90" r="1.7" fill="#2a2018" opacity=".12"/><circle cx="79" cy="94" r="1.7" fill="#2a2018" opacity=".12"/><circle cx="58" cy="102" r="1.7" fill="#2a2018" opacity=".12"/><circle cx="104" cy="99" r="1.7" fill="#2a2018" opacity=".12"/>
+              <rect x="68.0" y="84.6" width="4.0" height="3.1" rx="0.7" fill="#3a2419" transform="rotate(27 70.0 86.2)"/><rect x="63.5" y="86.5" width="3.2" height="3.8" rx="0.7" fill="#3a2419" transform="rotate(40 65.1 88.4)"/><rect x="65.4" y="97.5" width="4.7" height="2.3" rx="0.7" fill="#3a2419" transform="rotate(33 67.7 98.7)"/><rect x="96.3" y="88.2" width="4.6" height="3.1" rx="0.7" fill="#3a2419" transform="rotate(3 98.6 89.8)"/><rect x="84.7" y="78.4" width="3.2" height="2.7" rx="0.7" fill="#3a2419" transform="rotate(24 86.3 79.8)"/><rect x="131.9" y="103.9" width="3.9" height="3.8" rx="0.7" fill="#3a2419" transform="rotate(17 133.9 105.7)"/><rect x="112.9" y="91.9" width="4.1" height="2.3" rx="0.7" fill="#3a2419" transform="rotate(32 114.9 93.0)"/><rect x="99.3" y="73.1" width="4.4" height="3.1" rx="0.7" fill="#3a2419" transform="rotate(-32 101.5 74.7)"/><rect x="90.4" y="92.1" width="4.4" height="3.0" rx="0.7" fill="#3a2419" transform="rotate(34 92.6 93.6)"/><rect x="60.6" y="76.6" width="4.2" height="2.5" rx="0.7" fill="#3a2419" transform="rotate(-39 62.7 77.9)"/><rect x="57.6" y="89.2" width="4.1" height="3.3" rx="0.7" fill="#3a2419" transform="rotate(24 59.6 90.9)"/>
+              
+            </g>
+            <rect x="37" y="115" width="106" height="10" fill="#2a2018" opacity=".15" filter="url(#gblur)"/>
           </g>
-        </svg>
-          <span class="gelato__sweep" aria-hidden="true"></span>
-        </span>
-        <span class="gelato__tool" style="--flavor:#a8b573"><svg class="gelato__scoop" viewBox="0 0 84 180" aria-hidden="true" focusable="false">
-          <rect x="35" y="72" width="14" height="26" rx="7" fill="#a79f93"/>
-          <rect x="18" y="92" width="48" height="82" rx="24" fill="none" stroke="#b2a99c" stroke-width="7"/>
-          <rect x="18" y="92" width="48" height="82" rx="24" fill="none" stroke="#f3eee4" stroke-width="2.4"/>
-          <path d="M30 100 56 162" stroke="#bbb2a5" stroke-width="6" stroke-linecap="round"/>
-          <circle cx="42" cy="42" r="39" fill="#9d958a"/>
-          <circle cx="42" cy="42" r="29" fill="currentColor"/>
-          <ellipse cx="32" cy="32" rx="13" ry="10" fill="#ffffff" opacity=".3"/>
-          <circle cx="42" cy="42" r="34" fill="none" stroke="#f3eee4" stroke-width="9"/>
-          <path d="M16 28a39 39 0 0 1 21-15" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity=".65"/>
-        </svg></span></div>
+
+          <rect x="31.5" y="115" width="117" height="10" rx="5" fill="#fdfbf5"/>
+          <rect x="31.5" y="115" width="117" height="10" rx="5" fill="none" stroke="#ddd3c0" stroke-width="1.1"/>
+
+          <rect x="48" y="139" width="84" height="28" fill="#f4efe3" opacity=".5"/>
+          <rect x="48" y="139" width="84" height="28" fill="none" stroke="#2a2018" stroke-width="1.5"/>
+          <text class="gelato__brand" x="90" y="155" font-size="9.2" letter-spacing="1" fill="#2a2018" text-anchor="middle">LA GELATERIA</text>
+          <text class="gelato__brand-it" x="114" y="170" font-size="11" fill="#2a2018" text-anchor="middle">italiana</text>
+
+          <g class="gelato__cut" transform="rotate(20 113 70)">
+            <ellipse cx="113" cy="71.5" rx="13" ry="5.4" fill="#2a2018" filter="url(#gblur)"/>
+          </g>
+          <g mask="url(#gburied)">
+            <g class="gelato__spoon" style="--sx0:121px;--sy0:-34px;--sx1:107px;--sy1:84px">
+              <g class="gelato__wobble">
+          <path d="M-9.6 -36 C-9.6 -42 -6.6 -44.6 0 -44.6 C6.6 -44.6 9.6 -42 9.6 -36 L9 -14.5 C9 -5.4 5.4 0 0 0 C-5.4 0 -9 -5.4 -9 -14.5 Z" fill="url(#gspoon)" stroke="#bdb5a6" stroke-width="0.9"/>
+          <rect x="-4.9" y="-64" width="9.8" height="26" rx="4.9" fill="url(#gspoon)" stroke="#bdb5a6" stroke-width="0.9"/>
+          <path d="M-5.4 -38 C-5.4 -40.6 -3 -41.6 0 -41.6 C3 -41.6 5.4 -40.6 5.4 -38 L5 -20 C5 -13.6 2.8 -10.4 0 -10.4 C-2.8 -10.4 -5 -13.6 -5 -20 Z" fill="#fff" opacity=".55"/>
+          <path d="M-2 -61 L-2 -41" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".7"/>
+        </g>
+            </g>
+          </g>
+        </g>
+      </svg></div>
     <p class="loader__word" aria-label="La Gelateria Italiana"><span>L</span><span>A</span><span>&nbsp;</span><span>G</span><span>E</span><span>L</span><span>A</span><span>T</span><span>E</span><span>R</span><span>I</span><span>A</span></p>
   </div>
   <div class="loader__meta">
