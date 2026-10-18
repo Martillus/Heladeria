@@ -47,24 +47,6 @@
     });
   }
 
-  /* Logotipo: si existe assets/logo/logo.svg se usa; si no, queda el provisional */
-  function initLogo() {
-    var slots = document.querySelectorAll("[data-logo-slot]");
-    if (!slots.length) return;
-    var probe = new Image();
-    probe.onload = function () {
-      slots.forEach(function (s) {
-        var real = document.createElement("img");
-        real.src = "assets/logo/logo.svg";
-        real.alt = "La Gelateria Italiana";
-        real.className = s.className;
-        real.setAttribute("data-logo-slot", "");
-        s.replaceWith(real);
-      });
-    };
-    probe.src = "assets/logo/logo.svg";
-  }
-
   /* --------------------------------------------------------
      2. Utilidades de texto
      -------------------------------------------------------- */
@@ -846,7 +828,6 @@
      -------------------------------------------------------- */
   function boot() {
     initPhotos();
-    initLogo();
     initSmooth();
     initNav();
     initMasthead();

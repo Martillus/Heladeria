@@ -599,7 +599,7 @@ html.lenis body { height: auto; }
   display: grid;
   place-items: center;
 }
-.curtain__mark { opacity: 0; width: clamp(64px, 8vw, 92px); }
+.curtain__mark { opacity: 0; width: clamp(132px, 17vw, 210px); }
 
 /* ---------- 2. Cabecera ---------- */
 .masthead {
@@ -630,26 +630,18 @@ html.lenis body { height: auto; }
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
   z-index: 2;
-}
-.brand__mark { width: clamp(34px, 3.6vw, 44px); height: auto; flex: none; }
-.brand__text { display: grid; line-height: 1; }
-.brand__name {
-  font-family: var(--f-display);
-  font-size: clamp(0.82rem, 1.15vw, 1rem);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
   color: var(--fg);
 }
-.brand__sub {
-  font-family: var(--f-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--fg-mute);
-  margin-top: 0.35em;
+/* El rótulo es apaisado, así que se mide por ancho y no por alto */
+.brand__mark {
+  width: clamp(124px, 13vw, 168px);
+  height: auto;
+  flex: none;
 }
+.brand__mark--foot { width: clamp(168px, 20vw, 240px); }
+.brand__word { font-family: var(--f-body); font-weight: 500; }
+.brand__script { font-family: var(--f-script); }
 
 .masthead__side { display: flex; align-items: center; gap: clamp(0.5rem, 1.4vw, 1.1rem); }
 
@@ -1290,8 +1282,7 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
 /* ---------- Cabecera en pantalla pequeña ---------- */
 @media (max-width: 700px) {
   .masthead { padding-inline: clamp(0.9rem, 4vw, 1.4rem); gap: 0.5rem; }
-  .brand__text { display: none; }
-  .brand__mark { width: 38px; }
+  .brand__mark { width: clamp(104px, 34vw, 132px); }
   .masthead__side .btn--solid { padding-inline: 1.1rem; }
   .masthead__side .btn--solid span:not(.btn__ico) { display: none; }
   .masthead__side .btn--solid .btn__ico { width: 17px; height: 17px; }
@@ -2383,12 +2374,10 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
 </div>
 <p class="visually-hidden" role="status">Cargando La Gelateria Italiana…</p>
 
-<div class="curtain" aria-hidden="true"><span class="curtain__mark"><svg class="" data-logo-slot viewBox="0 0 48 48" aria-hidden="true" role="presentation" aria-label="La Gelateria Italiana">
-      <circle cx="24" cy="24" r="22.4" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".45"/>
-      <path d="M12.8 27.4c0-5.6 5-10.1 11.2-10.1s11.2 4.5 11.2 10.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <path d="M12.8 27.4h22.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <path d="M17.6 27.4 24 37.6l6.4-10.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="24" cy="13.1" r="2" fill="#8e2231"/>
+<div class="curtain" aria-hidden="true"><span class="curtain__mark"><svg class="" viewBox="0 0 480 118" aria-hidden="true" focusable="false">
+      <rect x="2.5" y="2.5" width="475" height="97" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <text class="brand__word" x="238" y="70" text-anchor="middle" font-size="51" letter-spacing="3.6" fill="currentColor">LA GELATERIA</text>
+      <text class="brand__script" x="386" y="107" text-anchor="middle" font-size="43" fill="currentColor">italiana</text>
     </svg></span></div>
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"></div>
@@ -2396,17 +2385,11 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
 
 <header class="masthead">
   <a class="brand" href="index.html" aria-label="La Gelateria Italiana — inicio">
-    <svg class="brand__mark" data-logo-slot viewBox="0 0 48 48" role="img" aria-label="La Gelateria Italiana">
-      <circle cx="24" cy="24" r="22.4" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".45"/>
-      <path d="M12.8 27.4c0-5.6 5-10.1 11.2-10.1s11.2 4.5 11.2 10.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <path d="M12.8 27.4h22.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <path d="M17.6 27.4 24 37.6l6.4-10.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="24" cy="13.1" r="2" fill="#8e2231"/>
+    <svg class="brand__mark" viewBox="0 0 480 118" aria-hidden="true" focusable="false">
+      <rect x="2.5" y="2.5" width="475" height="97" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <text class="brand__word" x="238" y="70" text-anchor="middle" font-size="51" letter-spacing="3.6" fill="currentColor">LA GELATERIA</text>
+      <text class="brand__script" x="386" y="107" text-anchor="middle" font-size="43" fill="currentColor">italiana</text>
     </svg>
-    <span class="brand__text">
-      <span class="brand__name" translate="no">La Gelateria</span>
-      <span class="brand__sub" translate="no">Italiana · Madrid</span>
-    </span>
   </a>
   <div class="masthead__side">
     <button class="btn btn--solid" type="button" data-order-open data-magnetic="0.22" aria-haspopup="dialog" aria-controls="order-panel" aria-label="Pedir online en Uber Eats o Glovo">
@@ -3552,17 +3535,11 @@ body.nav-open .menu-btn__bars i:nth-child(3) { transform: translateY(-5.5px) rot
     <div class="footer__grid">
       <div class="footer__col">
         <a class="brand" href="index.html" aria-label="La Gelateria Italiana — inicio">
-          <svg class="brand__mark" data-logo-slot viewBox="0 0 48 48" role="img" aria-label="La Gelateria Italiana">
-      <circle cx="24" cy="24" r="22.4" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".45"/>
-      <path d="M12.8 27.4c0-5.6 5-10.1 11.2-10.1s11.2 4.5 11.2 10.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <path d="M12.8 27.4h22.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <path d="M17.6 27.4 24 37.6l6.4-10.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="24" cy="13.1" r="2" fill="#8e2231"/>
+          <svg class="brand__mark brand__mark--foot" viewBox="0 0 480 118" aria-hidden="true" focusable="false">
+      <rect x="2.5" y="2.5" width="475" height="97" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <text class="brand__word" x="238" y="70" text-anchor="middle" font-size="51" letter-spacing="3.6" fill="currentColor">LA GELATERIA</text>
+      <text class="brand__script" x="386" y="107" text-anchor="middle" font-size="43" fill="currentColor">italiana</text>
     </svg>
-          <span class="brand__text">
-            <span class="brand__name" translate="no">La Gelateria</span>
-            <span class="brand__sub" translate="no">Italiana · Madrid</span>
-          </span>
         </a>
         <p class="lead" style="margin-top:1.4rem;max-width:34ch">Gelato mantecado cada mañana en Ríos Rosas. Sin grasas hidrogenadas, sin prisa y sin atajos.</p>
         <p class="live-dot" data-open-state style="margin-top:1.4rem"><i aria-hidden="true"></i><span data-open-text>Cierra a las 23:00</span></p>
@@ -3697,24 +3674,6 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
         img.addEventListener("error", fail, { once: true });
       }
     });
-  }
-
-  /* Logotipo: si existe assets/logo/logo.svg se usa; si no, queda el provisional */
-  function initLogo() {
-    var slots = document.querySelectorAll("[data-logo-slot]");
-    if (!slots.length) return;
-    var probe = new Image();
-    probe.onload = function () {
-      slots.forEach(function (s) {
-        var real = document.createElement("img");
-        real.src = "assets/logo/logo.svg";
-        real.alt = "La Gelateria Italiana";
-        real.className = s.className;
-        real.setAttribute("data-logo-slot", "");
-        s.replaceWith(real);
-      });
-    };
-    probe.src = "assets/logo/logo.svg";
   }
 
   /* --------------------------------------------------------
@@ -4498,7 +4457,6 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
      -------------------------------------------------------- */
   function boot() {
     initPhotos();
-    initLogo();
     initSmooth();
     initNav();
     initMasthead();

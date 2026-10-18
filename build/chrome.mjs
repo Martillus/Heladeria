@@ -338,12 +338,14 @@ export function gelatoMark(flavor) {
       </svg>`;
 }
 
-export const LOGO = (cls = "brand__mark") => `<svg class="${cls}" data-logo-slot viewBox="0 0 48 48" role="img" aria-label="La Gelateria Italiana">
-      <circle cx="24" cy="24" r="22.4" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".45"/>
-      <path d="M12.8 27.4c0-5.6 5-10.1 11.2-10.1s11.2 4.5 11.2 10.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <path d="M12.8 27.4h22.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      <path d="M17.6 27.4 24 37.6l6.4-10.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="24" cy="13.1" r="2" fill="#8e2231"/>
+/* El rótulo de madera que cuelga en la pared del local, redibujado como
+   vectorial: marco fino, versales muy espaciadas y la cursiva pisando la
+   línea de abajo por la derecha. Todo en currentColor, así que el mismo
+   dibujo vale sobre crema y sobre el granate del pie. */
+export const LOGO = (cls = "brand__mark") => `<svg class="${cls}" viewBox="0 0 480 118" aria-hidden="true" focusable="false">
+      <rect x="2.5" y="2.5" width="475" height="97" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <text class="brand__word" x="238" y="70" text-anchor="middle" font-size="51" letter-spacing="3.6" fill="currentColor">LA GELATERIA</text>
+      <text class="brand__script" x="386" y="107" text-anchor="middle" font-size="43" fill="currentColor">italiana</text>
     </svg>`;
 
 export const ARROW = `<svg class="btn__ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -377,6 +379,7 @@ export function head({ title, desc, page }) {
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/bodoni-moda-normal-400-900-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/archivo-normal-300-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/sacramento-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
@@ -414,10 +417,6 @@ ${GELATO_DEFS}
 <header class="masthead">
   <a class="brand" href="index.html" aria-label="${SITE.name} — inicio">
     ${LOGO()}
-    <span class="brand__text">
-      <span class="brand__name" translate="no">La Gelateria</span>
-      <span class="brand__sub" translate="no">Italiana · Madrid</span>
-    </span>
   </a>
   <div class="masthead__side">
     <button class="btn btn--solid" type="button" data-order-open data-magnetic="0.22" aria-haspopup="dialog" aria-controls="order-panel" aria-label="Pedir online en Uber Eats o Glovo">
@@ -511,11 +510,7 @@ ${orderPanel()}
     <div class="footer__grid">
       <div class="footer__col">
         <a class="brand" href="index.html" aria-label="${SITE.name} — inicio">
-          ${LOGO()}
-          <span class="brand__text">
-            <span class="brand__name" translate="no">La Gelateria</span>
-            <span class="brand__sub" translate="no">Italiana · Madrid</span>
-          </span>
+          ${LOGO("brand__mark brand__mark--foot")}
         </a>
         <p class="lead" style="margin-top:1.4rem;max-width:34ch">Gelato mantecado cada mañana en Ríos Rosas. Sin grasas hidrogenadas, sin prisa y sin atajos.</p>
         <p class="live-dot" data-open-state style="margin-top:1.4rem"><i aria-hidden="true"></i><span data-open-text>Cierra a las ${SITE.closes}</span></p>
