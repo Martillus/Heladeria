@@ -115,8 +115,11 @@
   display: inline-flex;
   align-items: center;
   z-index: 2;
-  color: var(--fg);
+  /* El rótulo es de madera: lleva su color, no el del texto */
+  color: var(--legno);
 }
+.contrast-zone .brand,
+.footer .brand { color: var(--legno-lt); }
 /* El rótulo es apaisado, así que se mide por ancho y no por alto */
 .brand__mark {
   width: clamp(124px, 13vw, 168px);
@@ -124,7 +127,7 @@
   flex: none;
 }
 .brand__mark--foot { width: clamp(168px, 20vw, 240px); }
-.brand__word { font-family: var(--f-body); font-weight: 500; }
+.brand__word { font-family: var(--f-body); font-weight: 500; font-stretch: 95%; }
 .brand__script { font-family: var(--f-script); }
 
 .masthead__side { display: flex; align-items: center; gap: clamp(0.5rem, 1.4vw, 1.1rem); }

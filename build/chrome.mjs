@@ -338,14 +338,15 @@ export function gelatoMark(flavor) {
       </svg>`;
 }
 
-/* El rótulo de madera que cuelga en la pared del local, redibujado como
-   vectorial: marco fino, versales muy espaciadas y la cursiva pisando la
-   línea de abajo por la derecha. Todo en currentColor, así que el mismo
-   dibujo vale sobre crema y sobre el granate del pie. */
-export const LOGO = (cls = "brand__mark") => `<svg class="${cls}" viewBox="0 0 480 118" aria-hidden="true" focusable="false">
-      <rect x="2.5" y="2.5" width="475" height="97" fill="none" stroke="currentColor" stroke-width="2.4"/>
-      <text class="brand__word" x="238" y="70" text-anchor="middle" font-size="51" letter-spacing="3.6" fill="currentColor">LA GELATERIA</text>
-      <text class="brand__script" x="386" y="107" text-anchor="middle" font-size="43" fill="currentColor">italiana</text>
+/* El rótulo de madera de la pared del local, redibujado como vectorial. Las
+   proporciones salen de medir la foto: la versal ocupa el 41 % del alto del
+   marco, el texto el 85 % de su ancho y va centrado, y la cursiva cae a la
+   derecha pisando la línea de abajo. El trazo del marco es grueso, como el
+   listón de madera. El color es el del propio rótulo, no el del texto. */
+export const LOGO = (cls = "brand__mark") => `<svg class="${cls}" viewBox="0 0 480 130" aria-hidden="true" focusable="false">
+      <rect x="2" y="2" width="476" height="97" fill="none" stroke="currentColor" stroke-width="4"/>
+      <text class="brand__word" x="240" y="71.4" text-anchor="middle" font-size="58" letter-spacing="1.5" fill="currentColor">LA GELATERIA</text>
+      <text class="brand__script" x="380" y="108" text-anchor="middle" font-size="52" fill="currentColor">italiana</text>
     </svg>`;
 
 export const ARROW = `<svg class="btn__ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
